@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../Libraries/p5/p5.js"></script>
+</head>
+<body>
+
+</body>
+
+</html>
+
+<script>
+let a
+let yellow
+function setup() {
+  createCanvas(windowWidth,windowHeight);
+  angleMode(DEGREES);
+
+}
+
+function draw() {
+  background(0);
+  noStroke();
+for (a=0; a< 360; a++) {
+push();
+fill(a/360*255, a/360*20, 255-a/360,10);
+translate(windowWidth/2, windowHeight/2)
+rotate(a);
+triangle(windowWidth/2, windowHeight/4, 0, windowHeight/2, windowWidth/6, 0);
+pop();
+}
+}
+
+</script>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../Libraries/p5/p5.js"></script>
+    <script src="../Libraries/p5/addons/p5.sound.js"></script>
+  </head>
+<body>
+    <div class="screen2">
+        <div class="circle sixth"></div>
+        <div class="circle fifth"></div>
+        <div class="circle fourth"></div>
+        <div class="circle third"></div>
+        <div class="circle second"></div>
+        <div class="circle first"></div>
+        <div class="pupil2"></div>
+    </div>
+</body>
+
+</html>
+
+<style>
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.screen2 {
+position: absolute;
+}
+
+.circle {
+background-image: radial-gradient(ellipse, white 0%, white 18%, black 20%, black 24%, transparent 26%);
+margin-top: -200vw;
+margin-left: -200vw;
+background-size: 6vw 6vw;   
+background-repeat: repeat;
+width: 600vw;
+height: 600vh;
+position: absolute;
+}
+
+.second {
+background-image: radial-gradient(ellipse, white 0%, white 28%, black 30%, black 34%, transparent 36%);
+margin-top: -200.3vw;
+margin-left: -200.3vw;
+}
+
+.third {
+background-image: radial-gradient(ellipse, white 0%, white 38%, black 40%, black 44%, transparent 46%);
+margin-top: -200.4vw;
+margin-left: -200.4vw;
+}
+
+.fourth {
+background-image: radial-gradient(ellipse, white 0%, white 48%, black 50%, black 54%, transparent 56%);
+margin-top: -200.5vw;
+margin-left: -200.5vw;
+}
+
+.fifth {
+background-image: radial-gradient(ellipse, white 0%, white 58%, black 60%, black 64%, transparent 66%);
+margin-top: -200.4vw;
+margin-left: -200.4vw;
+}
+
+.sixth {
+background-image: radial-gradient(ellipse, white 0%, white 68%, black 70%, black 74%, transparent 76%);
+margin-top: -200.3vw;
+margin-left: -200.3vw;
+}
+
+.pupil2 {
+    background-image: radial-gradient(ellipse, black 0%, black 12%, transparent 14%);
+    margin-top: -199.7vw;
+    margin-left: -199.7vw;
+    background-size: 6vw 6vw;   
+background-repeat: repeat;
+width: 600vw;
+height: 600vh;
+position: absolute;
+}
+
+.screen2 {
+    position: absolute;
+    margin-top: 50vh;
+    margin-left: 50vw;
+    animation: circle 100s infinite linear;
+}
+
+@keyframes circle {
+  100% {
+    transform: rotate(-360deg) ;
+  }
+}
+
+.fifth {
+    animation: fifthCircle 5s infinite linear;
+}
+
+@keyframes fifthCircle {
+  0% {
+    transform: translate3D(0,0,0);
+  }
+  18% {
+    transform: translate3D(0.15vw, 0vw, 0);
+  }
+  36% {
+    transform: translate3D(0.25vw, 0.1vw, 0);
+  }
+  54% {
+    transform: translate3D(0.25vw, 0.25vw, 0);
+  }
+  70% {
+    transform: translate3D(0.15vw, 0.25vw, 0);
+  }
+  85% {
+    transform: translate3D(0vw, 0.15vw, 0);
+  }
+100% {
+    transform: translate3D(0vw, 0vw, 0);
+  }
+}
+
+.fourth {
+    animation: fourthCircle 5s infinite linear;
+}
+
+@keyframes fourthCircle {
+  0% {
+    transform: translate3D(0,0,0);
+  }
+  18% {
+    transform: translate3D(0.15vw, -0.08vw, 0);
+  }
+  36% {
+    transform: translate3D(0.45vw, 0.1vw, 0);
+  }
+  54% {
+    transform: translate3D(0.45vw, 0.45vw, 0);
+  }
+  70% {
+    transform: translate3D(0.25vw, 0.5vw, 0);
+  }
+  85% {
+    transform: translate3D(-0.1vw, 0.25vw, 0);
+  }
+100% {
+    transform: translate3D(0vw, 0vw, 0);
+  }
+}
+
+.third {
+    animation: thirdCircle 5s infinite linear;
+}
+
+@keyframes thirdCircle {
+  0% {
+    transform: translate3D(0,0,0);
+  }
+  18% {
+    transform: translate3D(0vw, -0.04vw, 0);
+  }
+  36% {
+    transform: translate3D(0.2vw, 0vw, 0);
+  }
+  54% {
+    transform: translate3D(0.3vw, 0.25vw, 0);
+  }
+  70% {
+    transform: translate3D(0.25vw, 0.35vw, 0);
+  }
+  85% {
+    transform: translate3D(-0.05vw, 0.15vw, 0);
+  }
+100% {
+    transform: translate3D(0vw, 0vw, 0);
+  }
+}
+
+.second {
+    animation: secondCircle 5s infinite linear;
+}
+
+@keyframes secondCircle {
+  0% {
+    transform: translate3D(0,0,0);
+  }
+ 18% {
+    transform: translate3D(-0.05vw, 0.11vw, 0);
+  }
+  36% {
+    transform: translate3D(-0.12vw, -0.05vw, 0);
+  }
+  54% {
+    transform: translate3D(0.2vw, -0.07vw, 0);
+  }
+  70% {
+    transform: translate3D(0.25vw, 0.07vw, 0);
+  }
+  85% {
+    transform: translate3D(0.05vw, 0.1vw, 0);
+  }
+100% {
+    transform: translate3D(0vw, 0vw, 0);
+  }
+}
+
+.first {
+    animation: firstCircle 5s infinite linear;
+}
+
+@keyframes firstCircle {
+  0% {
+    transform: translate3D(0,0,0);
+  }
+ 18% {
+    transform: translate3D(-0.4vw, 0.08vw, 0);
+  }
+  36% {
+    transform: translate3D(-0.72vw, -0.05vw, 0);
+  }
+  54% {
+    transform: translate3D(-0.55vw, -0.37vw, 0);
+  }
+  62% {
+    transform: translate3D(-0.4vw, -0.6vw, 0);
+  }
+  70% {
+    transform: translate3D(-0.1vw, -0.65vw, 0);
+  }
+  85% {
+    transform: translate3D(0.1vw, -0.4vw, 0);
+  }
+100% {
+    transform: translate3D(0vw, 0vw, 0);
+  }
+}
+
+.pupil2 {
+  animation: pupil 5s infinite linear;
+}
+
+@keyframes pupil {
+  0% {
+    transform: translate3D(0,0,0);
+  }
+  18% {
+    transform: translate3D(-0.65vw, 0.18vw, 0);
+  }
+  36% {
+    transform: translate3D(-1.35vw, -0.05vw, 0);
+  }
+  54% {
+    transform: translate3D(-1.2vw, -0.67vw, 0);
+  }
+  62% {
+  transform: translate3D(-0.9vw, -1.2vw, 0);
+  }
+  70% {
+    transform: translate3D(-0.4vw, -1.4vw, 0);
+  }
+
+  85% {
+    transform: translate3D(0.25vw, -0.9vw, 0);
+  }
+  100% {
+    transform: translate3D(0vw, 0vw, 0);
+  }
+}
+
+</style>
+
+<script>
+
+
+
+let mySound;
+function preload() {
+  soundFormats('wav');
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight)
+  // textFont(calibri);
+  textSize(width / 3);
+  textAlign(CENTER, CENTER);
+}
+
+function draw() {
+  fill(0,155,100);
+  if (keyIsPressed === true) {
+    background(255)
+mySound = createAudio('Sound/Hypnosis.wav'); 
+mySound.loop();
+}
+// else {
+//   text('word', windowWidth/2, windowHeight/2);
+// }
+}
+
+
+</script>
