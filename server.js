@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var server = app.listen('https://kind-kowalevski-48d942.netlify.app/exercises/Smartphone_Sensor/public/');
+var server = app.listen('https://kind-kowalevski-48d942.netlify.app/public/');
 
 app.use(express.static('public'));
 
