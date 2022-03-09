@@ -12,9 +12,9 @@ function newDot(dataSmartphone) {
     push()
 translate(windowWidth/2, windowHeight/2)
 fill(255,0,0);
-ellipse(dataSmartphone.angle1*10, dataSmartphone.angle2*10, 100)
+ellipse(dataSmartphone.angle1*5, dataSmartphone.angle2*5, 100)
     pop()
-    console.log(dataSmartphone.angle1 + ", " + dataSmartphone.angle2)
+    console.log(`${dataSmartphone.angle1}, ${dataSmartphone.angle2}`)
 }
 
 function newDrawing(data) {
