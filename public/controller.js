@@ -47,8 +47,7 @@ function calcDist(angle, initAngle) {
     getSensorData()
     function getSensorData () {
         var dataSmartphone = {
-            angle1: dist[0], 
-            angle2: dist[1]
+            dist
         }
         socket.emit('angle', dataSmartphone);
     }
