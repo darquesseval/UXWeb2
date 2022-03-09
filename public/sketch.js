@@ -14,7 +14,7 @@ translate(windowWidth/2, windowHeight/2)
 fill(255,0,0);
 ellipse(dataSmartphone.angle1*5, dataSmartphone.angle2*5, 100)
     pop()
-    console.log(dataSmartphone)
+    console.log('received: ' + dataSmartphone)
 }
 
 function newDrawing(data) {
