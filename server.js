@@ -6,7 +6,7 @@ app.get('/allow-cors', function(request, response) {
     response.sendFile(__dirname + '/message.json');
   });
 
-var server = app.listen(process.env.PORT || 'https://experimenting-webux2.herokuapp.com', function(){
+var server = app.listen(process.env.PORT || 'https://experimenting-webux2.herokuapp.com' || 'https://experimenting-webux2.herokuapp.com/controller.html', function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
 
