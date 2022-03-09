@@ -32,3 +32,5 @@ function newConnection(socket) {
 
 
 }
+// to start server on heruko:
+// heroku git:remote -a "experimenting-webux2"
