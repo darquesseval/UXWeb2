@@ -1,5 +1,11 @@
 var express = require('express');
 var app = express();
+
+app.get('/allow-cors', function(request, response) {
+    response.set('Access-Control-Allow-Origin', '*');
+    response.sendFile(__dirname + '/message.json');
+  });
+
 var server = app.listen(process.env.PORT || 'https://experimenting-webux2.herokuapp.com', function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
