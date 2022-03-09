@@ -115,6 +115,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "engines": {
+    "node": "^16.14.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darquesseval/UXWeb2.git"
