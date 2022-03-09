@@ -2,7 +2,7 @@ var socket
 
 function setup() {
 createCanvas(windowWidth, windowHeight)
-socket = io.connect('http://localhost:7000')
+socket = io.connect('https://experimenting-webux2.herokuapp.com')
 socket.on('mouse', newDrawing);
 background(0);
 }
