@@ -44,8 +44,8 @@ function calcDist(angle, initAngle) {
     //800 can be changed to adjust sensitivity
     let dist = Math.round(-800 * Math.tan(angle * (Math.PI / 180)));
     console.log(dist);
-    let a = dist[0];
-    let b = dist[1];
+    let a1 = dist[0];
+    let a2 = dist[1];
     getSensorData()
     function getSensorData () {
         var dataSmartphone = {
