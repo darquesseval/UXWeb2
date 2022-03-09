@@ -44,14 +44,14 @@ function calcDist(angle, initAngle) {
     let dist = Math.round(-800 * Math.tan(angle * (Math.PI / 180)));
     console.log(dist);
     getSensorData()
+    function getSensorData () {
+        var dataSmartphone = {
+            angle1: dist[0], 
+            angle2: dist[1]
+        }
+        socket.emit('angle', dataSmartphone);
+    }
     return dist;
-    
+ 
 }
 
-function getSensorData (dataSmartphone) {
-    var dataSmartphone = {
-        angle1: dist[0], 
-        angle2: dist[1]
-    }
-    socket.emit('angle', dataSmartphone);
-}
