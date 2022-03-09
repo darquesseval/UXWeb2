@@ -12,7 +12,7 @@ function newDot(dataSmartphone) {
     push()
 translate(windowWidth/2, windowHeight/2)
 fill(255,0,0);
-ellipse(dataSmartphone.angle1*5, dataSmartphone.angle2*5, 100)
+ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10)
     pop()
     console.log('received: ' + dataSmartphone)
 }
