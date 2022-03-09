@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var server = app.listen('https://kind-kowalevski-48d942.netlify.app/public/');
+var server = app.listen('7000');
 
 app.use(express.static('public'));
 

@@ -2,7 +2,7 @@ var socket
 
 function setup() {
 createCanvas(windowWidth, windowHeight)
-socket = io.connect('https://kind-kowalevski-48d942.netlify.app/public/')
+socket = io.connect('http://localhost:7000')
 socket.on('mouse', newDrawing);
 background(0);
 }
