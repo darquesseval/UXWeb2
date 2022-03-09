@@ -11,6 +11,7 @@ background(0);
 function newDot(dataSmartphone) {
     push()
 translate(windowWidth/2, windowHeight/2)
+fill(255,0,0);
 ellipse(dataSmartphone.angle1*10, dataSmartphone.angle2*10, 100)
     pop()
 }
