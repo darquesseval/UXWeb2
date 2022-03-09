@@ -14,18 +14,18 @@ function newDrawing(data) {
 }
 
 function mouseDragged() {
+    socket.emit('mouse', data);
+
+    fill(255, 0, 255);
+    noStroke();
+    ellipse(mouseX,mouseY,50);
+
     console.log('Sending: ' + mouseX + ',' + mouseY);
 
     var data = {
         x: mouseX,
         y: mouseY
     }
-
-    socket.emit('mouse', data);
-
-    fill(255, 0, 255);
-    noStroke();
-    ellipse(mouseX,mouseY,50);
 }
 
 function draw() {
