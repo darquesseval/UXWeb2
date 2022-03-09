@@ -33,7 +33,7 @@ function handleSensor(e){
     }
     
     let dist = angles.map((angle, i) => calcDist(angle, initPos[i]));
-    console.log(dist);
+    console.log(dist[1]);
 }   
 
 function calcDist(angle, initAngle) {
@@ -48,10 +48,7 @@ function calcDist(angle, initAngle) {
     let a2 = dist[1];
     getSensorData()
     function getSensorData () {
-        var dataSmartphone = {
-            angle1: a1, 
-            angle2: a2
-        }
+        var dataSmartphone = dist
         socket.emit('angle', dataSmartphone);
     }
     return dist;
