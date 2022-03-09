@@ -33,7 +33,15 @@ function handleSensor(e){
     }
     
     let dist = angles.map((angle, i) => calcDist(angle, initPos[i]));
-    console.log(dist[0]);
+    console.log(dist);
+    getSensorData()
+    function getSensorData () {
+        var dataSmartphone = {
+            angle1: dist[0],
+            angle2: dist[1]
+        }
+        socket.emit('angle', dataSmartphone);
+    }
 }   
 
 function calcDist(angle, initAngle) {
@@ -44,11 +52,6 @@ function calcDist(angle, initAngle) {
     //800 can be changed to adjust sensitivity
     let dist = Math.round(-800 * Math.tan(angle * (Math.PI / 180)));
     console.log(dist);
-    getSensorData()
-    function getSensorData () {
-        var dataSmartphone = dist
-        socket.emit('angle', dataSmartphone);
-    }
     return dist;
  
 }
