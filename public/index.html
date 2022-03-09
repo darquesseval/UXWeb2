@@ -2,10 +2,11 @@
 <head>
     <script src="Libraries/p5/p5.js"></script>
     <script src="sketch.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-<script>
-  const socketIO = io();
-</script>
+    <script type="module">
+      import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+    
+      const socket = io();
+    </script>
 </head>
 <body>
 
