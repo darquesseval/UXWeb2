@@ -22,7 +22,13 @@ function newConnection(socket) {
     console.log('new connection: ' + socket.id);
 
     socket.on('mouse', mouseMsg);
+    socket.on('angle', sensorMsg);
 
+    function sensorMsg(dataSmartphone) {
+      socket.broadcast.emit('angle', dataSmartphone)
+      console.log(dataSmartphone);
+    }
+    
     function mouseMsg(data) {
         socket.broadcast.emit('mouse', data);
         // io.sockets.emit('mouse', data);
