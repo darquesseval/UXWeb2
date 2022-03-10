@@ -55,13 +55,13 @@ function draw() {
    
     push()
     translate(windowWidth / 2, windowHeight / 2)
-     p2.body.position.x = x
-     p2.body.position.y = y
+     p2.body.position.x = x;
+     p2.body.position.y = y;
  
+     p1.show(255);
+     p2.show(255);
  pop()
 
-    p1.show(255);
-    p2.show(255);
 
     // if (pointer.length >= 1) {
     //     for (let n = 0; n < pointer.length; n++) {
