@@ -61,6 +61,8 @@ function draw() {
  
      p1.show(255,255,255,255);
      p2.show(255,255,255,255);
+     stroke(255,0,255)
+     line(p1.body.position.x, p1.body.position.y, p2.body.position.x, p2.body.position.y)
 
     // if (pointer.length >= 1) {
     //     for (let n = 0; n < pointer.length; n++) {
