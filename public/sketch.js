@@ -88,8 +88,8 @@ class Circle {
     constructor(x, y, r) {
         this.body = Matter.Bodies.circle(x, y, r, {
             //make physics a bit more sand-like
-            restitution: 0.35,
-            density: 1,
+            restitution: 0.9,
+            density: 0.3,
             friction: 0.5,
         });
         Matter.World.add(world, this.body);
