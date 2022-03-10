@@ -9,6 +9,8 @@ let connection
 let pointer = []
 let i = 0
 
+let x = windowWidth/2;
+let y = windowHeight/2;
 
 function setup() {
     frameRate(30)
@@ -34,21 +36,22 @@ function draw() {
     leftB.show(0, 100, 200, 255);
     rightB.show(0, 100, 200, 255);
    
-   push()
-   translate(windowWidth / 2, windowHeight / 2)
-    if(x) {
-let p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
-let p2 = new Circle(x, y, 10)
-p1.show(255);
-connection = Matter.Constraint.create({
-    bodyA: p1.body,
-    bodyB: Path2D.body,
-    length: windowHeight/5,
-    stiffness: 0.2
-})
-pop()
+    push()
+    translate(windowWidth / 2, windowHeight / 2)
+     
+ let p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
+ let p2 = new Circle(x, y, 10)
 
-}
+ connection = Matter.Constraint.create({
+     bodyA: p1.body,
+     bodyB: p2.body,
+     length: windowHeight/5,
+     stiffness: 0.2
+ })
+ pop()
+
+    p1.show(255);
+    p2.show(255);
 
     // if (pointer.length >= 1) {
     //     for (let n = 0; n < pointer.length; n++) {
@@ -58,9 +61,8 @@ pop()
 }
 
 function newDot(dataSmartphone) {
-    let x = dataSmartphone.angle1;
-    let y = dataSmartphone.angle2;
-
+    x = dataSmartphone.angle1;
+    y = dataSmartphone.angle2;
     // fill(255,0,0);
     // ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10);
 
