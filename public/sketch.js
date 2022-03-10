@@ -25,10 +25,11 @@ function setup() {
     engine = Matter.Engine.create();
     world = engine.world;
     rectMode(CENTER);
-    bottomB = new Bound(0, windowHeight / 2, windowWidth, 10, 0);
+    angleMode(DEGREES);
+    bottomB = new Bound(windowWidth/2, windowHeight, windowWidth, 10, 0);
     topB = new Bound(windowWidth / 2, 0, windowWidth, 10, 0);
-    leftB = new Bound(0, windowHeight / 2, 10, windowHeight, 1.5708);
-    rightB = new Bound(windowWidth, windowHeight / 2, 10, windowHeight, 1.5708);
+    leftB = new Bound(0, windowHeight / 2, 10, windowHeight, 0);
+    rightB = new Bound(windowWidth, windowHeight / 2, 10, windowHeight, 0);
 
     x = windowWidth/2;
     y = windowHeight/2;
@@ -48,20 +49,18 @@ function setup() {
 
 function draw() {
     Matter.Engine.update(engine);
+    background(0)
     bottomB.show(0, 100, 200, 255);
     topB.show(0, 100, 200, 255);
     leftB.show(0, 100, 200, 255);
     rightB.show(0, 100, 200, 255);
-   
-    push()
-    translate(windowWidth / 2, windowHeight / 2)
+    
+
      p2.body.position.x = x;
      p2.body.position.y = y;
  
-     p1.show(255);
-     p2.show(255);
- pop()
-
+     p1.show(255,255,255,255);
+     p2.show(255,255,255,255);
 
     // if (pointer.length >= 1) {
     //     for (let n = 0; n < pointer.length; n++) {
@@ -71,8 +70,8 @@ function draw() {
 }
 
 function newDot(dataSmartphone) {
-    x = dataSmartphone.angle1;
-    y = dataSmartphone.angle2;
+    x = windowWidth/2 + dataSmartphone.angle1;
+    y = windowheight/2 + dataSmartphone.angle2;
     // fill(255,0,0);
     // ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10);
 

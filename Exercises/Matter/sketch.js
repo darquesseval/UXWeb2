@@ -1,0 +1,110 @@
+let engine
+let world
+let bottomB, topB, leftB, rightB
+
+let connection
+
+let x,y;
+
+let p1, p2;
+
+function setup() {
+    frameRate(30)
+    createCanvas(windowWidth, windowHeight)
+    background(0);
+    engine = Matter.Engine.create();
+    world = engine.world;
+    rectMode(CENTER);
+    angleMode(DEGREES);
+    bottomB = new Bound(windowWidth/2, windowHeight, windowWidth, 10, 0);
+    topB = new Bound(windowWidth / 2, 0, windowWidth, 10, 0);
+    leftB = new Bound(0, windowHeight / 2, 10, windowHeight, 0);
+    rightB = new Bound(windowWidth, windowHeight / 2, 10, windowHeight, 0);
+    x = windowWidth/2;
+    y = windowHeight/2;
+    p1 = new Circle(windowWidth/2, windowHeight/5*3, 10);
+    p2 = new Circle(x+20, y, 10);
+    // Matter.Body.setStatic(p2.body, true)
+
+    connection = Matter.Constraint.create({
+        bodyA: p1.body,
+        bodyB: p2.body,
+        length: windowHeight/5,
+        stiffness: 0.2
+    })
+    Matter.World.add(world, connection)
+}
+
+
+function draw() {
+    Matter.Engine.update(engine);
+    background(0)
+    bottomB.show(0, 100, 200, 255);
+    topB.show(0, 100, 200, 255);
+    leftB.show(0, 100, 200, 255);
+    rightB.show(0, 100, 200, 255);
+    
+    x = mouseX;
+    y = mouseY;
+     p2.body.position.x = x;
+     p2.body.position.y = y;
+ 
+     p1.show(255,255,255,255);
+     p2.show(255,255,255,255);
+
+}
+
+class Circle {
+    constructor(x, y, r) {
+        this.body = Matter.Bodies.circle(x, y, r, {
+            //make physics a bit more sand-like
+            restitution: 0.35,
+            density: 1,
+            friction: 0.5,
+        });
+        Matter.World.add(world, this.body);
+        this.r = r;
+    }
+
+    //draw the body
+    show(colorR, colorG, colorB, colorO) {
+        const pos = this.body.position;
+        const angle = this.body.angle;
+        noStroke();
+        push();
+        translate(pos.x, pos.y);
+        rotate(angle);
+        fill(colorR, colorG, colorB, colorO)
+        noStroke();
+        ellipse(0, 0, this.r * 2)
+        pop();
+    }
+
+}
+
+class Bound {
+    constructor(x, y, w, h, rotation) {
+        this.body = Matter.Bodies.rectangle(x, y, w, h, {
+            //these bodies do not move
+            isStatic: true,
+        });
+        Matter.Body.rotate(this.body, rotation);
+        Matter.World.add(world, this.body);
+        this.w = w;
+        this.h = h;
+    }
+
+    //draw the body
+    show(colorR, colorG, colorB, colorO) {
+        rectMode(CENTER);
+        const pos = this.body.position;
+        const angle = this.body.angle;
+        push();
+        translate(pos.x, pos.y);
+        rotate(angle);
+        fill(colorR, colorG, colorB, colorO);
+        strokeWeight(3);
+        rect(0, 0, this.w, this.h, 5);
+        pop();
+    }
+}
