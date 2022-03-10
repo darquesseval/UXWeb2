@@ -34,7 +34,7 @@ function setup() {
     y = windowHeight/2;
     p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
     p2 = new Circle(x+20, y, 10)
-    Matter.Body.setStatic(p2.body, true)
+    // Matter.Body.setStatic(p2.body, true)
 
     connection = Matter.Constraint.create({
         bodyA: p1.body,
@@ -42,6 +42,7 @@ function setup() {
         length: windowHeight/5,
         stiffness: 0.2
     })
+    Matter.World.add(world, connection.body)
 }
 
 
