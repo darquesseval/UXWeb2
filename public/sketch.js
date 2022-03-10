@@ -33,7 +33,7 @@ function setup() {
 
     x = windowWidth/2;
     y = windowHeight/2;
-    p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
+    p1 = new Circle(windowWidth/2, windowHeight/5*3, 40)
     p2 = new Circle(x+20, y, 10)
     // Matter.Body.setStatic(p2.body, true)
 
@@ -41,7 +41,7 @@ function setup() {
         bodyA: p1.body,
         bodyB: p2.body,
         length: windowHeight/5,
-        stiffness: 0.8
+        stiffness: 0.1
     })
     Matter.World.add(world, connection)
 }
@@ -106,6 +106,7 @@ class Circle {
         rotate(angle);
         fill(colorR, colorG, colorB, colorO)
         noStroke();
+        strokeWeight(5);
         ellipse(0, 0, this.r * 2)
         pop();
     }
