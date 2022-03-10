@@ -6,14 +6,21 @@ socket = io.connect('https://experimenting-webux2.herokuapp.com')
 socket.on('mouse', newDrawing);
 socket.on('angle', newDot);
 background(0);
+engine = Matter.Engine.create();
+world = engine.world;
 }
 
 function newDot(dataSmartphone) {
     push()
 translate(windowWidth/2, windowHeight/2)
-fill(255,0,0);
-ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10)
-    pop()
+
+// fill(255,0,0);
+// ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10);
+
+new Circle(dataSmartphone.angle1, dataSmartphone.angle2, 20);
+
+pop()
+Matter.Engine.update(engine);
     console.log('received: ' + dataSmartphone)
 }
 
@@ -39,5 +46,35 @@ function mouseDragged() {
 }
 
 function draw() {
+   
 
 }
+
+// code from kickprog project
+class Circle {
+    constructor(x, y, r) {
+      this.body = Matter.Bodies.circle(x, y, r, {
+        //make physics a bit more sand-like
+        restitution: 0.35,
+        density: 2,
+        friction: 1,
+      });
+      Matter.World.add(world, this.body);
+      this.r = r;
+    }
+  
+    //draw the body
+    show(colorR, colorG, colorB, colorO) {
+      const pos = this.body.position;
+      const angle = this.body.angle;
+      noStroke();
+      push();
+      translate(pos.x, pos.y);
+      rotate(angle);
+      fill(colorR, colorG, colorB, colorO)
+      noStroke();
+      ellipse(0, 0, this.r * 2)
+      pop();
+    }
+  
+  }
