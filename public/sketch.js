@@ -8,6 +8,7 @@ let i = 0
 
 
 function setup() {
+    frameRate(30)
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('mouse', newDrawing);
@@ -15,11 +16,12 @@ function setup() {
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
+    rectMode(CENTER);
     angleMode(DEGREES);
-bottomB = new Bound(0,windowHeight,windowWidth, 10);
-topB = new Bound(0,0,windowWidth,10);
-leftB = new Bound(0,0,10,windowHeight,90);
-rightB = new Bound(windowWidth,0,10,windowHeight,90);
+bottomB = new Bound(0,windowHeight/2,windowWidth, 10);
+topB = new Bound(windowWidth/2,0,windowWidth,10);
+leftB = new Bound(0,windowHeight/2,10,windowHeight,90);
+rightB = new Bound(windowWidth,windowHeight/2,10,windowHeight,90);
 }
 
 
@@ -29,7 +31,7 @@ function draw() {
     topB.show(0,100,200,255);
     leftB.show(0,100,200,255);
     rightB.show(0,100,200,255);
-    if(pointer.length <=1) {
+    if(pointer.length >=1) {
     for(let n = 0; n<pointer.length;n++){
         pointer[n].show(255, 0, 0, 255)
     }
