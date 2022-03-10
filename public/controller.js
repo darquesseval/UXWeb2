@@ -1,7 +1,7 @@
 // from https://betterprogramming.pub/track-your-smartphone-in-2d-with-javascript-1ba44603c0df
 var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
-const sensor = new AbsoluteOrientationSensor({frequency: 60});
+const sensor = new AbsoluteOrientationSensor({frequency: 2});
 sensor.addEventListener("reading", (e) => handleSensor(e));
 sensor.start();   
 

@@ -17,11 +17,10 @@ function setup() {
     engine = Matter.Engine.create();
     world = engine.world;
     rectMode(CENTER);
-    angleMode(DEGREES);
 bottomB = new Bound(0,windowHeight/2,windowWidth, 10);
 topB = new Bound(windowWidth/2,0,windowWidth,10);
-leftB = new Bound(0,windowHeight/2,10,windowHeight,90);
-rightB = new Bound(windowWidth,windowHeight/2,10,windowHeight,90);
+leftB = new Bound(0,windowHeight/2,10,windowHeight,1.5708);
+rightB = new Bound(windowWidth,windowHeight/2,10,windowHeight,1.5708);
 }
 
 
