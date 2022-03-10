@@ -26,10 +26,10 @@ function setup() {
     world = engine.world;
     rectMode(CENTER);
     angleMode(DEGREES);
-    bottomB = new Bound(windowWidth/2, windowHeight, windowWidth, 10, 0);
-    topB = new Bound(windowWidth / 2, 0, windowWidth, 10, 0);
-    leftB = new Bound(0, windowHeight / 2, 10, windowHeight, 0);
-    rightB = new Bound(windowWidth, windowHeight / 2, 10, windowHeight, 0);
+    bottomB = new Bound(windowWidth/2, windowHeight, windowWidth, 100, 0);
+    topB = new Bound(windowWidth / 2, 0, windowWidth, 100, 0);
+    leftB = new Bound(0, windowHeight / 2, 100, windowHeight, 0);
+    rightB = new Bound(windowWidth, windowHeight / 2, 100, windowHeight, 0);
 
     x = windowWidth/2;
     y = windowHeight/2;
@@ -50,10 +50,10 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0)
-    bottomB.show(0, 100, 200, 255);
-    topB.show(0, 100, 200, 255);
-    leftB.show(0, 100, 200, 255);
-    rightB.show(0, 100, 200, 255);
+    bottomB.show(0, 255,255,255);
+    topB.show(0, 255,255,255);
+    leftB.show(0, 255,255,255);
+    rightB.show(0, 255,255,255);
     
 
      p2.body.position.x = x;
@@ -63,7 +63,7 @@ function draw() {
      p2.show(255,255,255,255);
      stroke(255,0,255)
      line(p1.body.position.x, p1.body.position.y, p2.body.position.x, p2.body.position.y)
-
+    noStroke()
     // if (pointer.length >= 1) {
     //     for (let n = 0; n < pointer.length; n++) {
     //         pointer[n].show(255, 0, 0, 255)
