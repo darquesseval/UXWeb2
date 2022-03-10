@@ -9,7 +9,7 @@ let connection
 let pointer = []
 let i = 0
 
-let x,y = 0;
+let x,y;
 
 let p1, p2;
 
@@ -46,8 +46,8 @@ function draw() {
    
     push()
     translate(windowWidth / 2, windowHeight / 2)
-     p2.body.pos.x = x
-     p2.body.pos.y = y
+     p2.body.position.x = x
+     p2.body.position.y = y
  
 
  connection = Matter.Constraint.create({
