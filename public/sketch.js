@@ -41,7 +41,7 @@ function setup() {
         bodyA: p1.body,
         bodyB: p2.body,
         length: windowHeight/5,
-        stiffness: 0.2
+        stiffness: 0.8
     })
     Matter.World.add(world, connection)
 }
