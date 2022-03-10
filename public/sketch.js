@@ -33,7 +33,8 @@ function setup() {
     x = windowWidth/2;
     y = windowHeight/2;
     p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
-    p2 = new Circle(x, y, 10)
+    p2 = new Circle(x+20, y, 10)
+    Matter.Body.setStatic(p2.body, true)
 }
 
 
