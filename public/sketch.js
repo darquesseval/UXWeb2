@@ -9,8 +9,7 @@ let connection
 let pointer = []
 let i = 0
 
-let x = windowWidth/2;
-let y = windowHeight/2;
+
 
 function setup() {
     frameRate(30)
@@ -26,6 +25,9 @@ function setup() {
     topB = new Bound(windowWidth / 2, 0, windowWidth, 10, 0);
     leftB = new Bound(0, windowHeight / 2, 10, windowHeight, 1.5708);
     rightB = new Bound(windowWidth, windowHeight / 2, 10, windowHeight, 1.5708);
+
+    let x = windowWidth/2;
+let y = windowHeight/2;
 }
 
 
