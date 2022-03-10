@@ -29,6 +29,8 @@ function setup() {
 
     x = windowWidth/2;
     y = windowHeight/2;
+    let p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
+    let p2 = new Circle(x, y, 10)
 }
 
 
@@ -41,9 +43,9 @@ function draw() {
    
     push()
     translate(windowWidth / 2, windowHeight / 2)
-     
- let p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
- let p2 = new Circle(x, y, 10)
+     p2.body.pos.x = x
+     p2.body.pos.y = y
+ 
 
  connection = Matter.Constraint.create({
      bodyA: p1.body,
