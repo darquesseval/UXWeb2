@@ -1,6 +1,8 @@
 var socket
 let engine
 let world
+let pointer = []
+let i = 0
 
 function setup() {
     createCanvas(windowWidth, windowHeight)
@@ -24,10 +26,10 @@ function newDot(dataSmartphone) {
     // fill(255,0,0);
     // ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10);
 
-    let pointer = new Circle(dataSmartphone.angle1, dataSmartphone.angle2, 20);
-    pointer.show(255, 0, 0, 100)
+    pointer[i] = new Circle(dataSmartphone.angle1, dataSmartphone.angle2, 20);
+    pointer[i].show(255, 0, 0, 100)
     pop()
-
+    i++
     console.log('received: ' + dataSmartphone)
 }
 
