@@ -11,6 +11,8 @@ let i = 0
 
 let x,y;
 
+let p1, p2;
+
 
 function setup() {
     frameRate(30)
@@ -29,8 +31,8 @@ function setup() {
 
     x = windowWidth/2;
     y = windowHeight/2;
-    let p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
-    let p2 = new Circle(x, y, 10)
+    p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
+    p2 = new Circle(x, y, 10)
 }
 
 
