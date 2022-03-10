@@ -42,7 +42,7 @@ function setup() {
         length: windowHeight/5,
         stiffness: 0.2
     })
-    Matter.World.add(world, connection.body)
+    Matter.World.add(world, connection)
 }
 
 
