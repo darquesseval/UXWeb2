@@ -17,10 +17,10 @@ translate(windowWidth/2, windowHeight/2)
 // fill(255,0,0);
 // ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10);
 
-new Circle(dataSmartphone.angle1, dataSmartphone.angle2, 20);
-
+let pointer = new Circle(dataSmartphone.angle1, dataSmartphone.angle2, 20);
+pointer.show(255,0,0,100)
 pop()
-Matter.Engine.update(engine);
+
     console.log('received: ' + dataSmartphone)
 }
 
@@ -46,7 +46,7 @@ function mouseDragged() {
 }
 
 function draw() {
-   
+    Matter.Engine.update(engine);
 
 }
 
@@ -56,8 +56,8 @@ class Circle {
       this.body = Matter.Bodies.circle(x, y, r, {
         //make physics a bit more sand-like
         restitution: 0.35,
-        density: 2,
-        friction: 1,
+        density: 1,
+        friction: 0.5,
       });
       Matter.World.add(world, this.body);
       this.r = r;
