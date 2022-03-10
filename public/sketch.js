@@ -71,7 +71,7 @@ function draw() {
 
 function newDot(dataSmartphone) {
     x = windowWidth/2 + dataSmartphone.angle1;
-    y = windowheight/2 + dataSmartphone.angle2;
+    y = windowHeight/2 + dataSmartphone.angle2;
     // fill(255,0,0);
     // ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10);
 
