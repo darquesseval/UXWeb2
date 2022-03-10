@@ -35,6 +35,13 @@ function setup() {
     p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
     p2 = new Circle(x+20, y, 10)
     Matter.Body.setStatic(p2.body, true)
+
+    connection = Matter.Constraint.create({
+        bodyA: p1.body,
+        bodyB: p2.body,
+        length: windowHeight/5,
+        stiffness: 0.2
+    })
 }
 
 
@@ -50,13 +57,6 @@ function draw() {
      p2.body.position.x = x
      p2.body.position.y = y
  
-
- connection = Matter.Constraint.create({
-     bodyA: p1.body,
-     bodyB: p2.body,
-     length: windowHeight/5,
-     stiffness: 0.2
- })
  pop()
 
     p1.show(255);
