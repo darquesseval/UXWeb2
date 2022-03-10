@@ -1,4 +1,6 @@
 var socket
+let engine
+let world
 
 function setup() {
 createCanvas(windowWidth, windowHeight)
