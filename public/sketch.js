@@ -9,19 +9,11 @@ let connection
 let pointer = []
 let i = 0
 
-let x,y;
+let x,y = 0;
 
 let p1, p2;
 
-function preload() {
-    engine = Matter.Engine.create();
-    world = engine.world;
-    
-    x = windowWidth/2;
-    y = windowHeight/2;
-    p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
-    p2 = new Circle(x, y, 10)
-}
+
 
 function setup() {
     frameRate(30)
@@ -30,14 +22,18 @@ function setup() {
     socket.on('mouse', newDrawing);
     socket.on('angle', newDot);
     background(0);
-    
+    engine = Matter.Engine.create();
+    world = engine.world;
     rectMode(CENTER);
     bottomB = new Bound(0, windowHeight / 2, windowWidth, 10, 0);
     topB = new Bound(windowWidth / 2, 0, windowWidth, 10, 0);
     leftB = new Bound(0, windowHeight / 2, 10, windowHeight, 1.5708);
     rightB = new Bound(windowWidth, windowHeight / 2, 10, windowHeight, 1.5708);
 
- 
+    x = windowWidth/2;
+    y = windowHeight/2;
+    p1 = new Circle(windowWidth/2, windowHeight/5*3, 10)
+    p2 = new Circle(x, y, 10)
 }
 
 
