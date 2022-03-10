@@ -9,6 +9,7 @@ let connection
 let pointer = []
 let i = 0
 
+let x,y;
 
 
 function setup() {
@@ -26,8 +27,8 @@ function setup() {
     leftB = new Bound(0, windowHeight / 2, 10, windowHeight, 1.5708);
     rightB = new Bound(windowWidth, windowHeight / 2, 10, windowHeight, 1.5708);
 
-    let x = windowWidth/2;
-let y = windowHeight/2;
+    x = windowWidth/2;
+    y = windowHeight/2;
 }
 
 
