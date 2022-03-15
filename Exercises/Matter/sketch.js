@@ -1,12 +1,30 @@
 let engine
 let world
-let bottomB, topB, leftB, rightB
+let render
 
 let connection
+let circleChain
 
-let x,y;
+let fixPoint
 
-let p1, p2;
+let gap = 120;
+let posX;
+let posY;
+
+let bg, bg_stunned, bell, tentacle, arm, mouth;
+
+let fix1, fix2;
+let arm1, tentacle1;
+let bellPhysics, bellH, bellW;
+
+function preload() {
+    bg = loadImage('Pic/background.jpeg');
+    bg_stunned = loadImage('Pic/background_stunned.jpeg');
+    bell = loadImage('Pic/bell.png');
+    tentacle = loadImage('Pic/tentacle.png');
+    arm = loadImage('Pic/stinging_arm_round.png');
+    mouth = loadImage('Pic/Mouth.png');
+}
 
 function setup() {
     frameRate(30)
@@ -14,97 +32,206 @@ function setup() {
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
+    posX = windowWidth / 2;
+    posY = windowWidth*0.15;
+    bellW = windowWidth/5;
+    bellH = windowWidth/9;
+    // render = Matter.Render.create({
+    //     element: document.body,
+    //     engine: engine,
+    //     options: {
+    //         width: windowWidth,$$£
+    //         height: windowHeight,
+    //         wireframes: false
+    //     }
+    // });
     rectMode(CENTER);
-    angleMode(DEGREES);
-    bottomB = new Bound(windowWidth/2, windowHeight, windowWidth, 10, 0);
-    topB = new Bound(windowWidth / 2, 0, windowWidth, 10, 0);
-    leftB = new Bound(0, windowHeight / 2, 10, windowHeight, 0);
-    rightB = new Bound(windowWidth, windowHeight / 2, 10, windowHeight, 0);
-    x = windowWidth/2;
-    y = windowHeight/2;
-    p1 = new Circle(windowWidth/2, windowHeight/5*3, 10);
-    p2 = new Circle(x+20, y, 10);
-    // Matter.Body.setStatic(p2.body, true)
-
-    connection = Matter.Constraint.create({
-        bodyA: p1.body,
-        bodyB: p2.body,
-        length: windowHeight/5,
-        stiffness: 0.2
+    // angleMode(DEGREES);
+    world.gravity.y = 0.1;
+    arm1 = new Rope(posX+windowWidth/15, posY-windowWidth/30, windowWidth / gap, 8, fix1)
+    tentacle1 = new Rope(posX+windowWidth/20, posY-windowWidth/30, windowWidth / gap/8, 60, fix2)
+    bellPhysics = Matter.Bodies.trapezoid(posX, posY-bellH/2, bellW, bellH, 1, {
+        isStatic: true
     })
-    Matter.World.add(world, connection)
+
+   Matter.World.add(world, bellPhysics);
+    world.gravity.y=0.5
 }
 
 
 function draw() {
     Matter.Engine.update(engine);
     background(0)
-    bottomB.show(0, 100, 200, 255);
-    topB.show(0, 100, 200, 255);
-    leftB.show(0, 100, 200, 255);
-    rightB.show(0, 100, 200, 255);
-    
-    x = mouseX;
-    y = mouseY;
-     p2.body.position.x = x;
-     p2.body.position.y = y;
- 
-     p1.show(255,255,255,255);
-     p2.show(255,255,255,255);
+
+    arm1.showArm();
+    tentacle1.showTentacle();
+
+    // arm1.show(255,255,255,255);
+arm1.stingingArms();
+tentacle1.tentacles();
+
+
+//bell?
+//matter triangle:
+    // beginShape()
+    // vertex(bellPhysics.vertices[0].x, bellPhysics.vertices[0].y);
+    // vertex(bellPhysics.vertices[1].x, bellPhysics.vertices[1].y);
+    // vertex(bellPhysics.vertices[2].x,bellPhysics.vertices[2].y);
+    // endShape()
+
+    push()
+    angleMode(RADIANS);
+    translate(bellPhysics.position.x, bellPhysics.position.y);
+    rotate(bellPhysics.angle);
+    image(bell, 0-bellW/2,0-bellH*0.6, bellW, bellH);
+    pop()
+
+console.log(bellPhysics)
 
 }
 
-class Circle {
-    constructor(x, y, r) {
-        this.body = Matter.Bodies.circle(x, y, r, {
-            //make physics a bit more sand-like
-            restitution: 0.35,
+
+
+
+class Rope {
+    constructor(ropeX, ropeY, r, n, fixPointName, connectionName) {
+        this.r = r;
+        this.x = ropeX;
+        this.y = ropeY;
+        this.n = n;
+        this.fPN = fixPointName;
+        this.cN = connectionName;
+        this.body = Matter.Composites.stack(this.x, this.y, 1, this.n, 0, this.r/5, function (x, y) {
+        return Matter.Bodies.circle(x, y, r*2, {
+            restitution: 0.9,
             density: 1,
             friction: 0.5,
         });
-        Matter.World.add(world, this.body);
-        this.r = r;
-    }
-
-    //draw the body
-    show(colorR, colorG, colorB, colorO) {
-        const pos = this.body.position;
-        const angle = this.body.angle;
-        noStroke();
-        push();
-        translate(pos.x, pos.y);
-        rotate(angle);
-        fill(colorR, colorG, colorB, colorO)
-        noStroke();
-        ellipse(0, 0, this.r * 2)
-        pop();
-    }
-
+    })
+    Matter.Composites.chain(this.body, 0, 0, 0, 0, {
+        stiffness: 1,
+        length: this.r *4
+    });
+    Matter.Composite.add(this.body, this.cN = Matter.Constraint.create({
+        bodyB: this.body.bodies[0],
+        pointB: {
+            x: 0,
+            y: this.r*-1
+        },
+        pointA: {
+            x: this.body.bodies[0].position.x,
+            y: this.body.bodies[0].position.y
+        },
+        stiffness: 1
+    }));
+    Matter.Composite.add(world, [
+        this.body//,
+        // this.fPN = Matter.Bodies.rectangle(this.x+this.r, this.y+this.r/2, this.r*2, this.r, {
+        //     isStatic: true
+        // })
+    ]);
+    
 }
 
-class Bound {
-    constructor(x, y, w, h, rotation) {
-        this.body = Matter.Bodies.rectangle(x, y, w, h, {
-            //these bodies do not move
-            isStatic: true,
-        });
-        Matter.Body.rotate(this.body, rotation);
-        Matter.World.add(world, this.body);
-        this.w = w;
-        this.h = h;
-    }
+show(colorR, colorG, colorB, opacity) {
+    this.red = colorR;
+    this.green = colorG;
+    this.blue = colorB;
+    this.o = opacity;
+fill(this.red, this.green, this.blue, this.o);
+for (let f = 0; f < this.n; f++) {
+    push();
+    angleMode(DEGREES);
+    translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y);
+    rotate(this.body.bodies[f].angle);
+    ellipse(0, 0, this.body.bodies[f].circleRadius)
+    pop();
 
-    //draw the body
-    show(colorR, colorG, colorB, colorO) {
-        rectMode(CENTER);
-        const pos = this.body.position;
-        const angle = this.body.angle;
-        push();
-        translate(pos.x, pos.y);
-        rotate(angle);
-        fill(colorR, colorG, colorB, colorO);
-        strokeWeight(3);
-        rect(0, 0, this.w, this.h, 5);
-        pop();
+    if (f > 0) {
+        stroke(this.red, this.green, this.blue);
+        line(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y, this.body.bodies[f].position.x, this.body.bodies[f].position.y);
     }
+}
+
+// push()
+// translate(this.fPN.bounds.min.x+(this.fPN.bounds.max.x - this.fPN.bounds.min.x)/2, this.fPN.bounds.min.y+(this.fPN.bounds.max.y - this.fPN.bounds.min.y)/2);
+//     rotate(this.fPN.angle);
+//     fill(0,0,255,255)
+// rect(0, 0, this.fPN.bounds.max.x - this.fPN.bounds.min.x, this.fPN.bounds.max.y - this.fPN.bounds.min.y);
+// pop()
+line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y);
+}
+
+showTentacle() {
+    for (let f = 0; f < this.n; f++) {
+        push();
+        angleMode(DEGREES);
+        translate(this.body.bodies[f].bounds.min.x-this.body.bodies[f].circleRadius/2, this.body.bodies[f].bounds.min.y);
+        rotate(this.body.bodies[f].angle);
+        image(tentacle, 0, 0, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5)
+        pop();
+    
+        if (f > 0) {
+            stroke(255)
+
+            line(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y, this.body.bodies[f].position.x, this.body.bodies[f].position.y);
+        }
+    }
+    
+    // push()
+    // translate(this.fPN.bounds.min.x+(this.fPN.bounds.max.x - this.fPN.bounds.min.x)/2, this.fPN.bounds.min.y+(this.fPN.bounds.max.y - this.fPN.bounds.min.y)/2);
+    //     rotate(this.fPN.angle);
+    //     fill(0,0,255,255)
+    // rect(0, 0, this.fPN.bounds.max.x - this.fPN.bounds.min.x, this.fPN.bounds.max.y - this.fPN.bounds.min.y);
+    // pop()
+    line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y);
+}
+showArm() {
+    for (let f = 0; f < this.n; f++) {
+        push();
+        angleMode(DEGREES);
+        translate(this.body.bodies[f].bounds.min.x+this.body.bodies[f].circleRadius*1.5, this.body.bodies[f].bounds.min.y+this.body.bodies[f].circleRadius*0.5);
+        rotate(this.body.bodies[f].angle+90);
+        image(arm, 0, 0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
+        pop();
+    
+        if (f > 0) {
+            stroke(55,255,0)
+
+            line(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y, this.body.bodies[f].position.x, this.body.bodies[f].position.y);
+        }
+    }
+    
+    // push()
+    // translate(this.fPN.bounds.min.x+(this.fPN.bounds.max.x - this.fPN.bounds.min.x)/2, this.fPN.bounds.min.y+(this.fPN.bounds.max.y - this.fPN.bounds.min.y)/2);
+    //     rotate(this.fPN.angle);
+    //     fill(0,0,255,255)
+    // rect(0, 0, this.fPN.bounds.max.x - this.fPN.bounds.min.x, this.fPN.bounds.max.y - this.fPN.bounds.min.y);
+    // pop()
+    
+    line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y);
+}
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+//from here on down adjust for Smartphone
+
+stingingArms() {
+if(keyIsDown(65)) { //press letter a
+    this.body.bodies[this.n-1].position.x = mouseX;
+    this.body.bodies[this.n-1].position.y = mouseY;
+}
+}
+
+tentacles() {
+if(keyIsDown(83)) { //press letter s
+    angleMode(DEGREES);
+    this.body.bodies[this.n-1].position.x = mouseX;
+    this.body.bodies[this.n-1].position.y = mouseY;
+    // this.body.angle = mouseX/-360*100
+    bellPhysics.angle = mouseX/-360*10
+}
+}
+
 }
