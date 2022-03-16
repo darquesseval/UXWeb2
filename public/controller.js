@@ -24,8 +24,7 @@ function toEuler(q) {
 }
 
 //choose what to navigate
-document.getElementsByClassName("arm");
-.addEventListener("click", function() {
+document.getElementsByClassName("arm").addEventListener("click", function() {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
     } else {
