@@ -62,7 +62,7 @@ function setup() {
     world.gravity.y=0.5
 }
 
-unction draw() {
+function draw() {
     Matter.Engine.update(engine);
     background(0)
 
