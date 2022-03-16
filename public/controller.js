@@ -53,7 +53,7 @@ function handleSensor(e){
         }
         
         document.getElementsByClassName("arm");
-        if ((this.classList.contains("active")) {
+        if (this.classList.contains("active")) {
         socket.emit('angle', dataSmartphone);
     }
     }
