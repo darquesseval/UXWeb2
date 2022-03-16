@@ -21,6 +21,10 @@ let bellPhysics, bellH, bellW;
 function preload() {
 
 }
+app.get('/allow-cors', function(request, response) {
+    response.set('Access-Control-Allow-Origin', '*');
+    response.sendFile(__dirname + '/message.json');
+  });
 
 function setup() {
     frameRate(30)
