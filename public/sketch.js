@@ -27,14 +27,14 @@ function setup() {
     frameRate(30)
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
-    bg = loadImage('pic/background.jpeg');
-    bg_stunned = loadImage('pic/background_stunned.jpeg');
-    bell = loadImage('pic/bell.png');
-    tentacle = loadImage('pic/tentacle.png');
-    arm = loadImage('https://photos.app.goo.gl/TZ1T2XwUNZCq6jht9');
-    mouth = loadImage('pic/mouth.png');
+    bg = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
+    bg_stunned = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
+    bell = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
+    tentacle = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
+    arm = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/stinging_arm_round.png');
+    mouth = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
     // socket.on('mouse', newDrawing);
-    socket.on('angle');
+    socket.on('angle', stingingArms);
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
@@ -72,7 +72,6 @@ function draw() {
     tentacle1.showTentacle();
 
     // arm1.show(255,255,255,255);
-arm1.stingingArms();
 
 tentacle1.tentacles();
 
@@ -96,7 +95,11 @@ console.log(bellPhysics)
 
 }
 
+stingingArms(dataSmartphone) {
+    arm1.bodies[arm1.n-1].position.x = windowWidth/2 + dataSmartphone.angle1;
+    arm1.body.bodies[arm1.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
 
+}
 
 
 class Rope {
@@ -223,11 +226,7 @@ showArm() {
 ////////////////////////////////////////
 //from here on down adjust for Smartphone
 
-stingingArms(dataSmartphone) {
-    this.body.bodies[this.n-1].position.x = windowWidth/2 + dataSmartphone.angle1;
-    this.body.bodies[this.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
 
-}
 
 tentacles(dataSmartphone) {
 if(keyIsDown(83)) { //press letter s
