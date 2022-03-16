@@ -21,12 +21,13 @@ let bellPhysics, bellH, bellW;
 function preload() {
 
 }
-app.get('/allow-cors', function(request, response) {
-    response.set('Access-Control-Allow-Origin', '*');
-    response.sendFile(__dirname + '/message.json');
-  });
+
 
 function setup() {
+    app.get('/allow-cors', function(request, response) {
+        response.set('Access-Control-Allow-Origin', '*');
+        response.sendFile(__dirname + '/message.json');
+      });
     frameRate(30)
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
