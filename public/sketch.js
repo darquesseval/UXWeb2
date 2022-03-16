@@ -19,12 +19,12 @@ let arm1, tentacle1;
 let bellPhysics, bellH, bellW;
 
 function preload() {
-    bg = loadImage('Pic/background.jpeg');
-    bg_stunned = loadImage('Pic/background_stunned.jpeg');
-    bell = loadImage('Pic/bell.png');
-    tentacle = loadImage('Pic/tentacle.png');
-    arm = loadImage('Pic/stinging_arm_round.png');
-    mouth = loadImage('Pic/Mouth.png');
+    bg = loadImage('pic/background.jpeg');
+    bg_stunned = loadImage('pic/background_stunned.jpeg');
+    bell = loadImage('pic/bell.png');
+    tentacle = loadImage('pic/tentacle.png');
+    arm = loadImage('pic/stinging_arm_round.png');
+    mouth = loadImage('pic/mouth.png');
 }
 
 function setup() {
