@@ -32,8 +32,7 @@ function setup() {
     tentacle = loadImage('pic/tentacle.png');
     arm = loadImage('pic/stinging_arm_round.png');
     mouth = loadImage('pic/mouth.png');
-    socket.on('mouse', newDrawing);
-    socket.on('angle', newDot);
+    // socket.on('mouse', newDrawing);
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
@@ -71,7 +70,9 @@ function draw() {
     tentacle1.showTentacle();
 
     // arm1.show(255,255,255,255);
-arm1.stingingArms();
+// arm1.stingingArms();
+socket.on('angle', arm1.stingingArms);
+
 tentacle1.tentacles();
 
 
