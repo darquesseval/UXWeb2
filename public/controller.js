@@ -23,6 +23,18 @@ function toEuler(q) {
     return [yaw, roll];
 }
 
+//choose what to navigate
+document.getElementsByClassName("arm");
+.addEventListener("click", function() {
+    if (this.classList.contains("active")) {
+        this.classList.remove("active");
+    } else {
+        this.classList.add("active")
+    }
+})
+
+
+//get sensor data and send it
 function handleSensor(e){
     let quaternion = e.target.quaternion;
     let angles = toEuler(quaternion);
@@ -40,7 +52,11 @@ function handleSensor(e){
             angle1: dist[0],
             angle2: dist[1]
         }
+        
+        document.getElementsByClassName("arm");
+        if ((this.classList.contains("active")) {
         socket.emit('angle', dataSmartphone);
+    }
     }
 }   
 

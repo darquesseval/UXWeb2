@@ -18,8 +18,19 @@ let fix1, fix2;
 let arm1, tentacle1;
 let bellPhysics, bellH, bellW;
 
-function preload() {
+let arm = false;
+let tentacle = false;
+let water = false;
+let bell = false;
+let mouth = false;
 
+function preload() {
+    bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
+    bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
+    bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
+    tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
+    arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/stinging_arm_round.png');
+    mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
 }
 
 
@@ -27,14 +38,8 @@ function setup() {
     frameRate(30)
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
-    bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg', { mode: 'no-cors'});
-    bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg', { mode: 'no-cors'});
-    bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png', { mode: 'no-cors'});
-    tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png', { mode: 'no-cors'});
-    arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/stinging_arm_round.png', { mode: 'no-cors'});
-    mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png', { mode: 'no-cors'});
+    socket.on('angle', stingingArms);  
     // socket.on('mouse', newDrawing);
-    socket.on('angle', stingingArms);
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
@@ -63,6 +68,7 @@ function setup() {
    Matter.World.add(world, bellPhysics);
     world.gravity.y=0.5
 }
+
 
 function draw() {
     Matter.Engine.update(engine);
