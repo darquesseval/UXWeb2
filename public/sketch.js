@@ -30,9 +30,10 @@ function setup() {
     bg_stunned = loadImage('pic/background_stunned.jpeg');
     bell = loadImage('pic/bell.png');
     tentacle = loadImage('pic/tentacle.png');
-    arm = loadImage('pic/stinging_arm_round.png');
+    arm = loadImage('https://photos.app.goo.gl/KohT9EeE4x1GtZP87');
     mouth = loadImage('pic/mouth.png');
     // socket.on('mouse', newDrawing);
+    socket.on('angle');
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
@@ -70,8 +71,7 @@ function draw() {
     tentacle1.showTentacle();
 
     // arm1.show(255,255,255,255);
-// arm1.stingingArms();
-socket.on('angle', arm1.stingingArms);
+arm1.stingingArms();
 
 tentacle1.tentacles();
 
