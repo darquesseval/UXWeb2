@@ -8,7 +8,7 @@ let circleChain
 
 let fixPoint
 
-let gap = 120;
+let gap;
 let posX;
 let posY;
 
@@ -41,6 +41,7 @@ function setup() {
     posY = windowWidth*0.15;
     bellW = windowWidth/5;
     bellH = windowWidth/9;
+    gap = windowWidth/10
     // render = Matter.Render.create({
     //     element: document.body,
     //     engine: engine,
@@ -175,7 +176,7 @@ showTentacle() {
     for (let f = 0; f < this.n; f++) {
         push();
         angleMode(DEGREES);
-        translate(this.body.bodies[f].bounds.min.x-this.body.bodies[f].circleRadius/2, this.body.bodies[f].bounds.min.y);
+        translate(this.body.bodies[f].bounds.min.x-this.r, this.body.bodies[f].bounds.min.y);
         rotate(this.body.bodies[f].angle);
         image(tentacle, 0, 0, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5)
         pop();
