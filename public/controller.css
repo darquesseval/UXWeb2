@@ -10,12 +10,11 @@ html {
         height: 100vh;
         padding: 0;
         margin: 0;
+        background-color: black;
         }
     
-#grid {
+.grid {
     display: grid;
-  margin-top: 2.5vh;
-  margin-left: 2.5vw;
   height: 100vh;
   width: 100vw;
   grid-template-columns: 2.5vw 45vw 5vw 45vw 2.5vw;
@@ -23,30 +22,39 @@ html {
 
 }
 
-#arm {
-  grid-column: 1/2;
-  grid-row: 1/2;
+button {
+    font-size: 8vw;
+    font-family: 'Trebuchet MS';
+    border-radius: 6%;
+    color: white;
+    background-color: teal;
+    border-width: 0;
 }
 
-#tentacle {
+.arm {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.tentacle {
+    grid-column: 4/5;
+    grid-row: 2/3;
+  }
+
+  .water {
+    grid-column: 2/5;
+    grid-row: 4/5;
+  }
+
+  .bell {
     grid-column: 2/3;
-    grid-row: 1/2;
+    grid-row: 6/7;
   }
 
-  #water {
-    grid-column: 1/3;
-    grid-row: 2;
-  }
-
-  #bell {
-    grid-column: 1/2;
-    grid-row: 3;
-  }
-
-  #mouth {
-    grid-column: 2/3;
-    grid-row: 3;
+  .mouth {
+    grid-column: 4/5;
+    grid-row: 6/7;
   }
   .active {
-      color: blueviolet;
+    background-color: blueviolet;
   }

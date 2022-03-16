@@ -27,8 +27,10 @@ function toEuler(q) {
 document.getElementById("arm").addEventListener("click", function() {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
+        console.log('deactivated')
     } else {
         this.classList.add("active")
+        console.log('activated')
     }
 })
 
@@ -52,8 +54,7 @@ function handleSensor(e){
             angle2: dist[1]
         }
         
-        document.getElementById("arm");
-        if (this.classList.contains("active")) {
+        if (document.getElementById("arm").classList.contains("active")) {
         socket.emit('angle', dataSmartphone);
     }
     }
