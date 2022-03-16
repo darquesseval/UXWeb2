@@ -52,7 +52,7 @@ function handleSensor(e){
             angle2: dist[1]
         }
         
-        document.getElementsByClassName("arm");
+        document.getElementById("arm");
         if (this.classList.contains("active")) {
         socket.emit('angle', dataSmartphone);
     }
