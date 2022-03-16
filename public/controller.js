@@ -1,5 +1,5 @@
 // from https://betterprogramming.pub/track-your-smartphone-in-2d-with-javascript-1ba44603c0df
-var socket = io.connect('https://experimenting-webux2.herokuapp.com')
+// var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
 const sensor = new AbsoluteOrientationSensor({frequency: 60});
 sensor.addEventListener("reading", (e) => handleSensor(e));
@@ -24,8 +24,7 @@ function toEuler(q) {
 }
 
 //choose what to navigate
-var arm = document.getElementsByClassName("arm")
-arm.addEventListener("click", function() {
+document.getElementById("arm").addEventListener("click", function() {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
     } else {
