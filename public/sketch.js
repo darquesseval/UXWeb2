@@ -19,18 +19,19 @@ let arm1, tentacle1;
 let bellPhysics, bellH, bellW;
 
 function preload() {
-    bg = loadImage('pic/background.jpeg');
-    bg_stunned = loadImage('pic/background_stunned.jpeg');
-    bell = loadImage('pic/bell.png');
-    tentacle = loadImage('pic/tentacle.png');
-    arm = loadImage('pic/stinging_arm_round.png');
-    mouth = loadImage('pic/mouth.png');
+
 }
 
 function setup() {
     frameRate(30)
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
+    bg = loadImage('pic/background.jpeg');
+    bg_stunned = loadImage('pic/background_stunned.jpeg');
+    bell = loadImage('pic/bell.png');
+    tentacle = loadImage('pic/tentacle.png');
+    arm = loadImage('pic/stinging_arm_round.png');
+    mouth = loadImage('pic/mouth.png');
     socket.on('mouse', newDrawing);
     socket.on('angle', newDot);
     background(0);
