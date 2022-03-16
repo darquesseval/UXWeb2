@@ -24,10 +24,6 @@ function preload() {
 
 
 function setup() {
-    app.get('/allow-cors', function(request, response) {
-        response.set('Access-Control-Allow-Origin', '*');
-        response.sendFile(__dirname + '/message.json');
-      });
     frameRate(30)
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
@@ -35,7 +31,7 @@ function setup() {
     bg_stunned = loadImage('pic/background_stunned.jpeg');
     bell = loadImage('pic/bell.png');
     tentacle = loadImage('pic/tentacle.png');
-    arm = loadImage('https://photos.app.goo.gl/KohT9EeE4x1GtZP87');
+    arm = loadImage('https://photos.app.goo.gl/TZ1T2XwUNZCq6jht9');
     mouth = loadImage('pic/mouth.png');
     // socket.on('mouse', newDrawing);
     socket.on('angle');
