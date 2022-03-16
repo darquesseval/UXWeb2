@@ -27,12 +27,12 @@ function setup() {
     frameRate(30)
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
-    bg = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg', { mode: 'no-cors'});
-    bg_stunned = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg', { mode: 'no-cors'});
-    bell = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png', { mode: 'no-cors'});
-    tentacle = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png', { mode: 'no-cors'});
-    arm = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/stinging_arm_round.png', { mode: 'no-cors'});
-    mouth = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png', { mode: 'no-cors'});
+    bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg', { mode: 'no-cors'});
+    bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg', { mode: 'no-cors'});
+    bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png', { mode: 'no-cors'});
+    tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png', { mode: 'no-cors'});
+    arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/stinging_arm_round.png', { mode: 'no-cors'});
+    mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png', { mode: 'no-cors'});
     // socket.on('mouse', newDrawing);
     socket.on('angle', stingingArms);
     background(0);
