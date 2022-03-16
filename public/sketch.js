@@ -96,7 +96,7 @@ console.log(bellPhysics)
 }
 
 function stingingArms(dataSmartphone) {
-    arm1.bodies[arm1.n-1].position.x = windowWidth/2 + dataSmartphone.angle1;
+    arm1.body.bodies[arm1.n-1].position.x = windowWidth/2 + dataSmartphone.angle1;
     arm1.body.bodies[arm1.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
 
 }
