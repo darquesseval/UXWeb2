@@ -18,12 +18,6 @@ let fix1, fix2;
 let arm1, tentacle1;
 let bellPhysics, bellH, bellW;
 
-let arm = false;
-let tentacle = false;
-let water = false;
-let bell = false;
-let mouth = false;
-
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
     bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
