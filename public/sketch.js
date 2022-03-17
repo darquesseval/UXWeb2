@@ -32,8 +32,8 @@ function setup() {
     frameRate(30)
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
-    socket.on('forArm', stingingArms);
-    socket.on('forTentacle', tentaclesTurn);
+    // socket.on('forArm', stingingArms);
+    // socket.on('forTentacle', tentaclesTurn);
     // socket.on('mouse', newDrawing);
     background(0);
     engine = Matter.Engine.create();
