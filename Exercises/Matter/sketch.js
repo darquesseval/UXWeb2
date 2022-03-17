@@ -69,8 +69,6 @@ function draw() {
     tentacle1.showTentacle();
 
     arm1.show(255,255,255,255);
-arm1.stingingArms();
-tentacle1.tentacles();
 
 
 //bell?
@@ -197,7 +195,8 @@ showArm() {
         angleMode(DEGREES);
         translate(this.body.bodies[f].position.x+this.r, this.body.bodies[f].position.y-this.r)
         rotate(this.body.bodies[f].angle+90);
-        image(arm, 0, 0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
+        this.fPN = ellipse(0, 0, this.body.bodies[f].circleRadius)
+        image(arm, this.fPN.x, this.fPN.y, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
         pop();
     
         if (f > 0) {
@@ -222,21 +221,5 @@ showArm() {
 ////////////////////////////////////////
 //from here on down adjust for Smartphone
 
-stingingArms() {
-if(keyIsDown(65)) { //press letter a
-    this.body.bodies[this.n-1].position.x = mouseX;
-    this.body.bodies[this.n-1].position.y = mouseY;
-}
-}
-
-tentacles() {
-if(keyIsDown(83)) { //press letter s
-    angleMode(DEGREES);
-    this.body.bodies[this.n-1].position.x = mouseX;
-    this.body.bodies[this.n-1].position.y = mouseY;
-    // this.body.angle = mouseX/-360*100
-    bellPhysics.angle = mouseX/-360*10
-}
-}
 
 }
