@@ -192,6 +192,7 @@ class Rope {
             fill(255, 0, 0, 0);
             noStroke();
             this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius);
+            console.log(this.imgPos);
             image(tentacle, this.imgPos.x, this.imgPos.y, this.body.bodies[f].circleRadius * 3, this.body.bodies[f].circleRadius * 3.5);
             pop();
 
