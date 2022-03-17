@@ -189,7 +189,7 @@ showTentacle() {
         // translate(this.body.bodies[f].bounds.min.x-this.r, this.body.bodies[f].bounds.min.y);
         translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y);
         rotate(this.body.bodies[f].angle);
-        fill(255,0,0,0);
+        fill(0,0,0);
         noStroke();
         this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius);
         image(tentacle, this.imgPos.x, this.imgPos.y, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5);
@@ -217,6 +217,8 @@ showArm() {
         // translate(this.body.bodies[f].bounds.min.x+this.body.bodies[f].circleRadius*1.5, this.body.bodies[f].bounds.min.y+this.body.bodies[f].circleRadius*0.5);
         translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y);
         rotate(this.body.bodies[f].angle+90);
+        fill(0,0,0);
+        noStroke();
         this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius)
         image(arm, this.imgPos.x, this.imgPos.y, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
         pop();
