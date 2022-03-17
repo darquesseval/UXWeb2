@@ -34,6 +34,16 @@ document.getElementById("arm").addEventListener("click", function() {
     }
 })
 
+document.getElementById("tentacle").addEventListener("click", function() {
+    if (this.classList.contains("active")) {
+        this.classList.remove("active");
+        console.log('deactivated')
+    } else {
+        this.classList.add("active")
+        console.log('activated')
+    }
+})
+
 
 //get sensor data and send it
 function handleSensor(e){
@@ -55,7 +65,11 @@ function handleSensor(e){
         }
         
         if (document.getElementById("arm").classList.contains("active")) {
-        socket.emit('angle', dataSmartphone);
+        socket.emit('forArm', dataSmartphone);
+    }
+
+    if (document.getElementById("tentacle").classList.contains("active")) {
+        socket.emit('forTentacle', dataSmartphone);
     }
     }
 }   
