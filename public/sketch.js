@@ -6,7 +6,7 @@ let render
 let connection
 let circleChain
 
-let fixPoint
+let img1, img2
 
 let gap;
 let posX;
@@ -54,8 +54,8 @@ function setup() {
     rectMode(CENTER);
     // angleMode(DEGREES);
     world.gravity.y = 0.1;
-    arm1 = new Rope(posX+windowWidth/15, posY-windowWidth/30, windowWidth / gap, 8, fix1)
-    tentacle1 = new Rope(posX+windowWidth/20, posY-windowWidth/30, windowWidth / gap/8, 60, fix2)
+    arm1 = new Rope(posX+windowWidth/15, posY-windowWidth/30, windowWidth / gap, 8, img1, fix1)
+    tentacle1 = new Rope(posX+windowWidth/20, posY-windowWidth/30, windowWidth / gap/8, 60,img2, fix2)
     bellPhysics = Matter.Bodies.trapezoid(posX, posY-bellH/2, bellW, bellH, 1, {
         isStatic: true
     })
@@ -104,12 +104,12 @@ function stingingArms(dataSmartphone) {
 
 
 class Rope {
-    constructor(ropeX, ropeY, r, n, fixPointName, connectionName) {
+    constructor(ropeX, ropeY, r, n, imgPos, connectionName) {
         this.r = r;
         this.x = ropeX;
         this.y = ropeY;
         this.n = n;
-        this.fPN = fixPointName;
+        this.imgPos = imgPos;
         this.cN = connectionName;
         this.body = Matter.Composites.stack(this.x, this.y, 1, this.n, 0, this.r/5, function (x, y) {
         return Matter.Bodies.circle(x, y, r*2, {
@@ -177,9 +177,11 @@ showTentacle() {
         push();
         angleMode(DEGREES);
         // translate(this.body.bodies[f].bounds.min.x-this.r, this.body.bodies[f].bounds.min.y);
-        translate(this.body.bodies[f].position.x+this.r, this.body.bodies[f].position.y)
+        translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y)
         rotate(this.body.bodies[f].angle);
-        image(tentacle, 0, 0, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5)
+        fill(255,0,0)
+        this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius)
+        image(tentacle, this.fPN.x, this.fPN.y, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5)
         pop();
     
         if (f > 0) {
@@ -202,9 +204,10 @@ showArm() {
         push();
         angleMode(DEGREES);
         // translate(this.body.bodies[f].bounds.min.x+this.body.bodies[f].circleRadius*1.5, this.body.bodies[f].bounds.min.y+this.body.bodies[f].circleRadius*0.5);
-        translate(this.body.bodies[f].position.x+this.r, this.body.bodies[f].position.y);
+        translate(this.body.bodies[f].position.x+this.r, this.body.bodies[f].position.y-this.r);
         rotate(this.body.bodies[f].angle+90);
-        image(arm, 0, 0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
+        this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius)
+        image(arm, this.fPN.x, this.fPN.y, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
         pop();
     
         if (f > 0) {
