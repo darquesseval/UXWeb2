@@ -75,8 +75,6 @@ function draw() {
 
     // arm1.show(255,255,255,255);
 
-    tentacle1.tentacles();
-
 
     //bell?
     //matter triangle:
