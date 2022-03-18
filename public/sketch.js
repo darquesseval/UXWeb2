@@ -177,7 +177,7 @@ function tentaclesTurn(dataSmartphone) {
     tentacle6.body.bodies[tentacle6.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
     push();
     translate(bellPhysics.position.x,bellPhysics.position.y+bellH/2)
-        let rotationAngle = Math.atan2(dataSmartphone.angle1, dataSmartphone.angle2)*(180 / Math.PI);      
+        let rotationAngle = Math.atan2(windowWidth/2 + dataSmartphone.angle1, windowHeight/2 + dataSmartphone.angle2)*(180 / Math.PI);      
         angleMode(DEGREES);
         bellPhysics.angle = rotationAngle;
         pop();

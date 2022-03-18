@@ -80,7 +80,7 @@ function calcDist(angle, initAngle) {
     angle = angle > 180 ? angle - 360 : angle;
 
     //800 can be changed to adjust sensitivity
-    let dist = Math.round(-200 * Math.tan(angle * (Math.PI / 180)));
+    let dist = Math.round(-50 * Math.tan(angle * (Math.PI / 180)));
     console.log(dist);
     return dist;
  
