@@ -89,7 +89,7 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 60, fix10)
     tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/85, posY-bellH/2, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/80, posY-bellH/3, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -134,7 +134,7 @@ function draw() {
     image(bell, 0-bellW/2,0-bellH*0.6, bellW, bellH);
     pop()
 
-console.log(bellPhysics)
+console.log(arm1)
 
 }
 
@@ -177,7 +177,7 @@ function tentaclesTurn(dataSmartphone) {
     tentacle6.body.bodies[tentacle6.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
     push();
     translate(bellPhysics.position.x,bellPhysics.position.y+bellH/2)
-        let rotationAngle = Math.atan2(windowWidth/2 + dataSmartphone.angle1, windowHeight/2 + dataSmartphone.angle2)*(180 / Math.PI);      
+        let rotationAngle = Math.atan2(windowWidth/2 + dataSmartphone.angle1/360, windowHeight/2 + dataSmartphone.angle2/360)*(180 / Math.PI);      
         angleMode(DEGREES);
         bellPhysics.angle = rotationAngle;
         pop();
@@ -196,6 +196,7 @@ class Rope {
             restitution: 0.9,
             density: 1,
             friction: 0.5,
+            frictionAir: 0.5,
         });
     })
     Matter.Composites.chain(this.body, 0, 0, 0, 0, {
