@@ -152,7 +152,7 @@ function stingingArms(dataSmartphone) {
     if (dataSmartphone.angle1 <= windowWidth/2 &&
         dataSmartphone.angle1 >= -windowWidth/2 &&
         dataSmartphone.angle2 <= windowHeight/2 &&
-        dataSmartphone.angle2 >= -windowHeight/2 &&) {
+        dataSmartphone.angle2 >= -windowHeight/2 ) {
     let sensitivityX = dataSmartphone.angle1*0.2;
     let sensitivityY = dataSmartphone.angle2*0.2;
     arm1.body.bodies[arm1.n-1].position.x = windowWidth/2 + sensitivityX + arm1x;
@@ -176,7 +176,7 @@ function tentaclesTurn(dataSmartphone) {
     if (dataSmartphone.angle1 <= windowWidth/2 &&
         dataSmartphone.angle1 >= -windowWidth/2 &&
         dataSmartphone.angle2 <= windowHeight/2 &&
-        dataSmartphone.angle2 >= -windowHeight/2 &&) {
+        dataSmartphone.angle2 >= -windowHeight/2 ) {
     let sensitivityX = dataSmartphone.angle1*0.2;
     let sensitivityY = dataSmartphone.angle2*0.2;
     angleMode(DEGREES);
