@@ -223,7 +223,7 @@ class Rope {
     })
     Matter.Composites.chain(this.body, 0, 0, 0, 0, {
         stiffness: 1,
-        damping: 0.5,
+        // damping: 0.5,
         length: this.r *4
     });
     Matter.Composite.add(this.body, this.cN = Matter.Constraint.create({
@@ -237,7 +237,7 @@ class Rope {
             y: this.body.bodies[0].position.y
         },
         stiffness: 1,
-        damping: 0.5,
+        // damping: 0.5,
     }));
     Matter.Composite.add(world, [
         this.body//,
