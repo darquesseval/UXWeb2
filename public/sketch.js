@@ -6,7 +6,7 @@ let render
 let connection
 let circleChain
 
-let img1, img2
+let img1, img2;
 
 let gap;
 let posX;
@@ -173,12 +173,7 @@ for (let f = 0; f < this.n; f++) {
     }
 }
 
-// push()
-// translate(this.fPN.bounds.min.x+(this.fPN.bounds.max.x - this.fPN.bounds.min.x)/2, this.fPN.bounds.min.y+(this.fPN.bounds.max.y - this.fPN.bounds.min.y)/2);
-//     rotate(this.fPN.angle);
-//     fill(0,0,255,255)
-// rect(0, 0, this.fPN.bounds.max.x - this.fPN.bounds.min.x, this.fPN.bounds.max.y - this.fPN.bounds.min.y);
-// pop()
+
 line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y);
 }
 
@@ -186,12 +181,13 @@ showTentacle() {
     for (let f = 0; f < this.n; f++) {
         push();
         angleMode(DEGREES);
+        imageMode(CENTER);
         // translate(this.body.bodies[f].bounds.min.x-this.r, this.body.bodies[f].bounds.min.y);
         translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y);
         rotate(this.body.bodies[f].angle);
-        fill(0,0,0);
+        fill(0,0,0,0);
         noStroke();
-        this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius);
+        // this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius);
         image(tentacle, 0, 0, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5);
         pop();
     
@@ -202,25 +198,21 @@ showTentacle() {
         }
     }
     
-    // push()
-    // translate(this.fPN.bounds.min.x+(this.fPN.bounds.max.x - this.fPN.bounds.min.x)/2, this.fPN.bounds.min.y+(this.fPN.bounds.max.y - this.fPN.bounds.min.y)/2);
-    //     rotate(this.fPN.angle);
-    //     fill(0,0,255,255)
-    // rect(0, 0, this.fPN.bounds.max.x - this.fPN.bounds.min.x, this.fPN.bounds.max.y - this.fPN.bounds.min.y);
-    // pop()
+ 
     line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y);
 }
 showArm() {
     for (let f = 0; f < this.n; f++) {
         push();
         angleMode(DEGREES);
+        imageMode(CENTER);
         // translate(this.body.bodies[f].bounds.min.x+this.body.bodies[f].circleRadius*1.5, this.body.bodies[f].bounds.min.y+this.body.bodies[f].circleRadius*0.5);
         translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y);
         rotate(this.body.bodies[f].angle+90);
-        fill(0,0,0);
+        fill(0,0,0,0);
         noStroke();
-        this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius)
-        image(arm, this.imgPos.x, this.imgPos.y, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
+        // this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius);
+        image(arm, 0, 0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2);
         pop();
     
         if (f > 0) {
@@ -229,13 +221,6 @@ showArm() {
             line(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y, this.body.bodies[f].position.x, this.body.bodies[f].position.y);
         }
     }
-    
-    // push()
-    // translate(this.fPN.bounds.min.x+(this.fPN.bounds.max.x - this.fPN.bounds.min.x)/2, this.fPN.bounds.min.y+(this.fPN.bounds.max.y - this.fPN.bounds.min.y)/2);
-    //     rotate(this.fPN.angle);
-    //     fill(0,0,255,255)
-    // rect(0, 0, this.fPN.bounds.max.x - this.fPN.bounds.min.x, this.fPN.bounds.max.y - this.fPN.bounds.min.y);
-    // pop()
     
     line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y);
 }
