@@ -39,8 +39,8 @@ function setup() {
     world = engine.world;
     posX = windowWidth / 2;
     posY = windowWidth*0.15;
-    bellW = windowWidth/5;
-    bellH = windowWidth/9;
+    bellW = windowWidth/13*2;
+    bellH = windowWidth/10;
     gap = windowWidth/10
     
     arm1x = -windowWidth/40*2
