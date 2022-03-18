@@ -41,19 +41,19 @@ function setup() {
     world = engine.world;
     posX = windowWidth / 2;
     posY = windowWidth*0.3;
-    tentacleY = posY-windowWidth/50;
-    armY = posY-windowWidth/20;
+    tentacleY = posY-windowWidth/80;
+    armY = posY-windowWidth/60;
     bellW = windowWidth/13*2;
     bellH = windowWidth/10;
     gap = windowWidth/10
     armGap = windowWidth / gap;
     tentacleGap = windowWidth / gap/8;
     
-    arm1x = -windowWidth/40*2
-    arm2x = -windowWidth/40*1
+    arm1x = -windowWidth/40*1.5
+    arm2x = -windowWidth/40*0.75
     arm3x = 0
-    arm4x = +windowWidth/40*1
-    arm5x = +windowWidth/40*2
+    arm4x = +windowWidth/40*0.75
+    arm5x = +windowWidth/40*1.5
 
     tentacle1x = -windowWidth/40*2
     tentacle2x = -windowWidth/40*1
