@@ -37,7 +37,7 @@ function setup() {
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
-    posX = windowWidth / 2-windowWidth/40;
+    posX = windowWidth / 2;
     posY = windowWidth*0.15;
     bellW = windowWidth/5;
     bellH = windowWidth/9;
@@ -49,12 +49,12 @@ function setup() {
     arm4x = +windowWidth/40*1.25
     arm5x = +windowWidth/40*2.75
 
-    tentacle1x = -windowWidth/30*2.5
-    tentacle2x = -windowWidth/30*1.5
-    tentacle3x = -windowWidth/30*0.75
-    tentacle4x = +windowWidth/30*0.75
-    tentacle5x = +windowWidth/30*1.5
-    tentacle6x = +windowWidth/30*2.5
+    tentacle1x = -windowWidth/40*3.25
+    tentacle2x = -windowWidth/40*2
+    tentacle3x = -windowWidth/40*0.75
+    tentacle4x = +windowWidth/40*0.75
+    tentacle5x = +windowWidth/40*2
+    tentacle6x = +windowWidth/40*3.25
 
     // render = Matter.Render.create({
     //     element: document.body,
@@ -81,7 +81,7 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, posY-windowWidth/30, windowWidth / gap/8, 60, fix10)
     tentacle6 = new Rope(posX+tentacle6x, posY-windowWidth/30, windowWidth / gap/8, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX, posY-bellH/2, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX-windowWidth/40, posY-bellH/2, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -105,7 +105,7 @@ function draw() {
     tentacle3.showTentacle();
     tentacle4.showTentacle();
     tentacle5.showTentacle();
-    tentacle5.showTentacle();
+    tentacle6.showTentacle();
     
 
     // arm1.show(255,255,255,255);
