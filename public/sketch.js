@@ -103,8 +103,8 @@ function stingingArms(dataSmartphone) {
 
 function tentaclesTurn(dataSmartphone) {
     angleMode(DEGREES);
-    tentacle1.body.bodies[this.n - 1].position.x = windowWidth / 2 + dataSmartphone.angle1;
-    tentacle1.body.bodies[this.n - 1].position.y = windowHeight / 2 + dataSmartphone.angle2;
+    tentacle1.body.bodies[tentacle1.n - 1].position.x = windowWidth / 2 + dataSmartphone.angle1;
+    tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight / 2 + dataSmartphone.angle2;
 
     angleMode(RADIANS);
         let rotationAngle = Math.atan2(dataSmartphone.angle1 - bellPhysics.position.x, - (dataSmartphone.angle2 - (bellPhysics.position.y+bellH/2) ))*(180 / Math.PI);      
