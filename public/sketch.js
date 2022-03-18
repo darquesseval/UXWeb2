@@ -81,7 +81,7 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, posY-windowWidth/30, windowWidth / gap/8, 60, fix10)
     tentacle6 = new Rope(posX+tentacle6x, posY-windowWidth/30, windowWidth / gap/8, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX-windowWidth/80, posY-bellH/2, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/120, posY-bellH/2, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -168,7 +168,7 @@ function tentaclesTurn(dataSmartphone) {
     tentacle6.body.bodies[tentacle6.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + tentacle6x;
     tentacle6.body.bodies[tentacle6.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
 
-        let rotationAngle = Math.atan2(dataSmartphone.angle1 - bellPhysics.position.x, - (dataSmartphone.angle2 - (bellPhysics.position.y+bellH/2) ))*(180 / Math.PI);      
+        let rotationAngle = Math.atan2(dataSmartphone.angle1 - bellPhysics.position.x, (dataSmartphone.angle2 - (bellPhysics.position.y+bellH/2) ))*(180 / Math.PI);      
         push();
         angleMode(DEGREES);
         rotate(rotationAngle)
