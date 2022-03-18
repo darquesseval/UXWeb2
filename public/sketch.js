@@ -211,7 +211,7 @@ class Rope {
         });
     })
     Matter.Composites.chain(this.body, 0, 0, 0, 0, {
-        stiffness: 0.2,
+        stiffness: 1,
         damping: 0.07,
         length: this.r *4
     });
@@ -225,7 +225,8 @@ class Rope {
             x: this.body.bodies[0].position.x,
             y: this.body.bodies[0].position.y
         },
-        stiffness: 1
+        stiffness: 1,
+        damping: 0.07,
     }));
     Matter.Composite.add(world, [
         this.body//,
