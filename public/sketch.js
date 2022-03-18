@@ -43,15 +43,15 @@ function setup() {
     bellH = windowWidth/9;
     gap = windowWidth/10
     
-    arm1x = -windowWidth/40*3
-    arm2x = -windowWidth/40*2
+    arm1x = -windowWidth/40*2
+    arm2x = -windowWidth/40*1
     arm3x = 0
-    arm4x = +windowWidth/40*2
-    arm5x = +windowWidth/40*3
+    arm4x = +windowWidth/40*1
+    arm5x = +windowWidth/40*2
 
-    tentacle1x = -windowWidth/40*3
-    tentacle2x = -windowWidth/40*2
-    tentacle3x = -windowWidth/40*1
+    tentacle1x = -windowWidth/40*2
+    tentacle2x = -windowWidth/40*1
+    tentacle3x = -0
     tentacle4x = +windowWidth/40*1
     tentacle5x = +windowWidth/40*2
     tentacle6x = +windowWidth/40*3
@@ -81,7 +81,7 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, posY-windowWidth/30, windowWidth / gap/8, 60, fix10)
     tentacle6 = new Rope(posX+tentacle6x, posY-windowWidth/30, windowWidth / gap/8, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/40, posY-bellH/2, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX-windowWidth/80, posY-bellH/2, bellW, bellH, 1, {
         isStatic: true
     })
 
