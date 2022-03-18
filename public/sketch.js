@@ -114,6 +114,16 @@ function draw() {
     tentacle4.showTentacle();
     tentacle5.showTentacle();
     tentacle6.showTentacle();
+
+
+
+    tentacle1.slowMotion();
+    tentacle2.slowMotion();
+    tentacle3.slowMotion();
+    tentacle4.slowMotion();
+    tentacle5.slowMotion();
+    tentacle6.slowMotion();
+   
     
 
     // arm1.show(255,255,255,255);
@@ -196,11 +206,13 @@ class Rope {
             restitution: 0.9,
             density: 1,
             friction: 0.5,
-            frictionAir: 0.5,
+            frictionAir: 3,
+            slop: 0.8,
         });
     })
     Matter.Composites.chain(this.body, 0, 0, 0, 0, {
-        stiffness: 1,
+        stiffness: 0.2,
+        damping: 0.07,
         length: this.r *4
     });
     Matter.Composite.add(this.body, this.cN = Matter.Constraint.create({
@@ -222,6 +234,12 @@ class Rope {
         // })
     ]);
     
+}
+
+slowMotion() {
+
+    this.body.timeScale = 0.3;
+
 }
 
 show(colorR, colorG, colorB, opacity) {
