@@ -6,16 +6,15 @@ let render
 let connection
 let circleChain
 
-let img1, img2;
-
 let gap;
 let posX;
 let posY;
 
 let bg, bg_stunned, bell, tentacle, arm, mouth;
 
-let fix1, fix2;
-let arm1, tentacle1;
+let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10;
+let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5;
+let arm1x, tentacle1x, arm2x, tentacle2x, arm3x, tentacle3x, arm4x, tentacle4x, arm5x, tentacle5x;
 let bellPhysics, bellH, bellW;
 
 function preload() {
@@ -43,6 +42,19 @@ function setup() {
     bellW = windowWidth/5;
     bellH = windowWidth/9;
     gap = windowWidth/10
+    
+    arm1x = -windowWidth/40*2
+    arm2x = -windowWidth/40
+    arm3x = +windowWidth/80
+    arm4x = +windowWidth/40
+    arm5x = +windowWidth/40*2
+
+    tentacle1x = -windowWidth/30*2
+    tentacle2x = -windowWidth/30
+    tentacle3x = -windowWidth/60
+    tentacle4x = +windowWidth/30
+    tentacle5x = +windowWidth/30*2
+
     // render = Matter.Render.create({
     //     element: document.body,
     //     engine: engine,
@@ -55,8 +67,18 @@ function setup() {
     rectMode(CENTER);
     // angleMode(DEGREES);
     world.gravity.y = 0.1;
-    arm1 = new Rope(posX+windowWidth/15, posY-windowWidth/30, windowWidth / gap, 8, img1, fix1)
-    tentacle1 = new Rope(posX+windowWidth/20, posY-windowWidth/30, windowWidth / gap/8, 60,img2, fix2)
+    arm1 = new Rope(posX+arm1x, posY-windowWidth/30, windowWidth / gap, 8, fix1)
+    arm2 = new Rope(posX+arm2x, posY-windowWidth/30, windowWidth / gap, 8, fix2)
+    arm3 = new Rope(posX+arm3x, posY-windowWidth/30, windowWidth / gap, 8, fix3)
+    arm4 = new Rope(posX+arm4x, posY-windowWidth/30, windowWidth / gap, 8, fix4)
+    arm5 = new Rope(posX+arm5x, posY-windowWidth/30, windowWidth / gap, 8, fix5)
+
+    tentacle1 = new Rope(posX+tentacle1x, posY-windowWidth/30, windowWidth / gap/8, 60, fix6)
+    tentacle2 = new Rope(posX+tentacle2x, posY-windowWidth/30, windowWidth / gap/8, 60, fix7)
+    tentacle3 = new Rope(posX+tentacle3x, posY-windowWidth/30, windowWidth / gap/8, 60, fix8)
+    tentacle4 = new Rope(posX+tentacle4x, posY-windowWidth/30, windowWidth / gap/8, 60, fix9)
+    tentacle5 = new Rope(posX+tentacle5x, posY-windowWidth/30, windowWidth / gap/8, 60, fix10)
+
     bellPhysics = Matter.Bodies.trapezoid(posX, posY-bellH/2, bellW, bellH, 1, {
         isStatic: true
     })
@@ -71,7 +93,17 @@ function draw() {
     background(0)
 
     arm1.showArm();
+    arm2.showArm();
+    arm3.showArm();
+    arm4.showArm();
+    arm5.showArm();
+
     tentacle1.showTentacle();
+    tentacle2.showTentacle();
+    tentacle3.showTentacle();
+    tentacle4.showTentacle();
+    tentacle5.showTentacle();
+    
 
     // arm1.show(255,255,255,255);
 
@@ -96,8 +128,20 @@ console.log(bellPhysics)
 }
 
 function stingingArms(dataSmartphone) {
-    arm1.body.bodies[arm1.n-1].position.x = windowWidth/2 + dataSmartphone.angle1;
+    arm1.body.bodies[arm1.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + arm1x;
     arm1.body.bodies[arm1.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
+
+    arm2.body.bodies[arm2.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + arm2x;
+    arm2.body.bodies[arm2.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
+
+    arm3.body.bodies[arm3.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + arm3x;
+    arm3.body.bodies[arm3.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
+
+    arm4.body.bodies[arm4.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + arm4x;
+    arm4.body.bodies[arm4.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
+
+    arm5.body.bodies[arm5.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + arm5x;
+    arm5.body.bodies[arm5.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
 
 }
 
@@ -108,18 +152,19 @@ function tentaclesTurn(dataSmartphone) {
 
     angleMode(RADIANS);
         let rotationAngle = Math.atan2(dataSmartphone.angle1 - bellPhysics.position.x, - (dataSmartphone.angle2 - (bellPhysics.position.y+bellH/2) ))*(180 / Math.PI);      
+        push();
         angleMode(DEGREES);
         rotate(rotationAngle)
+        pop();
 }
 
 
 class Rope {
-    constructor(ropeX, ropeY, r, n, imgPos, connectionName) {
+    constructor(ropeX, ropeY, r, n, connectionName) {
         this.r = r;
         this.x = ropeX;
         this.y = ropeY;
         this.n = n;
-        this.imgPos = imgPos;
         this.cN = connectionName;
         this.body = Matter.Composites.stack(this.x, this.y, 1, this.n, 0, this.r/5, function (x, y) {
         return Matter.Bodies.circle(x, y, r*2, {
@@ -187,7 +232,6 @@ showTentacle() {
         rotate(this.body.bodies[f].angle);
         fill(0,0,0,0);
         noStroke();
-        // this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius);
         image(tentacle, 0, 0, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5);
         pop();
     
@@ -211,7 +255,6 @@ showArm() {
         rotate(this.body.bodies[f].angle+90);
         fill(0,0,0,0);
         noStroke();
-        // this.imgPos = ellipse(0, 0, this.body.bodies[f].circleRadius);
         image(arm, 0, 0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2);
         pop();
     
