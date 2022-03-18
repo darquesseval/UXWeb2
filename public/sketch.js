@@ -37,17 +37,17 @@ function setup() {
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
-    posX = windowWidth / 2;
+    posX = windowWidth / 2-windowWidth/40;
     posY = windowWidth*0.15;
     bellW = windowWidth/5;
     bellH = windowWidth/9;
     gap = windowWidth/10
     
-    arm1x = -windowWidth/40*3
-    arm2x = -windowWidth/40*1.5
+    arm1x = -windowWidth/40*2.75
+    arm2x = -windowWidth/40*1.25
     arm3x = 0
-    arm4x = +windowWidth/40*1
-    arm5x = +windowWidth/40*2.5
+    arm4x = +windowWidth/40*1.25
+    arm5x = +windowWidth/40*2.75
 
     tentacle1x = -windowWidth/30*2.5
     tentacle2x = -windowWidth/30*1.5
