@@ -21,17 +21,16 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket) {
     console.log('new connection: ' + socket.id);
 
-    socket.on('mouse', mouseMsg);
-    socket.on('angle', sensorMsg);
+    socket.on('forArm', armMsg);
+    socket.on('forTentacle', tentacleMsg);
 
-    function sensorMsg(dataSmartphone) {
-      socket.broadcast.emit('angle', dataSmartphone)
+    function armMsg(dataSmartphone) {
+      socket.broadcast.emit('forArm', dataSmartphone)
       console.log(dataSmartphone);
     }
     
-    function mouseMsg(data) {
-        socket.broadcast.emit('mouse', data);
-        // io.sockets.emit('mouse', data);
+    function tentacleMsg(data) {
+        socket.broadcast.emit('forTentacle', data);
         console.log(data);
     }
 
