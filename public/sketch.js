@@ -197,12 +197,12 @@ function tentaclesTurn(dataSmartphone) {
 
     tentacle6.body.bodies[tentacle6.n-1].position.x = windowWidth/2 + sensitivityX + tentacle6x;
     tentacle6.body.bodies[tentacle6.n-1].position.y = windowHeight/2 + sensitivityY;
-    push();
-    translate(bellPhysics.position.x,bellPhysics.position.y+bellH/2)
-        let rotationAngle = Math.atan2(windowWidth/2 + sensitivityX/360, windowHeight/2 + sensitivityY/360)*(180 / Math.PI);      
-        angleMode(DEGREES);
-        bellPhysics.angle = rotationAngle;
-        pop();
+    // push();
+    // translate(bellPhysics.position.x,bellPhysics.position.y+bellH/2)
+    //     let rotationAngle = Math.atan2(windowWidth/2 + sensitivityX/360, windowHeight/2 + sensitivityY/360)*(180 / Math.PI);      
+    //     angleMode(DEGREES);
+    //     bellPhysics.angle = rotationAngle;
+    //     pop();
         }
 }
 
