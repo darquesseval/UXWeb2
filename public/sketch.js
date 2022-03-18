@@ -43,17 +43,17 @@ function setup() {
     bellH = windowWidth/9;
     gap = windowWidth/10
     
-    arm1x = -windowWidth/40*2
-    arm2x = -windowWidth/40
-    arm3x = +windowWidth/80
-    arm4x = +windowWidth/40
-    arm5x = +windowWidth/40*2
+    arm1x = -windowWidth/40*2.5
+    arm2x = -windowWidth/40*1.5
+    arm3x = -windowWidth/40*0.5
+    arm4x = +windowWidth/40*1.5
+    arm5x = +windowWidth/40*2.5
 
-    tentacle1x = -windowWidth/30*2
-    tentacle2x = -windowWidth/30
-    tentacle3x = -windowWidth/60
-    tentacle4x = +windowWidth/30
-    tentacle5x = +windowWidth/30*2
+    tentacle1x = -windowWidth/30*2.5
+    tentacle2x = -windowWidth/30*1.5
+    tentacle3x = +windowWidth/30*0.5
+    tentacle4x = +windowWidth/30*1.5
+    tentacle5x = +windowWidth/30*2.5
 
     // render = Matter.Render.create({
     //     element: document.body,
@@ -149,6 +149,18 @@ function tentaclesTurn(dataSmartphone) {
     angleMode(DEGREES);
     tentacle1.body.bodies[tentacle1.n - 1].position.x = windowWidth / 2 + dataSmartphone.angle1;
     tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight / 2 + dataSmartphone.angle2;
+
+    tentacle2.body.bodies[tentacle2.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + tentacle2x;
+    tentacle2.body.bodies[tentacle2.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
+
+    tentacle3.body.bodies[tentacle3.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + tentacle3x;
+    tentacle3.body.bodies[tentacle3.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
+
+    tentacle4.body.bodies[tentacle4.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + tentacle4x;
+    tentacle4.body.bodies[tentacle4.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
+
+    tentacle5.body.bodies[tentacle5.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + tentacle5x;
+    tentacle5.body.bodies[tentacle5.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
 
     angleMode(RADIANS);
         let rotationAngle = Math.atan2(dataSmartphone.angle1 - bellPhysics.position.x, - (dataSmartphone.angle2 - (bellPhysics.position.y+bellH/2) ))*(180 / Math.PI);      
