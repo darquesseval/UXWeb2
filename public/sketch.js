@@ -12,9 +12,9 @@ let posY;
 
 let bg, bg_stunned, bell, tentacle, arm, mouth;
 
-let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10;
-let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5;
-let arm1x, tentacle1x, arm2x, tentacle2x, arm3x, tentacle3x, arm4x, tentacle4x, arm5x, tentacle5x;
+let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10, fix11;
+let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5, tentacle6;
+let arm1x, tentacle1x, arm2x, tentacle2x, arm3x, tentacle3x, arm4x, tentacle4x, arm5x, tentacle5x, tentacle6x;
 let bellPhysics, bellH, bellW;
 
 function preload() {
@@ -43,17 +43,18 @@ function setup() {
     bellH = windowWidth/9;
     gap = windowWidth/10
     
-    arm1x = -windowWidth/40*2.5
+    arm1x = -windowWidth/40*3
     arm2x = -windowWidth/40*1.5
-    arm3x = -windowWidth/40*0.5
-    arm4x = +windowWidth/40*1.5
+    arm3x = -windowWidth/40
+    arm4x = +windowWidth/40*1
     arm5x = +windowWidth/40*2.5
 
     tentacle1x = -windowWidth/30*2.5
     tentacle2x = -windowWidth/30*1.5
-    tentacle3x = +windowWidth/30*0.5
-    tentacle4x = +windowWidth/30*1.5
-    tentacle5x = +windowWidth/30*2.5
+    tentacle3x = -windowWidth/30*0.75
+    tentacle4x = +windowWidth/30*0.75
+    tentacle5x = +windowWidth/30*1.5
+    tentacle6x = +windowWidth/30*2.5
 
     // render = Matter.Render.create({
     //     element: document.body,
@@ -78,6 +79,7 @@ function setup() {
     tentacle3 = new Rope(posX+tentacle3x, posY-windowWidth/30, windowWidth / gap/8, 60, fix8)
     tentacle4 = new Rope(posX+tentacle4x, posY-windowWidth/30, windowWidth / gap/8, 60, fix9)
     tentacle5 = new Rope(posX+tentacle5x, posY-windowWidth/30, windowWidth / gap/8, 60, fix10)
+    tentacle6 = new Rope(posX+tentacle6x, posY-windowWidth/30, windowWidth / gap/8, 60, fix11)
 
     bellPhysics = Matter.Bodies.trapezoid(posX, posY-bellH/2, bellW, bellH, 1, {
         isStatic: true
@@ -162,7 +164,9 @@ function tentaclesTurn(dataSmartphone) {
     tentacle5.body.bodies[tentacle5.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + tentacle5x;
     tentacle5.body.bodies[tentacle5.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
 
-    angleMode(RADIANS);
+    tentacle6.body.bodies[tentacle6.n-1].position.x = windowWidth/2 + dataSmartphone.angle1 + tentacle6x;
+    tentacle6.body.bodies[tentacle6.n-1].position.y = windowHeight/2 + dataSmartphone.angle2;
+
         let rotationAngle = Math.atan2(dataSmartphone.angle1 - bellPhysics.position.x, - (dataSmartphone.angle2 - (bellPhysics.position.y+bellH/2) ))*(180 / Math.PI);      
         push();
         angleMode(DEGREES);
