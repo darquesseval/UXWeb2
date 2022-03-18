@@ -45,7 +45,7 @@ function setup() {
     
     arm1x = -windowWidth/40*3
     arm2x = -windowWidth/40*1.5
-    arm3x = -windowWidth/40
+    arm3x = 0
     arm4x = +windowWidth/40*1
     arm5x = +windowWidth/40*2.5
 
@@ -104,6 +104,7 @@ function draw() {
     tentacle2.showTentacle();
     tentacle3.showTentacle();
     tentacle4.showTentacle();
+    tentacle5.showTentacle();
     tentacle5.showTentacle();
     
 
