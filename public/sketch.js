@@ -206,7 +206,6 @@ class Rope {
             restitution: 0.9,
             density: 1,
             friction: 0.5,
-            frictionAir: 3,
             slop: 0.8,
         });
     })
