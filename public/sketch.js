@@ -101,15 +101,14 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0)
-    for (let x = 0; x <= 60; x ++) {
+    // for (let x = 0; x <= 60; x ++) {
    
-        fill(255,255,0,20);
-        ellipse(posX - windowWidth/40*2, posY-windowWidth/60, x);
-        h = (h + 1) % 360;
+    //     fill(255,255,0,20);
+    //     ellipse(posX - windowWidth/40*2, posY-windowWidth/60, x);
       
-    }
+    // }
 
-    image(mouth, posX - windowWidth/40*2, posY-windowWidth/60, windowWidth/40*4, windowWidth/40*6.5)
+    // image(mouth, posX - windowWidth/40*2, posY-windowWidth/60, windowWidth/40*4, windowWidth/40*6.5)
 
     arm1.showArm();
     arm2.showArm();
