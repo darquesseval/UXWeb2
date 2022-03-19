@@ -101,6 +101,15 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0)
+    for (let x = 0; x <= 60; x ++) {
+   
+        fill(255,255,0,20);
+        ellipse(posX - windowWidth/40*2, posY-windowWidth/60, x);
+        h = (h + 1) % 360;
+      
+    }
+
+    image(mouth, posX - windowWidth/40*2, posY-windowWidth/60, windowWidth/40*4, windowWidth/40*6.5)
 
     arm1.showArm();
     arm2.showArm();
@@ -153,8 +162,8 @@ function stingingArms(dataSmartphone) {
         dataSmartphone.angle1 >= -windowWidth/2 &&
         dataSmartphone.angle2 <= windowHeight/2 &&
         dataSmartphone.angle2 >= -windowHeight/2 ) {
-    let sensitivityX = dataSmartphone.angle1*0.2;
-    let sensitivityY = dataSmartphone.angle2*0.2;
+    let sensitivityX = dataSmartphone.angle1;
+    let sensitivityY = dataSmartphone.angle2;
     arm1.body.bodies[arm1.n-1].position.x = windowWidth/2 + sensitivityX + arm1x;
     arm1.body.bodies[arm1.n-1].position.y = windowHeight/2 + sensitivityY;
 
@@ -177,8 +186,8 @@ function tentaclesTurn(dataSmartphone) {
         dataSmartphone.angle1 >= -windowWidth/2 &&
         dataSmartphone.angle2 <= windowHeight/2 &&
         dataSmartphone.angle2 >= -windowHeight/2 ) {
-    let sensitivityX = dataSmartphone.angle1*0.2;
-    let sensitivityY = dataSmartphone.angle2*0.2;
+    let sensitivityX = dataSmartphone.angle1;
+    let sensitivityY = dataSmartphone.angle2;
     angleMode(DEGREES);
     tentacle1.body.bodies[tentacle1.n - 1].position.x = windowWidth / 2 + sensitivityX;
     tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight / 2 + sensitivityY;

@@ -19,6 +19,9 @@ let fix1, fix2;
 let arm1, tentacle1;
 let bellPhysics, bellH, bellW;
 
+let x =80;
+let negcount = false;
+
 function preload() {
     bg = loadImage('Pic/background.jpeg');
     bg_stunned = loadImage('Pic/background_stunned.jpeg');
@@ -64,7 +67,30 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0)
-
+ 
+    for(let countx=80; countx <=x;){
+        push()
+        fill(255,0,255,10);
+        noStroke()
+        ellipse(posX - windowWidth/40*2, posY-windowWidth/60, x);
+        pop()
+        if(negcount == false) {
+            countx++
+        }
+        else{countx-=1}
+    }
+        if (x==120) {
+            negcount = true;
+            }
+            else if(x==80) {
+                negcount = false;
+        }
+if(negcount == false) {
+    x++
+}
+else{x-=1}
+      
+    image(mouth, posX - windowWidth/40*2, posY-windowWidth/60, windowWidth/40*4, windowWidth/40*6.5)
     arm1.showArm();
     tentacle1.showTentacle();
 
