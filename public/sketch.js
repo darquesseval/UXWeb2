@@ -100,15 +100,27 @@ function setup() {
 
 function draw() {
     Matter.Engine.update(engine);
-    background(0)
-    // for (let x = 0; x <= 60; x ++) {
-   
-    //     fill(255,255,0,20);
-    //     ellipse(posX - windowWidth/40*2, posY-windowWidth/60, x);
-      
-    // }
+    background(0);
+    for (let countx = x-50; countx <= x;countx++) {
+        push()
+        fill(255, 0, 255, 10);
+        noStroke()
+        ellipse(posX - windowWidth / 40 * 2, posY - windowWidth / 60, countx, countx * 2);
+        pop()
+    }
 
-    // image(mouth, posX - windowWidth/40*2, posY-windowWidth/60, windowWidth/40*4, windowWidth/40*6.5)
+    if (x == 120) {
+        negcount = true;
+    } else if (x == 80) {
+        negcount = false;
+    }
+    if (negcount == false) {
+        x++
+    } else {
+        x = x-1
+    }
+
+    image(mouth, posX - windowWidth/40*2, posY-windowWidth/60, windowWidth/40*4, windowWidth/40*6.5)
 
     arm1.showArm();
     arm2.showArm();
