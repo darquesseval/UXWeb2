@@ -92,7 +92,7 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 60, fix10)
     tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/55, posY-bellH/3, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/25, posY-bellH/3, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -172,54 +172,54 @@ console.log(arm1)
 }
 
 function stingingArms(dataSmartphone) {
-    if (dataSmartphone.angle1 <= windowWidth/2 &&
-        dataSmartphone.angle1 >= -windowWidth/2 &&
-        dataSmartphone.angle2 <= windowHeight/2 &&
-        dataSmartphone.angle2 >= -windowHeight/2 ) {
+    if (dataSmartphone.angle1 <= windowWidth &&
+        dataSmartphone.angle1 >= -windowWidth &&
+        dataSmartphone.angle2 <= windowHeight &&
+        dataSmartphone.angle2 >= -windowHeight ) {
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
     arm1.body.bodies[arm1.n-1].position.x = windowWidth/2 + sensitivityX + arm1x;
-    arm1.body.bodies[arm1.n-1].position.y = windowHeight/2 + sensitivityY;
+    arm1.body.bodies[arm1.n-1].position.y = windowHeight*0.75 + sensitivityY;
 
     arm2.body.bodies[arm2.n-1].position.x = windowWidth/2 + sensitivityX + arm2x;
-    arm2.body.bodies[arm2.n-1].position.y = windowHeight/2 + sensitivityY;
+    arm2.body.bodies[arm2.n-1].position.y = windowHeight*0.75 + sensitivityY;
 
     arm3.body.bodies[arm3.n-1].position.x = windowWidth/2 + sensitivityX + arm3x;
-    arm3.body.bodies[arm3.n-1].position.y = windowHeight/2 + sensitivityY;
+    arm3.body.bodies[arm3.n-1].position.y = windowHeight*0.75 + sensitivityY;
 
     arm4.body.bodies[arm4.n-1].position.x = windowWidth/2 + sensitivityX + arm4x;
-    arm4.body.bodies[arm4.n-1].position.y = windowHeight/2 + sensitivityY;
+    arm4.body.bodies[arm4.n-1].position.y = windowHeight*0.75 + sensitivityY;
 
     arm5.body.bodies[arm5.n-1].position.x = windowWidth/2 + sensitivityX + arm5x;
-    arm5.body.bodies[arm5.n-1].position.y = windowHeight/2 + sensitivityY;
+    arm5.body.bodies[arm5.n-1].position.y = windowHeight*0.75 + sensitivityY;
 }
 }
 
 function tentaclesTurn(dataSmartphone) {
-    if (dataSmartphone.angle1 <= windowWidth/2 &&
-        dataSmartphone.angle1 >= -windowWidth/2 &&
-        dataSmartphone.angle2 <= windowHeight/2 &&
-        dataSmartphone.angle2 >= -windowHeight/2 ) {
+    if (dataSmartphone.angle1 <= windowWidth &&
+        dataSmartphone.angle1 >= -windowWidth &&
+        dataSmartphone.angle2 <= windowHeight &&
+        dataSmartphone.angle2 >= -windowHeight ) {
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
     angleMode(DEGREES);
     tentacle1.body.bodies[tentacle1.n - 1].position.x = windowWidth / 2 + sensitivityX;
-    tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight / 2 + sensitivityY;
+    tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight*0.75 + sensitivityY;
 
     tentacle2.body.bodies[tentacle2.n-1].position.x = windowWidth/2 + sensitivityX + tentacle2x;
-    tentacle2.body.bodies[tentacle2.n-1].position.y = windowHeight/2 + sensitivityY;
+    tentacle2.body.bodies[tentacle2.n-1].position.y = windowHeight*0.75 + sensitivityY;
 
     tentacle3.body.bodies[tentacle3.n-1].position.x = windowWidth/2 + sensitivityX + tentacle3x;
-    tentacle3.body.bodies[tentacle3.n-1].position.y = windowHeight/2 + sensitivityY;
+    tentacle3.body.bodies[tentacle3.n-1].position.y = windowHeight*0.75 + sensitivityY;
 
     tentacle4.body.bodies[tentacle4.n-1].position.x = windowWidth/2 + sensitivityX + tentacle4x;
-    tentacle4.body.bodies[tentacle4.n-1].position.y = windowHeight/2 + sensitivityY;
+    tentacle4.body.bodies[tentacle4.n-1].position.y = windowHeight*0.75 + sensitivityY;
 
     tentacle5.body.bodies[tentacle5.n-1].position.x = windowWidth/2 + sensitivityX + tentacle5x;
-    tentacle5.body.bodies[tentacle5.n-1].position.y = windowHeight/2 + sensitivityY;
+    tentacle5.body.bodies[tentacle5.n-1].position.y = windowHeight*0.75 + sensitivityY;
 
     tentacle6.body.bodies[tentacle6.n-1].position.x = windowWidth/2 + sensitivityX + tentacle6x;
-    tentacle6.body.bodies[tentacle6.n-1].position.y = windowHeight/2 + sensitivityY;
+    tentacle6.body.bodies[tentacle6.n-1].position.y = windowHeight*0.75 + sensitivityY;
     // push();
     // translate(bellPhysics.position.x,bellPhysics.position.y+bellH/2)
     //     let rotationAngle = Math.atan2(windowWidth/2 + sensitivityX/360, windowHeight/2 + sensitivityY/360)*(180 / Math.PI);      
