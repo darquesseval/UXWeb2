@@ -91,7 +91,7 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 50, fix10)
     tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 50, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/80, posY-bellH/3, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/40, posY-bellH/2.5, bellW, bellH, 1, {
         isStatic: true
     })
 
