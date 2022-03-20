@@ -56,7 +56,7 @@ function setup() {
     arm2x = -windowWidth/40*1.5
     arm3x = 0
     arm4x = +windowWidth/40*2
-    arm5x = +windowWidth/40*.3.75
+    arm5x = +windowWidth/40*3.75
 
     tentacle1x = -windowWidth/40*3.5
     tentacle2x = -windowWidth/40*1
