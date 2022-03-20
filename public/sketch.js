@@ -48,7 +48,7 @@ function setup() {
     armY = posY-windowWidth/50;
     bellW = windowWidth/13*2;
     bellH = windowWidth/10;
-    gap = windowWidth/13
+    gap = windowWidth/25
     armGap = windowWidth / gap;
     tentacleGap = windowWidth / gap/8;
     
