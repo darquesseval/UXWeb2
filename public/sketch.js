@@ -53,13 +53,13 @@ function setup() {
     tentacleGap = windowWidth / gap/8;
     
     arm1x = -windowWidth/40*3.5
-    arm2x = -windowWidth/40*2
-    arm3x = 0
+    arm2x = -windowWidth/40*1.5
+    arm3x = +windowWidth/40*0.5
     arm4x = +windowWidth/40*2
     arm5x = +windowWidth/40*3.75
 
-    tentacle1x = -windowWidth/40*3.5
-    tentacle2x = -windowWidth/40*2.5
+    tentacle1x = -windowWidth/40*4
+    tentacle2x = -windowWidth/40*2
     tentacle3x = -0
     tentacle4x = +windowWidth/40*1.75
     tentacle5x = +windowWidth/40*3.5
