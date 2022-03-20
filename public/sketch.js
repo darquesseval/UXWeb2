@@ -91,7 +91,7 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 50, fix10)
     tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 50, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/80, posY-bellH/2, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/72, posY-bellH/2, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -107,7 +107,7 @@ function draw() {
         push()
         fill(255, 0, 255, 10);
         noStroke()
-        ellipse(posX - windowWidth / 40 * 1.5 + windowWidth/40*2, posY - windowWidth / 60 + windowWidth/40*3, countx*1.2, countx * 2);
+        ellipse(posX - windowWidth / 40 * 1.5 + windowWidth/40*2, posY - windowWidth / 60 + windowWidth/40*3.4, countx*1.2, countx * 2);
         pop()
     }
 
