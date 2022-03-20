@@ -46,23 +46,23 @@ function setup() {
     posY = windowWidth*0.3;
     tentacleY = posY-windowWidth/70;
     armY = posY-windowWidth/50;
-    bellW = windowWidth/13*2;
-    bellH = windowWidth/10;
+    bellW = windowWidth/13*2.4;
+    bellH = windowWidth/10*1.12;
     gap = windowWidth/6
     armGap = windowWidth / gap;
     tentacleGap = windowWidth / gap/9;
     
-    arm1x = -windowWidth/70*3
-    arm2x = -windowWidth/70*1.5
-    arm3x = +windowWidth/70*0.25
-    arm4x = +windowWidth/70*2
-    arm5x = +windowWidth/70*3.752
-    tentacle1x = -windowWidth/70*3.25
-    tentacle2x = -windowWidth/70*1.5
+    arm1x = -windowWidth/60*3
+    arm2x = -windowWidth/60*1.5
+    arm3x = +windowWidth/60*0.25
+    arm4x = +windowWidth/60*2
+    arm5x = +windowWidth/60*3.752
+    tentacle1x = -windowWidth/60*3.25
+    tentacle2x = -windowWidth/60*1.5
     tentacle3x = -0
-    tentacle4x = +windowWidth/70*1.75
-    tentacle5x = +windowWidth/70*3.5
-    tentacle6x = +windowWidth/70*5.25
+    tentacle4x = +windowWidth/60*1.75
+    tentacle5x = +windowWidth/60*3.5
+    tentacle6x = +windowWidth/60*5.25
 
 
 
@@ -91,7 +91,7 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 50, fix10)
     tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 50, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/65, posY-bellH/2, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/80, posY-bellH/2, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -107,7 +107,7 @@ function draw() {
         push()
         fill(255, 0, 255, 10);
         noStroke()
-        ellipse(posX - windowWidth / 40 * 1.5 + windowWidth/40*2, posY - windowWidth / 60 + windowWidth/40*3.5, countx*1.2, countx * 2.4);
+        ellipse(posX - windowWidth / 40 * 1.5 + windowWidth/40*2, posY - windowWidth / 60 + windowWidth/40*3, countx*1.2, countx * 2);
         pop()
     }
 
