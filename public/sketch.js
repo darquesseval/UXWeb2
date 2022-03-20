@@ -108,7 +108,7 @@ function draw() {
         push()
         fill(255, 0, 255, 10);
         noStroke()
-        ellipse(posX - windowWidth / 40 * 2 + windowWidth/40*6, posY - windowWidth / 60 + windowWidth/40*9.75, countx*2, countx * 4);
+        ellipse(posX - windowWidth / 40 * 2 + windowWidth/40*2, posY - windowWidth / 60 + windowWidth/40*3.5, countx*2, countx * 4);
         pop()
     }
 
@@ -123,7 +123,7 @@ function draw() {
         x = x-1
     }
 
-    image(mouth, posX - windowWidth/40*2, posY-windowWidth/60, windowWidth/40*6, windowWidth/40*9.75)
+    image(mouth, posX - windowWidth/40*2, posY-windowWidth/60, windowWidth/40*4, windowWidth/40*7)
 
     arm1.showArm();
     arm2.showArm();
