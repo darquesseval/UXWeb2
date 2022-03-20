@@ -46,23 +46,24 @@ function setup() {
     posY = windowWidth*0.3;
     tentacleY = posY-windowWidth/70;
     armY = posY-windowWidth/50;
-    bellW = windowWidth/13*2.1;
-    bellH = windowWidth/10*1.03;
-    gap = windowWidth/6
+    bellW = windowWidth/13*2;
+    bellH = windowWidth/10;
+    gap = windowWidth/10
     armGap = windowWidth / gap;
-    tentacleGap = windowWidth / gap/9;
+    tentacleGap = windowWidth / gap/8;
     
-    arm1x = -windowWidth/60*3
-    arm2x = -windowWidth/60*1.5
-    arm3x = +windowWidth/60*0.25
-    arm4x = +windowWidth/60*2
-    arm5x = +windowWidth/60*3.752
-    tentacle1x = -windowWidth/60*3.25
-    tentacle2x = -windowWidth/60*1.5
+    arm1x = -windowWidth/40*3
+    arm2x = -windowWidth/40*1.5
+    arm3x = +windowWidth/40*0.25
+    arm4x = +windowWidth/40*2
+    arm5x = +windowWidth/40*3.75
+
+    tentacle1x = -windowWidth/40*3.25
+    tentacle2x = -windowWidth/40*1.5
     tentacle3x = -0
-    tentacle4x = +windowWidth/60*1.75
-    tentacle5x = +windowWidth/60*3.5
-    tentacle6x = +windowWidth/60*5.25
+    tentacle4x = +windowWidth/40*1.75
+    tentacle5x = +windowWidth/40*3.5
+    tentacle6x = +windowWidth/40*5.25
 
 
 
@@ -78,20 +79,20 @@ function setup() {
     rectMode(CENTER);
     // angleMode(DEGREES);
     world.gravity.y = 0;
-    arm1 = new Rope(posX+arm1x, armY, armGap, 7, fix1)
-    arm2 = new Rope(posX+arm2x, armY, armGap, 7, fix2)
-    arm3 = new Rope(posX+arm3x, armY, armGap, 7, fix3)
-    arm4 = new Rope(posX+arm4x, armY, armGap, 7, fix4)
-    arm5 = new Rope(posX+arm5x, armY, armGap, 7, fix5)
+    arm1 = new Rope(posX+arm1x, armY, armGap, 8, fix1)
+    arm2 = new Rope(posX+arm2x, armY, armGap, 8, fix2)
+    arm3 = new Rope(posX+arm3x, armY, armGap, 8, fix3)
+    arm4 = new Rope(posX+arm4x, armY, armGap, 8, fix4)
+    arm5 = new Rope(posX+arm5x, armY, armGap, 8, fix5)
 
-    tentacle1 = new Rope(posX+tentacle1x, tentacleY, tentacleGap, 50, fix6)
-    tentacle2 = new Rope(posX+tentacle2x, tentacleY, tentacleGap, 50, fix7)
-    tentacle3 = new Rope(posX+tentacle3x, tentacleY, tentacleGap, 50, fix8)
-    tentacle4 = new Rope(posX+tentacle4x, tentacleY, tentacleGap, 50, fix9)
-    tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 50, fix10)
-    tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 50, fix11)
+    tentacle1 = new Rope(posX+tentacle1x, tentacleY, tentacleGap, 60, fix6)
+    tentacle2 = new Rope(posX+tentacle2x, tentacleY, tentacleGap, 60, fix7)
+    tentacle3 = new Rope(posX+tentacle3x, tentacleY, tentacleGap, 60, fix8)
+    tentacle4 = new Rope(posX+tentacle4x, tentacleY, tentacleGap, 60, fix9)
+    tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 60, fix10)
+    tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/66, posY-bellH/2, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/80, posY-bellH/3, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -107,7 +108,7 @@ function draw() {
         push()
         fill(255, 0, 255, 10);
         noStroke()
-        ellipse(posX - windowWidth / 40 * 1.5 + windowWidth/40*2, posY - windowWidth / 60 + windowWidth/40*3.4, countx*1.2, countx * 2);
+        ellipse(posX - windowWidth / 40 * 1.5 + windowWidth/40*2, posY - windowWidth / 60 + windowWidth/40*3.5, countx*1.2, countx * 2.4);
         pop()
     }
 
