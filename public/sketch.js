@@ -173,10 +173,7 @@ console.log(arm1)
 }
 
 function stingingArms(dataSmartphone) {
-    if (dataSmartphone.angle1 <= windowWidth*4 &&
-        dataSmartphone.angle1 >= -windowWidth*4 &&
-        dataSmartphone.angle2 <= windowHeight*4 &&
-        dataSmartphone.angle2 >= -windowHeight*4 ) {
+  
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
     arm1.body.bodies[arm1.n-1].position.x = windowWidth/2 + sensitivityX + arm1x;
@@ -193,14 +190,11 @@ function stingingArms(dataSmartphone) {
 
     arm5.body.bodies[arm5.n-1].position.x = windowWidth/2 + sensitivityX + arm5x;
     arm5.body.bodies[arm5.n-1].position.y = windowHeight*0.75 + sensitivityY;
-}
+
 }
 
 function tentaclesTurn(dataSmartphone) {
-    if (dataSmartphone.angle1 <= windowWidth*4 &&
-        dataSmartphone.angle1 >= -windowWidth*4 &&
-        dataSmartphone.angle2 <= windowHeight*4 &&
-        dataSmartphone.angle2 >= -windowHeight*4 ) {
+
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
     angleMode(DEGREES);
@@ -227,7 +221,7 @@ function tentaclesTurn(dataSmartphone) {
     //     angleMode(DEGREES);
     //     bellPhysics.angle = rotationAngle;
     //     pop();
-        }
+        
 }
 
 
