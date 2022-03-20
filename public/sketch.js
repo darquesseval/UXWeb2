@@ -162,7 +162,6 @@ function draw() {
     // endShape()
 
     push()
-    scale(0.5);
     angleMode(RADIANS);
     translate(bellPhysics.position.x, bellPhysics.position.y);
     rotate(bellPhysics.angle);
@@ -174,10 +173,10 @@ console.log(arm1)
 }
 
 function stingingArms(dataSmartphone) {
-    if (dataSmartphone.angle1 <= windowWidth &&
-        dataSmartphone.angle1 >= -windowWidth &&
-        dataSmartphone.angle2 <= windowHeight &&
-        dataSmartphone.angle2 >= -windowHeight ) {
+    if (dataSmartphone.angle1 <= windowWidth*4 &&
+        dataSmartphone.angle1 >= -windowWidth*4 &&
+        dataSmartphone.angle2 <= windowHeight*4 &&
+        dataSmartphone.angle2 >= -windowHeight*4 ) {
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
     arm1.body.bodies[arm1.n-1].position.x = windowWidth/2 + sensitivityX + arm1x;
@@ -198,10 +197,10 @@ function stingingArms(dataSmartphone) {
 }
 
 function tentaclesTurn(dataSmartphone) {
-    if (dataSmartphone.angle1 <= windowWidth &&
-        dataSmartphone.angle1 >= -windowWidth &&
-        dataSmartphone.angle2 <= windowHeight &&
-        dataSmartphone.angle2 >= -windowHeight ) {
+    if (dataSmartphone.angle1 <= windowWidth*4 &&
+        dataSmartphone.angle1 >= -windowWidth*4 &&
+        dataSmartphone.angle2 <= windowHeight*4 &&
+        dataSmartphone.angle2 >= -windowHeight*4 ) {
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
     angleMode(DEGREES);
@@ -239,8 +238,6 @@ class Rope {
         this.y = ropeY;
         this.n = n;
         this.cN = connectionName;
-        push();
-        scale(0.5);
         this.body = Matter.Composites.stack(this.x, this.y, 1, this.n, 0, this.r/5, function (x, y) {
         return Matter.Bodies.circle(x, y, r*2, {
             restitution: 0.9,
@@ -272,7 +269,6 @@ class Rope {
         //     isStatic: true
         // })
     ]);
-    pop();
 }
 
 slowMotion() {
