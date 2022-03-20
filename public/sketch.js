@@ -48,22 +48,21 @@ function setup() {
     armY = posY-windowWidth/50;
     bellW = windowWidth/13*2;
     bellH = windowWidth/10;
-    gap = windowWidth/10
+    gap = windowWidth/13
     armGap = windowWidth / gap;
     tentacleGap = windowWidth / gap/8;
     
-    arm1x = -windowWidth/40*3.5
-    arm2x = -windowWidth/40*1.5
-    arm3x = +windowWidth/40*0.5
-    arm4x = +windowWidth/40*2
-    arm5x = +windowWidth/40*3.75
-
-    tentacle1x = -windowWidth/40*4
-    tentacle2x = -windowWidth/40*2
+    arm1x = -windowWidth/42*3
+    arm2x = -windowWidth/42*1.5
+    arm3x = +windowWidth/42*0.25
+    arm4x = +windowWidth/42*2
+    arm5x = +windowWidth/42*3.752
+    tentacle1x = -windowWidth/42*3.25
+    tentacle2x = -windowWidth/42*1.5
     tentacle3x = -0
-    tentacle4x = +windowWidth/40*1.75
-    tentacle5x = +windowWidth/40*3.5
-    tentacle6x = +windowWidth/40*5.25
+    tentacle4x = +windowWidth/42*1.75
+    tentacle5x = +windowWidth/42*3.5
+    tentacle6x = +windowWidth/42*5.25
 
 
 
@@ -164,7 +163,7 @@ function draw() {
     angleMode(RADIANS);
     translate(bellPhysics.position.x, bellPhysics.position.y);
     rotate(bellPhysics.angle);
-    // image(bell, 0-bellW/2,0-bellH*0.6, bellW, bellH);
+    image(bell, 0-bellW/2,0-bellH*0.6, bellW, bellH);
     pop()
 
 console.log(arm1)
