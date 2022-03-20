@@ -79,6 +79,8 @@ function setup() {
     rectMode(CENTER);
     // angleMode(DEGREES);
     world.gravity.y = 0;
+    push();
+    scale(0.5);
     arm1 = new Rope(posX+arm1x, armY, armGap, 8, fix1)
     arm2 = new Rope(posX+arm2x, armY, armGap, 8, fix2)
     arm3 = new Rope(posX+arm3x, armY, armGap, 8, fix3)
@@ -92,9 +94,10 @@ function setup() {
     tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 60, fix10)
     tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/25, posY-bellH/3, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/35, posY-bellH/3, bellW, bellH, 1, {
         isStatic: true
     })
+    pop();
 
    Matter.World.add(world, bellPhysics);
     world.gravity.y=0.5
@@ -122,8 +125,10 @@ function draw() {
     } else {
         x = x-1
     }
-
+    push();
+scale(0.5);
     image(mouth, posX - windowWidth/40*1.5, posY-windowWidth/60, windowWidth/40*4, windowWidth/40*7)
+pop();
 
     arm1.showArm();
     arm2.showArm();
@@ -243,6 +248,7 @@ class Rope {
             density: 1,
             friction: 0.5,
         });
+        
     })
     Matter.Composites.chain(this.body, 0, 0, 0, 0, {
         stiffness: 1,
