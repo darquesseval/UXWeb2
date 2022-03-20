@@ -78,18 +78,18 @@ function setup() {
     rectMode(CENTER);
     // angleMode(DEGREES);
     world.gravity.y = 0;
-    arm1 = new Rope(posX+arm1x, armY, armGap, 8, fix1)
-    arm2 = new Rope(posX+arm2x, armY, armGap, 8, fix2)
-    arm3 = new Rope(posX+arm3x, armY, armGap, 8, fix3)
-    arm4 = new Rope(posX+arm4x, armY, armGap, 8, fix4)
-    arm5 = new Rope(posX+arm5x, armY, armGap, 8, fix5)
+    arm1 = new Rope(posX+arm1x, armY, armGap, 5, fix1)
+    arm2 = new Rope(posX+arm2x, armY, armGap, 5, fix2)
+    arm3 = new Rope(posX+arm3x, armY, armGap, 5, fix3)
+    arm4 = new Rope(posX+arm4x, armY, armGap, 5, fix4)
+    arm5 = new Rope(posX+arm5x, armY, armGap, 5, fix5)
 
-    tentacle1 = new Rope(posX+tentacle1x, tentacleY, tentacleGap, 60, fix6)
-    tentacle2 = new Rope(posX+tentacle2x, tentacleY, tentacleGap, 60, fix7)
-    tentacle3 = new Rope(posX+tentacle3x, tentacleY, tentacleGap, 60, fix8)
-    tentacle4 = new Rope(posX+tentacle4x, tentacleY, tentacleGap, 60, fix9)
-    tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 60, fix10)
-    tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 60, fix11)
+    tentacle1 = new Rope(posX+tentacle1x, tentacleY, tentacleGap, 40, fix6)
+    tentacle2 = new Rope(posX+tentacle2x, tentacleY, tentacleGap, 40, fix7)
+    tentacle3 = new Rope(posX+tentacle3x, tentacleY, tentacleGap, 40, fix8)
+    tentacle4 = new Rope(posX+tentacle4x, tentacleY, tentacleGap, 40, fix9)
+    tentacle5 = new Rope(posX+tentacle5x, tentacleY, tentacleGap, 40, fix10)
+    tentacle6 = new Rope(posX+tentacle6x, tentacleY, tentacleGap, 40, fix11)
 
     bellPhysics = Matter.Bodies.trapezoid(posX+windowWidth/80, posY-bellH/3, bellW, bellH, 1, {
         isStatic: true
