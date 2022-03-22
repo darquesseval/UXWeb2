@@ -377,14 +377,15 @@ showArm() {
         if (f > 0) {
             stroke(55,255,0)
             push()
-            angleMode(RADIANS)
+            angleMode(RADIANS);
+            imageMode(CENTER);
             translate(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y)
             let angleLink = Math.atan2(this.body.bodies[f].position.x, this.body.bodies[f].position.y)
             rotate(angleLink);
-            if(glow=false) {
-            image(arm_link, 0,0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
+            if(glow==false) {
+            image(arm_link, this.body.bodies[f].circleRadius*0.6,this.body.bodies[f].circleRadius*0.6, this.body.bodies[f].circleRadius*0.5)
         } else { 
-            image(arm_link_glow, 0,0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
+            image(arm_link_glow, this.body.bodies[f].circleRadius*0.6,this.body.bodies[f].circleRadius*0.6, this.body.bodies[f].circleRadius*0.5)
         }
             pop()
         }
