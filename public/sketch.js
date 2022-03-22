@@ -226,7 +226,7 @@ function tentaclesTurn(dataSmartphone) {
 
 
 function mouthGlow(dataSmartphone) {
-console.log(shake);
+console.log(dataSmartphone.shake);
 // bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
 // tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
 // arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
