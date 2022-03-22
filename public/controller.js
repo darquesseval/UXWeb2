@@ -69,10 +69,8 @@ function handleSensor(e){
       calibrate = false;
     }
     
-    deviceMotionHandler();
-    function deviceMotionHandler(eventData) {
-        var acceleration = eventData.accelerationIncludingGravity;
-        }    console.log(acceleration);
+        var acceleration = DeviceMotionEvent.accelerationIncludingGravity;
+        console.log(acceleration);
     
     let dist = angles.map((angle, i) => calcDist(angle, initPos[i]));
     console.log(dist);
