@@ -5,7 +5,7 @@ const sensor = new AbsoluteOrientationSensor({frequency: 60});
 sensor.addEventListener("reading", (e) => handleSensor(e));
 sensor.start();   
 
-let acl = new Accelerometer({frequency: 60});
+let acl = new LinearAccelerationSensor({frequency: 60});
 acl.addEventListener('reading', () => handleAcl());
 acl.start();
 
