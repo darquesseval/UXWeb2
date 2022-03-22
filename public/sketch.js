@@ -115,15 +115,15 @@ function draw() {
     background(0);
     for (let countx = x-50; countx <= x;countx++) {
         push()
-        fill(255, 0, 255, 10);
+        fill(255, 255, 255, 10);
         noStroke()
         ellipse(posX - windowWidth / 40 * 1.5 + windowWidth/40*2.5, posY - windowWidth / 60 + windowWidth/40*4.25, countx*1.4, countx * 2.8);
         pop()
     }
 
-    if (x == glowControl + 45) {
+    if (x >= glowControl + 45) {
         negcount = true;
-    } else if (x == glowControl) {
+    } else if (x <= glowControl) {
         negcount = false;
     }
     if (negcount == false) {
@@ -246,7 +246,7 @@ console.log('X: ' + dataSmartphone.shakeX + 'Y: ' + dataSmartphone.shakeY + 'Z: 
 
 if(dataSmartphone.shakeX >= 12 || dataSmartphone.shakeY >= 12 || dataSmartphone.shakeZ >= 12){
 glow = true;
-glowControl = 80 + dataSmartphone.shakeX + dataSmartphone.shakeY + dataSmartphone.shakeZ;
+glowControl = 80 + (dataSmartphone.shakeX + dataSmartphone.shakeY + dataSmartphone.shakeZ)/3;
 
 } else {
 glow = false;
