@@ -23,6 +23,7 @@ let armGap, tentacleGap;
 let glowControl = 80;
 let x = glowControl;
 let negcount = false;
+let glow = false;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
@@ -31,6 +32,10 @@ function preload() {
     tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
     arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
     mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
+    bell_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
+    tentacle_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
+    arm_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
+    mouth_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
 }
 
 
@@ -127,7 +132,12 @@ function draw() {
         x = x-1
     }
 
+    if(glow==false) {
     image(mouth, posX - windowWidth/40*1.5, posY-windowWidth/60, windowWidth/40*5, windowWidth/40*8.5)
+} else {
+    image(mouth_glow, posX - windowWidth/40*1.5, posY-windowWidth/60, windowWidth/40*5, windowWidth/40*8.5)
+
+}
 
     arm1.showArm();
     arm2.showArm();
@@ -168,7 +178,11 @@ function draw() {
     angleMode(RADIANS);
     translate(bellPhysics.position.x, bellPhysics.position.y);
     rotate(bellPhysics.angle);
-    image(bell, 0-bellW/2,0-bellH*0.6, bellW, bellH);
+    if(glow==false) {
+        image(bell, 0-bellW/2,0-bellH*0.6, bellW, bellH);
+    } else {
+        image(bell_glow, 0-bellW/2,0-bellH*0.6, bellW, bellH);
+    }
     pop()
 
 
@@ -231,17 +245,11 @@ function mouthGlow(dataSmartphone) {
 console.log('X: ' + dataSmartphone.shakeX + 'Y: ' + dataSmartphone.shakeY + 'Z: ' + dataSmartphone.shakeZ);
 
 if(dataSmartphone.shakeX >= 12 || dataSmartphone.shakeY >= 12 || dataSmartphone.shakeZ >= 12){
-bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
-tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
-arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
-mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
+glow = true;
 glowControl = 80 + dataSmartphone.shakeX + dataSmartphone.shakeY + dataSmartphone.shakeZ;
 
 } else {
-    bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
-    tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
-    arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
-    mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
+glow = false;
     glowControl = 80
 }
 
@@ -329,7 +337,11 @@ showTentacle() {
         rotate(this.body.bodies[f].angle);
         fill(0,0,0,0);
         noStroke();
-        image(tentacle, 0, 0, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5);
+        if(glow==false) {
+            image(tentacle, 0, 0, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5);
+        } else {
+            image(tentacle_glow, 0, 0, this.body.bodies[f].circleRadius*3,this.body.bodies[f].circleRadius*3.5);
+        }
         pop();
     
         if (f > 0) {
@@ -352,7 +364,11 @@ showArm() {
         rotate(this.body.bodies[f].angle+90);
         fill(0,0,0,0);
         noStroke();
-        image(arm, 0, 0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2);
+        if(glow==false) {
+            image(arm, 0, 0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2);
+        } else {
+            image(arm_glow, 0, 0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2);
+        }
         pop();
     
         if (f > 0) {
