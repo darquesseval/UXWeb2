@@ -5,6 +5,10 @@ const sensor = new AbsoluteOrientationSensor({frequency: 60});
 sensor.addEventListener("reading", (e) => handleSensor(e));
 sensor.start();   
 
+let acl = new Accelerometer({frequency: 60});
+acl.addEventListener('reading', () => handleAcl());
+acl.start();
+
 let initPos;
 let calibrate = true;
 
@@ -68,19 +72,15 @@ function handleSensor(e){
       initPos = angles;
       calibrate = false;
     }
-    
-        let acceleration = DeviceMotionEvent.accelerationIncludingGravity;
-        console.log(acceleration);
-    
+        
     let dist = angles.map((angle, i) => calcDist(angle, initPos[i]));
     console.log(dist);
     getSensorData()
     function getSensorData () {
         var dataSmartphone = {
             angle1: dist[0],
-            angle2: dist[1],
-            shake: acceleration
-        }
+            angle2: dist[1]
+                }
         
     if (document.getElementById("arm").classList.contains("active")) {
         socket.emit('forArm', dataSmartphone);
@@ -89,11 +89,25 @@ function handleSensor(e){
     if (document.getElementById("tentacle").classList.contains("active")) {
         socket.emit('forTentacle', dataSmartphone);
     }
-    if (document.getElementById("mouth").classList.contains("active")) {
-        socket.emit('forMouth', dataSmartphone);
-    }
+
     }
 }   
+function handleAcl() {
+    
+    getAclData()
+    function getAclData () {
+        var dataSmartphone = {
+            shakeX: acl.x,
+            shakeY: acl.y,
+            shakeZ: acl.z
+                }
+                
+                if (document.getElementById("mouth").classList.contains("active")) {
+                    socket.emit('forMouth', dataSmartphone);
+                }
+            }
+
+}
 
 function calcDist(angle, initAngle) {
     angle = (angle - initAngle) * (180 / Math.PI);
