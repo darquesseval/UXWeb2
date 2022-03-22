@@ -23,16 +23,21 @@ function newConnection(socket) {
 
     socket.on('forArm', armMsg);
     socket.on('forTentacle', tentacleMsg);
+    socket.on('forMouth', mouthMsg);
 
     function armMsg(dataSmartphone) {
       socket.broadcast.emit('forArm', dataSmartphone)
       console.log(dataSmartphone);
     }
     
-    function tentacleMsg(data) {
-        socket.broadcast.emit('forTentacle', data);
-        console.log(data);
+    function tentacleMsg(dataSmartphone) {
+        socket.broadcast.emit('forTentacle', dataSmartphone);
+        console.log(dataSmartphone);
     }
+    function mouthMsg(dataSmartphone) {
+      socket.broadcast.emit('forMouth', dataSmartphone);
+      console.log(dataSmartphone);
+  }
 
 
 

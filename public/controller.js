@@ -44,6 +44,26 @@ document.getElementById("tentacle").addEventListener("click", function() {
     }
 })
 
+document.getElementById("mouth").addEventListener("click", function() {
+    if (this.classList.contains("active")) {
+        this.classList.remove("active");
+        console.log('deactivated')
+    } else {
+        this.classList.add("active")
+        console.log('activated')
+    }
+})
+
+// from https://developpaper.com/html5-js-realizes-the-function-of-shaking-the-mobile-phone/
+
+if (window.DeviceMotionEvent) {
+    window.addEventListener('devicemotion',deviceMotionHandler, false);
+    }
+function deviceMotionHandler(eventData) {
+    var acceleration =eventData.accelerationIncludingGravity;
+    }
+
+    
 
 //get sensor data and send it
 function handleSensor(e){
@@ -61,15 +81,19 @@ function handleSensor(e){
     function getSensorData () {
         var dataSmartphone = {
             angle1: dist[0],
-            angle2: dist[1]
+            angle2: dist[1],
+            shake: acceleration
         }
         
-        if (document.getElementById("arm").classList.contains("active")) {
+    if (document.getElementById("arm").classList.contains("active")) {
         socket.emit('forArm', dataSmartphone);
     }
 
     if (document.getElementById("tentacle").classList.contains("active")) {
         socket.emit('forTentacle', dataSmartphone);
+    }
+    if (document.getElementById("mouth").classList.contains("active")) {
+        socket.emit('forMouth', dataSmartphone);
     }
     }
 }   

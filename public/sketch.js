@@ -27,7 +27,7 @@ function preload() {
     bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
     bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
     tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
-    arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/stinging_arm_round.png');
+    arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
     mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
 }
 
@@ -38,6 +38,7 @@ function setup() {
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('forArm', stingingArms); 
     socket.on('forTentacle', tentaclesTurn);  
+    socket.on('forMouth', mouthGlow);  
     // socket.on('mouse', newDrawing);
     background(0);
     engine = Matter.Engine.create();
@@ -168,7 +169,6 @@ function draw() {
     image(bell, 0-bellW/2,0-bellH*0.6, bellW, bellH);
     pop()
 
-console.log(arm1)
 
 }
 
@@ -224,6 +224,14 @@ function tentaclesTurn(dataSmartphone) {
         
 }
 
+
+function mouthGlow(dataSmartphone) {
+console.log(shake);
+// bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
+// tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
+// arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
+// mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
+}
 
 class Rope {
     constructor(ropeX, ropeY, r, n, connectionName) {
