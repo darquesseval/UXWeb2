@@ -32,10 +32,13 @@ function preload() {
     tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
     arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
     mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
+    arm_link = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_link.png');
     bell_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
     tentacle_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
     arm_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
     mouth_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
+    arm_link_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_link_glow.png');
+
 }
 
 
@@ -373,8 +376,17 @@ showArm() {
     
         if (f > 0) {
             stroke(55,255,0)
-
-            line(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y, this.body.bodies[f].position.x, this.body.bodies[f].position.y);
+            push()
+            angleMode(RADIANS)
+            translate(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y)
+            let angleLink = Math.atan2(this.body.bodies[f].position.x, this.body.bodies[f].position.y)
+            rotate(angleLink);
+            if(glow=false) {
+            image(arm_link, 0,0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
+        } else { 
+            image(arm_link_glow, 0,0, this.body.bodies[f].circleRadius*1.2,this.body.bodies[f].circleRadius*1.2)
+        }
+            pop()
         }
     }
     
