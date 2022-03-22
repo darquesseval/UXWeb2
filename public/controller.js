@@ -56,7 +56,6 @@ document.getElementById("mouth").addEventListener("click", function() {
 
 // from https://developpaper.com/html5-js-realizes-the-function-of-shaking-the-mobile-phone/
 
-var acceleration = eventData.accelerationIncludingGravity;
 
     
 
@@ -69,6 +68,11 @@ function handleSensor(e){
       initPos = angles;
       calibrate = false;
     }
+    
+    deviceMotionHandler();
+    function deviceMotionHandler(eventData) {
+        var acceleration = eventData.accelerationIncludingGravity;
+        }    console.log(acceleration);
     
     let dist = angles.map((angle, i) => calcDist(angle, initPos[i]));
     console.log(dist);
