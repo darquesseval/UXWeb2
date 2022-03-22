@@ -13,13 +13,15 @@ let armY, tentacleY;
 
 let bg, bg_stunned, bell, tentacle, arm, mouth;
 
+
 let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10, fix11;
 let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5, tentacle6;
 let arm1x, tentacle1x, arm2x, tentacle2x, arm3x, tentacle3x, arm4x, tentacle4x, arm5x, tentacle5x, tentacle6x;
 let bellPhysics, bellH, bellW;
 let armGap, tentacleGap;
 
-let x = 80;
+let glowControl = 80;
+let x = glowControl;
 let negcount = false;
 
 function preload() {
@@ -114,9 +116,9 @@ function draw() {
         pop()
     }
 
-    if (x == 120) {
+    if (x == glowControl + 45) {
         negcount = true;
-    } else if (x == 80) {
+    } else if (x == glowControl) {
         negcount = false;
     }
     if (negcount == false) {
@@ -227,10 +229,24 @@ function tentaclesTurn(dataSmartphone) {
 
 function mouthGlow(dataSmartphone) {
 console.log('X: ' + dataSmartphone.shakeX + 'Y: ' + dataSmartphone.shakeY + 'Z: ' + dataSmartphone.shakeZ);
-// bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
-// tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
-// arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
-// mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
+
+if(dataSmartphone.shakeX >= 12 || dataSmartphone.shakeY >= 12 || dataSmartphone.shakeZ >= 12){
+bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
+tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
+arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
+mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
+glowControl = 80 + dataSmartphone.shakeX + dataSmartphone.shakeY + dataSmartphone.shakeZ;
+
+} else {
+    bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
+    tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
+    arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
+    mouth = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
+    glowControl = 80
+}
+
+
+
 }
 
 class Rope {
