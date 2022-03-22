@@ -93,9 +93,9 @@ function handleSensor(e){
     }
 }   
 function handleAcl() {
-    
     getAclData()
     function getAclData () {
+        console.log(acl);
         var dataSmartphone = {
             shakeX: acl.x,
             shakeY: acl.y,
