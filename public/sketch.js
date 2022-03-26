@@ -5,6 +5,7 @@ let render
 
 let connection
 let circleChain
+let angleLink 
 
 let gap;
 let posX;
@@ -277,7 +278,7 @@ class Rope {
     Matter.Composites.chain(this.body, 0, 0, 0, 0, {
         stiffness: 1,
         // damping: 0.5,
-        length: this.r *4
+        length: Matter.Common.clamp(this.r *4, this.r *3.9, this.r *4.1),
     });
     Matter.Composite.add(this.body, this.cN = Matter.Constraint.create({
         bodyB: this.body.bodies[0],
@@ -380,12 +381,12 @@ showArm() {
             angleMode(RADIANS);
             imageMode(CENTER);
             translate(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y)
-            let angleLink = Math.atan2(this.body.bodies[f].position.x, this.body.bodies[f].position.y)
-            rotate(angleLink-0.575959);
+            angleLink = Math.atan2(this.body.bodies[f].position.x, this.body.bodies[f].position.y)
+            rotate(angleLink-0.89959);
             if(glow==false) {
-            image(arm_link, this.body.bodies[f].circleRadius*0.6,this.body.bodies[f].circleRadius*0.6, this.body.bodies[f].circleRadius*0.25, this.body.bodies[f].circleRadius*1.2)
+            image(arm_link, 0,this.body.bodies[f].circleRadius, this.body.bodies[f].circleRadius*0.25, this.body.bodies[f].circleRadius*1.2)
         } else { 
-            image(arm_link_glow, this.body.bodies[f].circleRadius*0.6,this.body.bodies[f].circleRadius*0.6, this.body.bodies[f].circleRadius*0.25, this.body.bodies[f].circleRadius*1.2)
+            image(arm_link_glow, 0,this.body.bodies[f].circleRadius, this.body.bodies[f].circleRadius*0.25, this.body.bodies[f].circleRadius*1.2)
         }
             pop()
         }
