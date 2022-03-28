@@ -28,12 +28,12 @@ let glow = false;
 let wW;
 
 let firstRun = true;
-let sX = 0;
-let sXc = 0;
-let sY = 0;
-let sYc = 0;
-let sZ = 0;
-let sZc = 0;
+let sX;
+let sXc;
+let sY;
+let sYc;
+let sZ;
+let sZc;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
@@ -85,6 +85,13 @@ function setup() {
     tentacle4x = +windowWidth/40*1.75
     tentacle5x = +windowWidth/40*3.5
     tentacle6x = +windowWidth/40*5.25
+
+    sX = 0;
+    sXc = 0;
+    sY = 0;
+    sYc = 0;
+    sZ = 0;
+    sZc = 0;
 
 wW = windowWidth;
 
@@ -256,7 +263,7 @@ function tentaclesTurn(dataSmartphone) {
 }
 
 function mouthGlow(dataSmartphone) {
-console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + 'Y: ' + dataSmartphone.shakeY +' / ' + sY+ 'Z: ' + dataSmartphone.shakeZ+' / ' + sZ);
+console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + ' Y: ' + dataSmartphone.shakeY +' / ' + sY+ ' Z: ' + dataSmartphone.shakeZ+' / ' + sZ);
 
     shakeIntensity(sX, dataSmartphone.shakeX, sXc);
     shakeIntensity(sY, dataSmartphone.shakeY, sYc);
