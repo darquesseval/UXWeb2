@@ -264,47 +264,40 @@ function tentaclesTurn(dataSmartphone) {
 
 function mouthGlow(dataSmartphone) {
 console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + ' Y: ' + dataSmartphone.shakeY +' / ' + sY+ ' Z: ' + dataSmartphone.shakeZ+' / ' + sZ);
-    let shakeXsoftened = new shakeIntensity(sX, dataSmartphone.shakeX, sXc);
-    let shakeYsoftened = new shakeIntensity(sY, dataSmartphone.shakeY, sYc);
-   let shakeZsoftened =  new shakeIntensity(sZ, dataSmartphone.shakeZ, sZc);
+if(sX < 12){
+if(dataSmartphone.shakeX<0){
+sX = dataSmartphone.shakeX*-1;
+} else {sX = dataSmartphone.shakeX}
+}
+else{
+    sX = sX-0.01
+}
 
-if(shakeXsoftened.softAxe >= 12 || shakeYsoftened.softAxe >= 12 || shakeZsoftened.softAxe >= 12){
+if(sY < 12){
+    if(dataSmartphone.shakeY<0){
+    sY = dataSmartphone.shakeY*-1;
+    } else {sY = dataSmartphone.shakeY}
+    }
+    else{
+        sY = sY-0.01
+    }
+
+    if(sZ < 12){
+        if(dataSmartphone.shakeZ<0){
+        sZ = dataSmartphone.shakeZ*-1;
+        } else {sZ = dataSmartphone.shakeZ}
+        }
+        else{
+            sZ = sZ-0.01
+        }
+
+if(sX >= 12 || sY >= 12 || sZ >= 12){
 glow = true;
-glowControl = 80 + (dataSmartphone.shakeX + dataSmartphone.shakeY + dataSmartphone.shakeZ)/3;
+glowControl = 80 + (sX + sY + sZ)/3;
 
 } else {
 glow = false;
     glowControl = 80
-}
-}
-
-class shakeIntensity{
-    constructor(softAxe, axe, counter) {
-    this.softAxe = softAxe;
-    this.axe = axe;
-    this.counter = counter;
-    if (this.axe>=0 && this.softAxe >=12){
-    if (this.softAxe > this.axe) {
-        this.counter = this.counter+1
-        if(this.counter >= 100) {
-            this.softAxe = this.soften - 1;
-    }
-    } else {
-        this.softAxe = this.axe;
-        this.counter = 0;
-    }
-}
-else if(this.axe<0 && this.softAxe >=12) {
-    if (this.softAxe > this.axe*-1) {
-        this.counter = this.counter+1
-        if(this.counter >= 100) {
-            this.softAxe = this.soften - 1;
-    }
-    } else {
-        this.softAxe = this.axe*-1;
-        this.counter = 0;
-    }
-}
 }
 }
 
