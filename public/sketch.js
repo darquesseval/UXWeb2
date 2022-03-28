@@ -264,78 +264,9 @@ function tentaclesTurn(dataSmartphone) {
 
 function mouthGlow(dataSmartphone) {
 console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + ' Y: ' + dataSmartphone.shakeY +' / ' + sY+ ' Z: ' + dataSmartphone.shakeZ+' / ' + sZ);
-
-    if (dataSmartphone.shakeX>=0 && sX >=12){
-    if (sX > dataSmartphone.shakeX) {
-        sXc = sXc+1
-        if(sXc >= 100) {
-            sX = sX - 1;
-    }
-    } else {
-        sX = dataSmartphone.shakeX;
-        counsXcter = 0;
-    }
-}
-else if(dataSmartphone.shakeX<0 && sX >=12) {
-    if (sX > dataSmartphone.shakeX*-1) {
-        sXc = sXc+1
-        if(sXc >= 100) {
-            sX = sX - 1;
-    }
-    } else {
-        sX = dataSmartphone.shakeX*-1;
-        sXc = 0;
-    }
-}
-
-
-if (dataSmartphone.shakeY>=0 && sY >=12){
-    if (sY > dataSmartphone.shakeY) {
-        sYc = sYc+1
-        if(sYc >= 100) {
-            sY = sY - 1;
-    }
-    } else {
-        sY = dataSmartphone.shakeY;
-        sYc = 0;
-    }
-}
-else if(dataSmartphone.shakeY<0 && sY >=12) {
-    if (sY > dataSmartphone.shakeY*-1) {
-        sYc = sYc+1
-        if(sYc >= 100) {
-            sY = sY - 1;
-    }
-    } else {
-        sY = dataSmartphone.shakeY*-1;
-        sYc = 0;
-    }
-}
-
-
-if (dataSmartphone.shakeZ>=0 && sZ >=12){
-    if (sZ > dataSmartphone.shakeZ) {
-        sZc = sZc+1
-        if(sZc >= 100) {
-            sZ = sZ - 1;
-    }
-    } else {
-        sZ = dataSmartphone.shakeZ;
-        sZc = 0;
-    }
-}
-else if(dataSmartphone.shakeZ<0 && sZ >=12) {
-    if (sZ > dataSmartphone.shakeZ*-1) {
-        sZc = sZc+1
-        if(sZc >= 100) {
-            sZ = sZ - 1;
-    }
-    } else {
-        sZ = dataSmartphone.shakeZ*-1;
-        sZc = 0;
-    }
-}
-
+    shakeIntensity(sX, dataSmartphone.shakeX, sXc);
+    shakeIntensity(sY, dataSmartphone.shakeY, sYc);
+    shakeIntensity(sZ, dataSmartphone.shakeZ, sZc);
 
 if(sX >= 12 || sY >= 12 || sZ >= 12){
 glow = true;
@@ -345,9 +276,31 @@ glowControl = 80 + (dataSmartphone.shakeX + dataSmartphone.shakeY + dataSmartpho
 glow = false;
     glowControl = 80
 }
+}
 
-
-
+function shakeIntensity(soften, axe, counter) {
+    if (axe>=0 && soften >=12){
+    if (soften > axe) {
+        counter = counter+1
+        if(counter >= 100) {
+            soften = soften - 1;
+    }
+    } else {
+        soften = axe;
+        counter = 0;
+    }
+}
+else if(axe<0 && soften >=12) {
+    if (soften > axe*-1) {
+        counter = counter+1
+        if(counter >= 100) {
+            soften = soften - 1;
+    }
+    } else {
+        soften = axe*-1;
+        counter = 0;
+    }
+}
 }
 
 class Rope {
