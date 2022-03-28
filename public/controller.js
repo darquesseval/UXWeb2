@@ -114,9 +114,9 @@ function handleAcl() {
             aZ = acl.z;
             firstRun = false;
         } else {
-            updateShakeIntensity(aX, acl.x, aXc);
-            updateShakeIntensity(aY, acl.y, aYc);
-            updateShakeIntensity(aZ, acl.z, aZc);
+            shakeIntensity(aX, acl.x, aXc);
+            shakeIntensity(aY, acl.y, aYc);
+            shakeIntensity(aZ, acl.z, aZc);
         }
         var dataSmartphone = {
             shakeX: aX,
