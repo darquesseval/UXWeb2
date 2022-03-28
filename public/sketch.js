@@ -264,11 +264,11 @@ function tentaclesTurn(dataSmartphone) {
 
 function mouthGlow(dataSmartphone) {
 console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + ' Y: ' + dataSmartphone.shakeY +' / ' + sY+ ' Z: ' + dataSmartphone.shakeZ+' / ' + sZ);
-    shakeIntensity(sX, dataSmartphone.shakeX, sXc);
-    shakeIntensity(sY, dataSmartphone.shakeY, sYc);
-    shakeIntensity(sZ, dataSmartphone.shakeZ, sZc);
+    let shakeXsoftened = new shakeIntensity(sX, dataSmartphone.shakeX, sXc);
+    let shakeYsoftened = new shakeIntensity(sY, dataSmartphone.shakeY, sYc);
+   let shakeZsoftened =  new shakeIntensity(sZ, dataSmartphone.shakeZ, sZc);
 
-if(sX >= 12 || sY >= 12 || sZ >= 12){
+if(shakeXsoftened.softAxe >= 12 || shakeYsoftened.softAxe >= 12 || shakeZsoftened.softAxe >= 12){
 glow = true;
 glowControl = 80 + (dataSmartphone.shakeX + dataSmartphone.shakeY + dataSmartphone.shakeZ)/3;
 
@@ -278,28 +278,33 @@ glow = false;
 }
 }
 
-function shakeIntensity(soften, axe, counter) {
-    if (axe>=0 && soften >=12){
-    if (soften > axe) {
-        counter = counter+1
-        if(counter >= 100) {
-            soften = soften - 1;
+class shakeIntensity{
+    constructor(softAxe, axe, counter) {
+    this.softAxe = softAxe;
+    this.axe = axe;
+    this.counter = counter;
+    if (this.axe>=0 && this.softAxe >=12){
+    if (this.softAxe > this.axe) {
+        this.counter = this.counter+1
+        if(this.counter >= 100) {
+            this.softAxe = this.soften - 1;
     }
     } else {
-        soften = axe;
-        counter = 0;
+        this.softAxe = this.axe;
+        this.counter = 0;
     }
 }
-else if(axe<0 && soften >=12) {
-    if (soften > axe*-1) {
-        counter = counter+1
-        if(counter >= 100) {
-            soften = soften - 1;
+else if(this.axe<0 && this.softAxe >=12) {
+    if (this.softAxe > this.axe*-1) {
+        this.counter = this.counter+1
+        if(this.counter >= 100) {
+            this.softAxe = this.soften - 1;
     }
     } else {
-        soften = axe*-1;
-        counter = 0;
+        this.softAxe = this.axe*-1;
+        this.counter = 0;
     }
+}
 }
 }
 
