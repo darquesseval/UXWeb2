@@ -5,11 +5,11 @@ let initPos;
 let calibrate = true;
 let firstRun = true;
 let aX;
-let aXcounter = 0;
-let aY
-let aYcounter = 0;
-let aZ
-let aZcounter = 0;
+let aXc = 0;
+let aY;
+let aYc = 0;
+let aZ;
+let aZc = 0;
 
 const sensor = new AbsoluteOrientationSensor({
     frequency: 60
@@ -108,22 +108,21 @@ function handleAcl() {
 
     function getAclData() {
         console.log('THIS IS IT: x=' + acl.x + ' y=' + acl.y + ' z=' + acl.z);
-        if (firstRun === false) {
-            updateShakeIntensity(aX, acl.x, aXcounter);
-            updateShakeIntensity(aY, acl.y, aYcounter);
-            updateShakeIntensity(aZ, acl.z, aZcounter);
+        if (firstRun === true) {
+            aX = acl.x;
+            aY = acl.y;
+            aZ = acl.z;
+            firstRun = false;
         } else {
-            aX = acl.x
-            aY = acl.y
-            aZ = acl.z
-            firstRun = false
+            updateShakeIntensity(aX, acl.x, aXc);
+            updateShakeIntensity(aY, acl.y, aYc);
+            updateShakeIntensity(aZ, acl.z, aZc);
         }
         var dataSmartphone = {
             shakeX: aX,
             shakeY: aY,
             shakeZ: aZ
         }
-
         if (document.getElementById("mouth").classList.contains("active")) {
             socket.emit('forMouth', dataSmartphone);
         }
@@ -153,6 +152,6 @@ function updateShakeIntensity(name, axe, counter) {
     }
     } else {
         this.name = this.axe;
-        this.counter = 0
+        this.counter = 0;
     }
 }
