@@ -10,8 +10,6 @@ sensor.start();
 let acl = new LinearAccelerationSensor({
     frequency: 60
 });
-acl.addEventListener('reading', () => handleAcl());
-acl.start();
 
 let initPos;
 let calibrate = true;
@@ -22,6 +20,11 @@ let aY
 let aYcounter = 0;
 let aZ
 let aZcounter = 0;
+
+acl.addEventListener('reading', () => handleAcl());
+acl.start();
+
+
 
 
 document.body.addEventListener("click", () => {
@@ -124,7 +127,7 @@ function handleAcl() {
             firstRun = false
         }
         var dataSmartphone = {
-            shakeX: acl.x,
+            shakeX: aX,
             shakeY: aY,
             shakeZ: aZ
         }
