@@ -124,7 +124,7 @@ function handleAcl() {
             firstRun = false
         }
         var dataSmartphone = {
-            shakeX: aX,
+            shakeX: acl.x,
             shakeY: aY,
             shakeZ: aZ
         }

@@ -385,12 +385,12 @@ showArm() {
             angleLink = Math.atan2(this.body.bodies[f-1].position.x-this.body.bodies[f].position.x, this.body.bodies[f-1].position.y-this.body.bodies[f].position.y)
             //angleMode(DEGREES);
             //rotate(this.body.bodies[f].angle-120+(this.n-f)*-30);
-            rotate(angleLink)
+            rotate(-angleLink)
             let imgHeight = Math.sqrt(Math.pow(this.body.bodies[f].position.x-this.body.bodies[f-1].position.x, 2)+(Math.pow(this.body.bodies[f].position.y-this.body.bodies[f-1].position.y, 2)))
             if(glow==false) {
-            image(arm_link, 0,this.body.bodies[f].circleRadius, this.body.bodies[f].circleRadius*0.25, imgHeight)
+            image(arm_link, 0,this.body.bodies[f].circleRadius*2, this.body.bodies[f].circleRadius*0.25, imgHeight*0.75)
         } else { 
-            image(arm_link_glow, 0,this.body.bodies[f].circleRadius, this.body.bodies[f].circleRadius*0.25, this.body.bodies[f].circleRadius*1.2)
+            image(arm_link_glow, 0,this.body.bodies[f].circleRadius*2, this.body.bodies[f].circleRadius*0.25, imgHeight*0.75)
         }
             pop()
         }
@@ -399,10 +399,11 @@ showArm() {
     translate(this.cN.pointA.x, this.cN.pointA.y)
             angleLink = Math.atan2(this.body.bodies[0].position.x, this.body.bodies[0].position.y)
             rotate(angleLink-0.89959);
+            let imgHeightFirst = Math.sqrt(Math.pow(this.body.bodies[0].position.x-this.cN.pointA.x, 2)+(Math.pow(this.body.bodies[0].position.y-this.cN.pointA.y, 2)))
             if(glow==false) {
-                image(arm_link, 0,this.body.bodies[0].circleRadius, this.body.bodies[0].circleRadius*0.25, this.body.bodies[0].circleRadius*1.2)
+                image(arm_link, 0,this.body.bodies[0].circleRadius*2, this.body.bodies[0].circleRadius*0.25, imgHeightFirst*0.75)
             } else { 
-                image(arm_link_glow, 0,this.body.bodies[0].circleRadius, this.body.bodies[0].circleRadius*0.25, this.body.bodies[0].circleRadius*1.2)
+                image(arm_link_glow, 0,this.body.bodies[0].circleRadius*2, this.body.bodies[0].circleRadius*0.25, imgHeightFirst*0.75)
             }
             pop()
 }
