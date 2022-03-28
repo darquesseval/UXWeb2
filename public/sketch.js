@@ -270,7 +270,7 @@ console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + ' Y: ' + dataSmartphone.
     shakeIntensity(sZ, dataSmartphone.shakeZ, sZc);
 
 function shakeIntensity(name, axe, counter) {
-    if (axe>=0){
+    if (axe>=0 && name >=12){
     if (name > axe) {
         counter = counter+1
         if(counter >= 100) {
@@ -281,7 +281,7 @@ function shakeIntensity(name, axe, counter) {
         counter = 0;
     }
 }
-else if(axe<0) {
+else if(axe<0 && name >=12) {
     if (name > axe*-1) {
         counter = counter+1
         if(counter >= 100) {
