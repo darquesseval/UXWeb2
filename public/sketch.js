@@ -14,7 +14,6 @@ let armY, tentacleY;
 
 let bg, bg_stunned, bell, tentacle, arm, mouth;
 
-
 let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10, fix11;
 let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5, tentacle6;
 let arm1x, tentacle1x, arm2x, tentacle2x, arm3x, tentacle3x, arm4x, tentacle4x, arm5x, tentacle5x, tentacle6x;
@@ -27,6 +26,14 @@ let negcount = false;
 let glow = false;
 
 let wW;
+
+let firstRun = true;
+let sX;
+let sXc = 0;
+let sY;
+let sYc = 0;
+let sZ;
+let sZc = 0;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
@@ -248,11 +255,33 @@ function tentaclesTurn(dataSmartphone) {
         
 }
 
-
 function mouthGlow(dataSmartphone) {
-console.log('X: ' + dataSmartphone.shakeX + 'Y: ' + dataSmartphone.shakeY + 'Z: ' + dataSmartphone.shakeZ);
+console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + 'Y: ' + dataSmartphone.shakeY +' / ' + sY+ 'Z: ' + dataSmartphone.shakeZ+' / ' + sZ);
 
-if(dataSmartphone.shakeX >= 12 || dataSmartphone.shakeY >= 12 || dataSmartphone.shakeZ >= 12){
+if (firstRun === true) {
+    sX = dataSmartphone.shakeX;
+    sY = dataSmartphone.shakeY;
+    sZ = dataSmartphone.shakeZ;
+    firstRun = false;
+} else {
+    shakeIntensity(sX, dataSmartphone.shakeX, sXc);
+    shakeIntensity(sY, dataSmartphone.shakeY, sYc);
+    shakeIntensity(sZ, dataSmartphone.shakeZ, sZc);
+}
+
+function shakeIntensity(name, axe, counter) {
+    if (name > axe) {
+        counter = counter+1
+        if(counter >= 15) {
+        name = name - 1;
+    }
+    } else {
+        name = axe;
+        counter = 0;
+    }
+}
+
+if(sX >= 12 || sY >= 12 || sZ >= 12){
 glow = true;
 glowControl = 80 + (dataSmartphone.shakeX + dataSmartphone.shakeY + dataSmartphone.shakeZ)/3;
 

@@ -3,13 +3,6 @@ var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
 let initPos;
 let calibrate = true;
-let firstRun = true;
-let aX;
-let aXc = 0;
-let aY;
-let aYc = 0;
-let aZ;
-let aZc = 0;
 
 const sensor = new AbsoluteOrientationSensor({
     frequency: 60
@@ -18,7 +11,7 @@ sensor.addEventListener("reading", (e) => handleSensor(e));
 sensor.start();
 
 let acl = new LinearAccelerationSensor({
-    frequency: 60
+    frequency: 30
 });
 
 acl.addEventListener('reading', () => handleAcl());
@@ -108,27 +101,16 @@ function handleAcl() {
 
     function getAclData() {
         console.log('THIS IS IT: x=' + acl.x + ' y=' + acl.y + ' z=' + acl.z);
-        if (firstRun === true) {
-            aX = acl.x;
-            aY = acl.y;
-            aZ = acl.z;
-            firstRun = false;
-        } else {
-            shakeIntensity(aX, acl.x, aXc);
-            shakeIntensity(aY, acl.y, aYc);
-            shakeIntensity(aZ, acl.z, aZc);
-        }
+
         var dataSmartphone = {
-            shakeX: aX,
-            shakeY: aY,
-            shakeZ: aZ
+            shakeX: acl.x,
+            shakeY: acl.y,
+            shakeZ: acl.z
         }
         if (document.getElementById("mouth").classList.contains("active")) {
             socket.emit('forMouth', dataSmartphone);
         }
     }
-
-
 }
 
 function calcDist(angle, initAngle) {
@@ -141,14 +123,3 @@ function calcDist(angle, initAngle) {
     return dist;
 }
 
-function shakeIntensity(name, axe, counter) {
-    if (name > axe) {
-        counter = counter+1
-        if(counter >= 15) {
-        name = name - 1;
-    }
-    } else {
-        name = axe;
-        counter = 0;
-    }
-}
