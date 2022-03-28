@@ -1,11 +1,15 @@
 // from https://betterprogramming.pub/track-your-smartphone-in-2d-with-javascript-1ba44603c0df
 var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
-const sensor = new AbsoluteOrientationSensor({frequency: 60});
+const sensor = new AbsoluteOrientationSensor({
+    frequency: 60
+});
 sensor.addEventListener("reading", (e) => handleSensor(e));
-sensor.start();   
+sensor.start();
 
-let acl = new LinearAccelerationSensor({frequency: 60});
+let acl = new LinearAccelerationSensor({
+    frequency: 60
+});
 acl.addEventListener('reading', () => handleAcl());
 acl.start();
 
@@ -13,11 +17,16 @@ let initPos;
 let calibrate = true;
 let firstRun = true;
 let aX;
-let aY;
-let aZ;
+let aXcounter = 0;
+let aY
+let aYcounter = 0;
+let aZ
+let aZcounter = 0;
 
 
-document.body.addEventListener("click", () => {calibrate = true})
+document.body.addEventListener("click", () => {
+    calibrate = true
+})
 
 //makes some kind of euler angle of sensor data
 function toEuler(q) {
@@ -33,7 +42,7 @@ function toEuler(q) {
 }
 
 //choose what to navigate
-document.getElementById("arm").addEventListener("click", function() {
+document.getElementById("arm").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
         console.log('deactivated')
@@ -43,7 +52,7 @@ document.getElementById("arm").addEventListener("click", function() {
     }
 })
 
-document.getElementById("tentacle").addEventListener("click", function() {
+document.getElementById("tentacle").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
         console.log('deactivated')
@@ -53,7 +62,7 @@ document.getElementById("tentacle").addEventListener("click", function() {
     }
 })
 
-document.getElementById("mouth").addEventListener("click", function() {
+document.getElementById("mouth").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
         console.log('deactivated')
@@ -66,47 +75,49 @@ document.getElementById("mouth").addEventListener("click", function() {
 // from https://developpaper.com/html5-js-realizes-the-function-of-shaking-the-mobile-phone/
 
 
-    
+
 
 //get sensor data and send it
-function handleSensor(e){
+function handleSensor(e) {
     let quaternion = e.target.quaternion;
     let angles = toEuler(quaternion);
 
-    if(calibrate){
-      initPos = angles;
-      calibrate = false;
+    if (calibrate) {
+        initPos = angles;
+        calibrate = false;
     }
-        
+
     let dist = angles.map((angle, i) => calcDist(angle, initPos[i]));
     console.log(dist);
     getSensorData()
-    function getSensorData () {
+
+    function getSensorData() {
         var dataSmartphone = {
             angle1: dist[0],
             angle2: dist[1]
-                }
-        
-    if (document.getElementById("arm").classList.contains("active")) {
-        socket.emit('forArm', dataSmartphone);
-    }
+        }
 
-    if (document.getElementById("tentacle").classList.contains("active")) {
-        socket.emit('forTentacle', dataSmartphone);
-    }
+        if (document.getElementById("arm").classList.contains("active")) {
+            socket.emit('forArm', dataSmartphone);
+        }
+
+        if (document.getElementById("tentacle").classList.contains("active")) {
+            socket.emit('forTentacle', dataSmartphone);
+        }
 
     }
-}   
+}
+
 function handleAcl() {
     getAclData()
-    function getAclData () {
+
+    function getAclData() {
         console.log(acl);
-        if(firstRun == false) {
-            updateShakeIntensity(aX, acl.x);
-            updateShakeIntensity(aY, acl.y);
-            updateShakeIntensity(aZ, acl.z);
-        }
-        else{
+        if (firstRun === false) {
+            updateShakeIntensity(aX, acl.x, aXcounter);
+            updateShakeIntensity(aY, acl.y, aYcounter);
+            updateShakeIntensity(aZ, acl.z, aZcounter);
+        } else {
             aX = acl.x
             aY = acl.y
             aZ = acl.z
@@ -116,14 +127,14 @@ function handleAcl() {
             shakeX: aX,
             shakeY: aY,
             shakeZ: aZ
-                }
-                
-                if (document.getElementById("mouth").classList.contains("active")) {
-                    socket.emit('forMouth', dataSmartphone);
-                }
-            }
+        }
 
-            
+        if (document.getElementById("mouth").classList.contains("active")) {
+            socket.emit('forMouth', dataSmartphone);
+        }
+    }
+
+
 }
 
 function calcDist(angle, initAngle) {
@@ -135,14 +146,20 @@ function calcDist(angle, initAngle) {
     let dist = Math.round(-300 * Math.tan(angle * (Math.PI / 180)));
     console.log(dist);
     return dist;
- 
+
 }
 
-function updateShakeIntensity(name, axe) {
-    if(name>axe) {
-        name = name-0.2;
+function updateShakeIntensity(name, axe, counter) {
+    this.name = name;
+    this.axe = axe;
+    this.counter = counter;
+    if (this.name > this.axe) {
+        this.counter = this.counter+1
+        if(this.counter >= 15) {
+        this.name = this.name - 1;
     }
-    else {
-        name = axe;
+    } else {
+        this.name = this.axe;
+        this.counter = 0
     }
 }
