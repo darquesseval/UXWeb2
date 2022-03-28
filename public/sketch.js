@@ -26,6 +26,8 @@ let x = glowControl;
 let negcount = false;
 let glow = false;
 
+let wW;
+
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
     bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
@@ -77,6 +79,8 @@ function setup() {
     tentacle5x = +windowWidth/40*3.5
     tentacle6x = +windowWidth/40*5.25
 
+wW = windowWidth;
+
 
 
     // render = Matter.Render.create({
@@ -121,7 +125,7 @@ function draw() {
         push()
         fill(255, 255, 255, 10);
         noStroke()
-        ellipse(posX - windowWidth / 40 * 1.5 + windowWidth/40*2.5, posY - windowWidth / 60 + windowWidth/40*4.25, countx*1.4, countx * 2.8);
+        ellipse(posX - wW / 40 * 1.5 + wW/40*2.5, posY - wW / 60 + wW/40*4.25, countx*1.4, countx * 2.8);
         pop()
     }
 
@@ -137,9 +141,9 @@ function draw() {
     }
 
     if(glow==false) {
-    image(mouth, posX - windowWidth/40*1.5, posY-windowWidth/60, windowWidth/40*5, windowWidth/40*8.5)
+    image(mouth, posX - wW/40*1.5, posY-wW/60, wW/40*5, wW/40*8.5)
 } else {
-    image(mouth_glow, posX - windowWidth/40*1.5, posY-windowWidth/60, windowWidth/40*5, windowWidth/40*8.5)
+    image(mouth_glow, posX - wW/40*1.5, posY-wW/60, wW/40*5, wW/40*8.5)
 
 }
 

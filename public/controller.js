@@ -83,7 +83,6 @@ function handleSensor(e) {
     }
 
     let dist = angles.map((angle, i) => calcDist(angle, initPos[i]));
-    console.log(dist);
     getSensorData()
 
     function getSensorData() {
@@ -92,11 +91,11 @@ function handleSensor(e) {
             angle2: dist[1]
         }
 
-        if (document.getElementById("arm").classList.contains("active")) {
+        if (document.getElementById("arm").classList.contains("active") && dist[0] <1000 && dist[0] >-1000 && dist[1] <1000 && dist[1] >-1000) {
             socket.emit('forArm', dataSmartphone);
         }
 
-        if (document.getElementById("tentacle").classList.contains("active")) {
+        if (document.getElementById("tentacle").classList.contains("active") && dist[0] <1000 && dist[0] >-1000 && dist[1] <1000 && dist[1] >-1000) {
             socket.emit('forTentacle', dataSmartphone);
         }
 
@@ -108,7 +107,7 @@ function handleAcl() {
     getAclData()
 
     function getAclData() {
-        console.log('THIS IS IT: ' + acl);
+        console.log('THIS IS IT: x=' + acl.x + ' y=' + acl.y + ' z=' + acl.z);
         if (firstRun === false) {
             updateShakeIntensity(aX, acl.x, aXcounter);
             updateShakeIntensity(aY, acl.y, aYcounter);
