@@ -386,7 +386,7 @@ showArm() {
             //angleMode(DEGREES);
             //rotate(this.body.bodies[f].angle-120+(this.n-f)*-30);
             rotate(angleLink)
-            let imgHeight = Math.sqrt(Math.pow(this.body.bodies[f].position.x-this.body.bodies[f-1].position.x, 2)+(Math.pow(this.body.bodies[f].position.y-this.body.bodies[f-1].position.y, 2))
+            let imgHeight = Math.sqrt(Math.pow(this.body.bodies[f].position.x-this.body.bodies[f-1].position.x, 2)+(Math.pow(this.body.bodies[f].position.y-this.body.bodies[f-1].position.y, 2)))
             if(glow==false) {
             image(arm_link, 0,this.body.bodies[f].circleRadius, this.body.bodies[f].circleRadius*0.25, imgHeight)
         } else { 
