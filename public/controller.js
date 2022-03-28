@@ -11,6 +11,7 @@ acl.start();
 
 let initPos;
 let calibrate = true;
+let firstRun = true;
 
 document.body.addEventListener("click", () => {calibrate = true})
 
@@ -96,10 +97,21 @@ function handleAcl() {
     getAclData()
     function getAclData () {
         console.log(acl);
+        if(firstRun == false) {
+            updateShakeIntensity(aX, acl.x);
+            updateShakeIntensity(aY, acl.y);
+            updateShakeIntensity(aZ, acl.z);
+        }
+        else{
+            let aX = acl.x
+            let aY = acl.y
+            let aZ = acl.z
+            firstRun = false
+        }
         var dataSmartphone = {
-            shakeX: acl.x,
-            shakeY: acl.y,
-            shakeZ: acl.z
+            shakeX: aX,
+            shakeY: aY,
+            shakeZ: aZ
                 }
                 
                 if (document.getElementById("mouth").classList.contains("active")) {
@@ -107,6 +119,7 @@ function handleAcl() {
                 }
             }
 
+            
 }
 
 function calcDist(angle, initAngle) {
@@ -121,3 +134,11 @@ function calcDist(angle, initAngle) {
  
 }
 
+function updateShakeIntensity(name, axe) {
+    if(name>axe) {
+        name = name-0.2;
+    }
+    else {
+        name = axe;
+    }
+}
