@@ -12,6 +12,10 @@ acl.start();
 let initPos;
 let calibrate = true;
 let firstRun = true;
+let aX;
+let aY;
+let aZ;
+
 
 document.body.addEventListener("click", () => {calibrate = true})
 
@@ -103,9 +107,9 @@ function handleAcl() {
             updateShakeIntensity(aZ, acl.z);
         }
         else{
-            let aX = acl.x
-            let aY = acl.y
-            let aZ = acl.z
+            aX = acl.x
+            aY = acl.y
+            aZ = acl.z
             firstRun = false
         }
         var dataSmartphone = {
