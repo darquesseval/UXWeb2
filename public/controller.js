@@ -1,16 +1,6 @@
 // from https://betterprogramming.pub/track-your-smartphone-in-2d-with-javascript-1ba44603c0df
 var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
-const sensor = new AbsoluteOrientationSensor({
-    frequency: 60
-});
-sensor.addEventListener("reading", (e) => handleSensor(e));
-sensor.start();
-
-let acl = new LinearAccelerationSensor({
-    frequency: 60
-});
-
 let initPos;
 let calibrate = true;
 let firstRun = true;
@@ -21,11 +11,18 @@ let aYcounter = 0;
 let aZ
 let aZcounter = 0;
 
+const sensor = new AbsoluteOrientationSensor({
+    frequency: 60
+});
+sensor.addEventListener("reading", (e) => handleSensor(e));
+sensor.start();
+
+let acl = new LinearAccelerationSensor({
+    frequency: 60
+});
+
 acl.addEventListener('reading', () => handleAcl());
 acl.start();
-
-
-
 
 document.body.addEventListener("click", () => {
     calibrate = true
@@ -40,8 +37,6 @@ function toEuler(q) {
     let siny_cosp = 2 * (q[3] * q[2] + q[0] * q[1]);
     let cosy_cosp = 1 - 2 * (q[1] * q[1] + q[2] * q[2]);
     let yaw = Math.atan2(siny_cosp, cosy_cosp);
-
-    return [yaw, roll];
 }
 
 //choose what to navigate
@@ -75,11 +70,6 @@ document.getElementById("mouth").addEventListener("click", function () {
     }
 })
 
-// from https://developpaper.com/html5-js-realizes-the-function-of-shaking-the-mobile-phone/
-
-
-
-
 //get sensor data and send it
 function handleSensor(e) {
     let quaternion = e.target.quaternion;
@@ -111,6 +101,7 @@ function handleSensor(e) {
     }
 }
 
+// from https://developpaper.com/html5-js-realizes-the-function-of-shaking-the-mobile-phone/
 function handleAcl() {
     getAclData()
 
@@ -136,8 +127,6 @@ function handleAcl() {
             socket.emit('forMouth', dataSmartphone);
         }
     }
-
-
 }
 
 function calcDist(angle, initAngle) {
@@ -147,8 +136,6 @@ function calcDist(angle, initAngle) {
 
     //800 can be changed to adjust sensitivity
     let dist = Math.round(-300 * Math.tan(angle * (Math.PI / 180)));
-    console.log(dist);
-    return dist;
 
 }
 
