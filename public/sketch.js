@@ -28,11 +28,11 @@ let glow = false;
 let wW;
 
 let firstRun = true;
-let sX;
+let sX = 0;
 let sXc = 0;
-let sY;
+let sY = 0;
 let sYc = 0;
-let sZ;
+let sZ = 0;
 let sZc = 0;
 
 function preload() {
@@ -258,27 +258,34 @@ function tentaclesTurn(dataSmartphone) {
 function mouthGlow(dataSmartphone) {
 console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + 'Y: ' + dataSmartphone.shakeY +' / ' + sY+ 'Z: ' + dataSmartphone.shakeZ+' / ' + sZ);
 
-if (firstRun === true) {
-    sX = dataSmartphone.shakeX;
-    sY = dataSmartphone.shakeY;
-    sZ = dataSmartphone.shakeZ;
-    firstRun = false;
-} else {
     shakeIntensity(sX, dataSmartphone.shakeX, sXc);
     shakeIntensity(sY, dataSmartphone.shakeY, sYc);
     shakeIntensity(sZ, dataSmartphone.shakeZ, sZc);
-}
 
 function shakeIntensity(name, axe, counter) {
+    if (axe>=0){
     if (name > axe) {
         counter = counter+1
-        if(counter >= 15) {
+        if(counter >= 100) {
         name = name - 1;
     }
     } else {
         name = axe;
         counter = 0;
     }
+}
+else if(axe<0) {
+    if (name > axe*-1) {
+        counter = counter+1
+        if(counter >= 100) {
+        name = name - 1;
+    }
+    } else {
+        name = axe*-1;
+        counter = 0;
+    }
+}
+
 }
 
 if(sX >= 12 || sY >= 12 || sZ >= 12){
