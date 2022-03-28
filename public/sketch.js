@@ -351,12 +351,12 @@ showTentacle() {
         if (f > 0) {
             stroke(255);
 
-            line(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y, this.body.bodies[f].position.x, this.body.bodies[f].position.y);
+            line(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y+this.body.bodies[f].circleRadius, this.body.bodies[f].position.x, this.body.bodies[f].position.y-this.body.bodies[f].circleRadius);
         }
     }
     
  
-    line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y);
+    line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y-this.body.bodies[0].circleRadius);
 }
 showArm() {
     for (let f = 0; f < this.n; f++) {
@@ -396,7 +396,8 @@ showArm() {
         }
     }
     push()
-    translate(this.cN.pointA.x, this.cN.pointA.y)
+    translate(this.cN.pointA.x+(this.body.bodies[0].position.x-this.cN.pointA.x)/2, 
+    this.cN.pointA.y+(this.body.bodies[0].position.y-this.cN.pointA.y)/2)
     angleLink = Math.atan2(this.cN.pointA.x-this.body.bodies[0].position.x, this.cN.pointA.y-this.body.bodies[0].position.y)
             rotate(-angleLink);
             let imgHeightFirst = Math.sqrt(Math.pow(this.body.bodies[0].position.x-this.cN.pointA.x, 2)+(Math.pow(this.body.bodies[0].position.y-this.cN.pointA.y, 2)))

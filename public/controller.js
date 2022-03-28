@@ -37,6 +37,8 @@ function toEuler(q) {
     let siny_cosp = 2 * (q[3] * q[2] + q[0] * q[1]);
     let cosy_cosp = 1 - 2 * (q[1] * q[1] + q[2] * q[2]);
     let yaw = Math.atan2(siny_cosp, cosy_cosp);
+
+    return [yaw, roll];
 }
 
 //choose what to navigate
@@ -106,7 +108,7 @@ function handleAcl() {
     getAclData()
 
     function getAclData() {
-        console.log(acl);
+        console.log('THIS IS IT: ' + acl);
         if (firstRun === false) {
             updateShakeIntensity(aX, acl.x, aXcounter);
             updateShakeIntensity(aY, acl.y, aYcounter);
@@ -127,6 +129,8 @@ function handleAcl() {
             socket.emit('forMouth', dataSmartphone);
         }
     }
+
+
 }
 
 function calcDist(angle, initAngle) {
@@ -136,7 +140,7 @@ function calcDist(angle, initAngle) {
 
     //800 can be changed to adjust sensitivity
     let dist = Math.round(-300 * Math.tan(angle * (Math.PI / 180)));
-
+    return dist;
 }
 
 function updateShakeIntensity(name, axe, counter) {
