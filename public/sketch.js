@@ -58,7 +58,8 @@ function setup() {
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('forArm', stingingArms); 
     socket.on('forTentacle', tentaclesTurn);  
-    socket.on('forMouth', mouthGlow);  
+    socket.on('forMouth', mouthGlow);
+    socket.on('forMouthStop', stopGlow);  
     // socket.on('mouse', newDrawing);
     background(0);
     engine = Matter.Engine.create();
@@ -270,7 +271,7 @@ sX = dataSmartphone.shakeX*-1;
 } else {sX = dataSmartphone.shakeX}
 }
 else{
-    sX = sX-0.01
+    sX = sX-0.1
 }
 
 if(sY < 12){
@@ -279,7 +280,7 @@ if(sY < 12){
     } else {sY = dataSmartphone.shakeY}
     }
     else{
-        sY = sY-0.01
+        sY = sY-0.1
     }
 
     if(sZ < 12){
@@ -288,7 +289,7 @@ if(sY < 12){
         } else {sZ = dataSmartphone.shakeZ}
         }
         else{
-            sZ = sZ-0.01
+            sZ = sZ-0.1
         }
 
 if(sX >= 12 || sY >= 12 || sZ >= 12){
@@ -297,6 +298,16 @@ glowControl = 80 + (sX + sY + sZ)/3;
 
 } else {
 glow = false;
+    glowControl = 80
+}
+}
+
+function stopGlow(dataSmartphone) {
+if(dataSmartphone.stopGlowing === true) {
+    sX = 0;
+    sY = 0;
+    sZ = 0;
+    glow = false;
     glowControl = 80
 }
 }

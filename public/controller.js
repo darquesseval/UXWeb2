@@ -21,6 +21,18 @@ document.body.addEventListener("click", () => {
     calibrate = true
 })
 
+stopGlow();
+function stopGlow(){
+    if(document.getElementById("mouth").classList.contains("active")){
+        let stop = false;
+    }
+    else{let stop = true}
+    var dataSmartphone = {
+    stopGlowing: stop
+}
+    socket.emit('forMouthStop', dataSmartphone);
+}
+
 //makes some kind of euler angle of sensor data
 function toEuler(q) {
     let sinr_cosp = 2 * (q[3] * q[0] + q[1] * q[2]);
