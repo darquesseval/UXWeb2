@@ -141,17 +141,14 @@ function calcDist(angle, initAngle) {
     return dist;
 }
 
-function updateShakeIntensity(name, axe, counter) {
-    this.name = name;
-    this.axe = axe;
-    this.counter = counter;
-    if (this.name > this.axe) {
-        this.counter = this.counter+1
-        if(this.counter >= 15) {
-        this.name = this.name - 1;
+function shakeIntensity(name, axe, counter) {
+    if (name > axe) {
+        counter = counter+1
+        if(counter >= 15) {
+        name = name - 1;
     }
     } else {
-        this.name = this.axe;
-        this.counter = 0;
+        name = axe;
+        counter = 0;
     }
 }
