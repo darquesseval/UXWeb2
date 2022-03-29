@@ -57,7 +57,6 @@ let fishSpeed = [];
 let fishFloatMax = [];
 let fishFloat = [];
 let fishFloatUp = [];
-let fishFloatAdd = [];
 let fishW, fishH;
 
 let fishStunned = [];
@@ -182,7 +181,6 @@ function setup() {
         append(fishStunned, false);
         append(fishFloatMax, random(fishH, fishH*5))
         append(fishFloatUp, random([false, true]));
-        append(fishFloatAdd, 0)
         append(fishFloat, 0)
     }
 
@@ -210,25 +208,26 @@ if(bgX>=0){
 
     for (let k = 0; k < fishCount; k++) {
         push()
-        fishFloatAdd[k] += sin(fishFloat[k]);
-        if (fishFloatUp[k] == true) {
-            fishFloat[k] += fishH/70*fishSpeed[k]
-          if (fishFloat[k] >= fishFloatMax[k]) {
-            fishFloatUp[k] = false;
-          }
-        } else {
-            fishFloat[k] -= fishH/70*fishSpeed[k]
-          if (fishFloat[k] <= fishFloatMax[k]*-1) {
-            fishFloatUp[k] = true;
-          }
-        }
+
         scale(fishDir[k], 1)
         if (fishStunned[k] === false | stopS === true) {
-            image(fish[k][0], fishX[k]*fishDir[k], fishY[k]+fishFloatAdd[k], fishW, fishH);
+            image(fish[k][0], fishX[k]*fishDir[k], fishY[k], fishW, fishH);
             if (fishX[k] < wW * -0.03) {
                 fishDir[k] = 1;
             } else if (fishX[k] > wW * 1.03) {
                 fishDir[k] = -1;
+            }
+            fishY[k] += sin(fishFloat[k]);
+            if (fishFloatUp[k] == true) {
+                fishFloat[k] += fishH/70*fishSpeed[k]
+              if (fishFloat[k] >= fishFloatMax[k]) {
+                fishFloatUp[k] = false;
+              }
+            } else {
+                fishFloat[k] -= fishH/70*fishSpeed[k]
+              if (fishFloat[k] <= fishFloatMax[k]*-1) {
+                fishFloatUp[k] = true;
+              }
             }
             fishX[k] = fishX[k] + (fishSpeed[k] * fishDir[k]);
         } else {
@@ -418,7 +417,7 @@ function stopGlow(dataSmartphone) {
 
 function waterMove(dataSmartphone) {
     if (dataSmartphone.shakeX >=1) {
-        if (jellySpeed < dataSmartphone.shakeX && jellySpeed == 0) {
+        if (jellySpeed < dataSmartphone.shakeX && jellySpeed >= -1) {
                 jellySpeed = dataSmartphone.shakeX
         } else if (jellySpeed<0){
             jellySpeed = jellySpeed - 0.1
@@ -441,7 +440,7 @@ function waterMove(dataSmartphone) {
        posX +=jellySpeed/5
    
    
-    } else if(dataSmartphone.shakeX <=1 && jellySpeed == 0) {
+    } else if(dataSmartphone.shakeX <=1 && jellySpeed <= 1) {
         if (jellySpeed > dataSmartphone.shakeX) {
             jellySpeed = dataSmartphone.shakeX
         } else if (jellySpeed<0){
