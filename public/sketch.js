@@ -12,7 +12,7 @@ let posX;
 let posY;
 let armY, tentacleY;
 
-let bg, bg_stunned, bell, tentacle, arm, mouth;
+let bg, bg_stunned, bell, tentacle, arm, mouth, fish_01, fish_02, fish_03, fish_04;
 
 let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10, fix11;
 let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5, tentacle6;
@@ -39,6 +39,14 @@ let stopG = true;
 
 let i =0;
 
+let fish = [];
+let fishX = [];
+let fishXstart = [];
+let fishY = [];
+let fishDir = [];
+let fishSpeed = [];
+let fishMove = [];
+
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
     bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
@@ -52,6 +60,10 @@ function preload() {
     arm_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
     mouth_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
     arm_link_glow = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_link_glow.png');
+    fish_01 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish1.png');
+    fish_02 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish2.png');
+    fish_03 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3.png');
+    fish_04 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4.png');
 
 }
 
@@ -122,18 +134,43 @@ rectMode(CENTER);
 
    Matter.World.add(world, bellPhysics);
     world.gravity.y=0.5
+
+    let limit = random(6,15);
+    for (let j = 0; j<limit;j++){
+        let fishs = [fish_01, fish_02, fish_03, fish_04];
+        fish.append(random(fishs));
+        fishXstart.append(random(0,windowWidth));
+fishY.append(random(windowHeight*0.05,windowHeight*0.95));
+if(fishXstart[j] > windowWidth/2){
+    fishDir.append(-1);
+} else{fishDir.append(1)}
+    }
+    fishSpeed.append(0.01,0.5)
+    fishMove.append(0);
+    fishX.append(fishXstart[j]+fishMove[j]*fishDir[j]);
 }
 
 
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    
+    for(let k = 0; k<limit; k++) {
+        image(fish[k], fishX[k], fishY[k], wW/23, wW/40*fishDir[k]);
+        fishMove[k] +=fishSpeed[k]
+        if(fishX<wW*-0.05){
+            fishDir[k] = 1;
+        } else if(fishX<wW*1.05){
+            fishDir[k] = -1;
+        }
+        fishX[k] = fishX[k]+fishMove[k]*fishDir[k];
+        }
+
     for (let countx = x-50; countx <= x;countx++) {
         push()
         fill(255, 255, 255, 10);
         noStroke()
-        ellipse(posX - wW / 40 * 1.5 + wW/40*2.5, posY - wW / 60 + wW/40*4.25, countx*1.4, countx * 2.8);
+        blendMode(SCREEN);
+        ellipse(posX - wW / 40 * 1.5 + wW/40*2.5, posY - wW / 60 + wW/40*4.25, countx*1.4^(countx*0.75), countx * 2.8);
         pop()
     }
 
