@@ -63,6 +63,7 @@ let stopS = false;
 
 let jellyFloat = 0;
 let jellyFloatUp = true;
+let jellySpeed = 2;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
@@ -187,14 +188,14 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    image(bg, bgX, bgY, windowHeight*20, windowHeight*2);
+    image(bg, bgX, bgY, windowHeight/10*3, windowHeight*2);
     if(bgScroll==true) {
-    bgX -=2
-    if(bgX <= windowHeight-wW){
+    bgX -=jellySpeed
+    if(bgX <= windowHeight/10*-3-wW){
         bgScroll = false;
     }
 } else {
-    bgX +=2
+    bgX +=jellySpeed
 if(bgX>=0){
     bgScroll=true;
 }
@@ -202,13 +203,13 @@ if(bgX>=0){
 
     bgY += sin(jellyFloat);
     if (jellyFloatUp == true) {
-        jellyFloat += bellH/100
-      if (jellyFloat >= windowHeight/5) {
+        jellyFloat += bellH/50
+      if (jellyFloat >= windowHeight/10) {
         jellyFloatUp = false;
       }
     } else {
-        jellyFloat -= bellH/100
-      if (jellyFloat <= windowHeight/-5) {
+        jellyFloat -= bellH/50
+      if (jellyFloat <= windowHeight/-10) {
         jellyFloatUp = true;
       }
     }
