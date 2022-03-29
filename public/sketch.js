@@ -189,7 +189,7 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    image(bg, bgX, bgY, windowHeight/10*3, windowHeight*2);
+    image(bg, bgX, bgY, windowHeight/10*6, windowHeight*2);
     bgX +=jellySpeed
     if(bgScroll==true) {
     jellySpeed = -2

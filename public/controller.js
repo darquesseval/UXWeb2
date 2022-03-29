@@ -22,7 +22,7 @@ document.body.addEventListener("click", () => {
 })
 
 stopGlow();
-function stopThing(){
+function stopGlow(){
     if(document.getElementById("mouth").classList.contains("active")){
         let stop = false;
     }
