@@ -416,15 +416,15 @@ function stopGlow(dataSmartphone) {
 }
 
 function waterMove(dataSmartphone) {
-    if (dataSmartphone.shakeX >=1) {
-        if (jellySpeed < dataSmartphone.shakeX && jellySpeed >= -1) {
-                jellySpeed = dataSmartphone.shakeX
-        } else if (jellySpeed<0){
-            jellySpeed = jellySpeed - 0.1
-        }
-        else if (jellySpeed>0){
-            jellySpeed = jellySpeed + 0.1
-        }
+if (dataSmartphone.shakeX >=1 && dataSmartphone.shakeX>jellySpeed) {
+    jellySpeed = dataSmartphone.shakeX
+} else if (jellySpeed >=1 && dataSmartphone.shakeX<jellySpeed) {
+    jellySpeed -=0.1
+}  else if (dataSmartphone.shakeX <=-1 && dataSmartphone.shakeX<jellySpeed) {
+    jellySpeed = dataSmartphone.shakeX
+}  else if (dataSmartphone.shakeX <=1 && dataSmartphone.shakeX>jellySpeed) {
+    jellySpeed +=0.1
+} else {jellySpeed = 0}
         tentacle1.cN.pointA.x +=jellySpeed/5
         tentacle2.cN.pointA.x +=jellySpeed/5
         tentacle3.cN.pointA.x +=jellySpeed/5
@@ -438,32 +438,8 @@ function waterMove(dataSmartphone) {
        arm5.cN.pointA.x +=jellySpeed/5
        bellPhysics.position.x +=jellySpeed/5
        posX +=jellySpeed/5
-   
-   
-    } else if(dataSmartphone.shakeX <=1 && jellySpeed <= 1) {
-        if (jellySpeed > dataSmartphone.shakeX) {
-            jellySpeed = dataSmartphone.shakeX
-        } else if (jellySpeed<0){
-            jellySpeed = jellySpeed - 0.1
-        }
-        else if (jellySpeed>0){
-            jellySpeed = jellySpeed + 0.1
-        }
-       tentacle1.cN.pointA.x +=jellySpeed/5
-       tentacle2.cN.pointA.x +=jellySpeed/5
-       tentacle3.cN.pointA.x +=jellySpeed/5
-       tentacle4.cN.pointA.x +=jellySpeed/5
-       tentacle5.cN.pointA.x +=jellySpeed/5
-       tentacle6.cN.pointA.x +=jellySpeed/5
-      arm1.cN.pointA.x +=jellySpeed/5
-      arm2.cN.pointA.x +=jellySpeed/5
-      arm3.cN.pointA.x +=jellySpeed/5
-      arm4.cN.pointA.x +=jellySpeed/5
-      arm5.cN.pointA.x +=jellySpeed/5
-      bellPhysics.position.x +=jellySpeed/5
-      posX +=jellySpeed/5
-    }
    }
+
    function stopWater(dataSmartphone) {
     if (dataSmartphone.stopWater === true) {
         stopW = true
