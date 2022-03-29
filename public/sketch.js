@@ -418,10 +418,13 @@ function stopGlow(dataSmartphone) {
 
 function waterMove(dataSmartphone) {
     if (dataSmartphone.shakeX >=1) {
-        if (jellySpeed < dataSmartphone.shakeX) {
-                jellySpeed = dataSmartphone.shakeX^2
-        } else {
+        if (jellySpeed < dataSmartphone.shakeX jellySpeed == 0) {
+                jellySpeed = dataSmartphone.shakeX
+        } else if (jellySpeed<0){
             jellySpeed = jellySpeed - 0.1
+        }
+        else if (jellySpeed>0){
+            jellySpeed = jellySpeed + 0.1
         }
         tentacle1.cN.pointA.x +=jellySpeed/5
         tentacle2.cN.pointA.x +=jellySpeed/5
@@ -438,10 +441,13 @@ function waterMove(dataSmartphone) {
        posX +=jellySpeed/5
    
    
-    } else if(dataSmartphone.shakeX <=1) {
+    } else if(dataSmartphone.shakeX <=1 && jellySpeed == 0) {
         if (jellySpeed > dataSmartphone.shakeX) {
-            jellySpeed = dataSmartphone.shakeX^2*-1
-        } else {
+            jellySpeed = dataSmartphone.shakeX
+        } else if (jellySpeed<0){
+            jellySpeed = jellySpeed - 0.1
+        }
+        else if (jellySpeed>0){
             jellySpeed = jellySpeed + 0.1
         }
        tentacle1.cN.pointA.x +=jellySpeed/5
