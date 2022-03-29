@@ -161,7 +161,7 @@ function setup() {
         append(fishY, random(windowHeight * 0.05, windowHeight * 0.95));
         append(fishDir, random(fishDirChoice));
         append(fishSpeed, random(0.01, 0.5))
-        append(fishX, fishXstart[j] + fishSpeed[j] * fishDir[j]);
+        append(fishX, fishXstart[j]);
         append(fishStunned, false);
     }
 
@@ -176,15 +176,15 @@ function draw() {
         scale(fishDir[k], 1)
         if (fishStunned[k] === false) {
             image(fish[k][0], fishX[k], fishY[k], fishW, fishH);
+            if (fishX[k] < wW * -0.05) {
+                fishDir[k] = 1;
+            } else if (fishX[k] > wW * 1.05) {
+                fishDir[k] = -1;
+            }
+            fishX[k] = fishX[k] + fishSpeed[k] * fishDir[k];
         } else {
             image(fish[k][1], fishX[k], fishY[k], fishW, fishH);
-        }
-        if (fishX[k] < wW * -0.05) {
-            fishDir[k] = 1;
-        } else if (fishX[k] > wW * 1.05) {
-            fishDir[k] = -1;
-        }
-        fishX[k] = fishX[k] + fishSpeed[k] * fishDir[k];
+        } 
         pop()
     }
 
@@ -428,12 +428,21 @@ class Rope {
             for (let m = 0; m < this.n; m++) {
                 if (fishX[l] < this.body.bodies[m].position.x + armGap * 2 &&
                     fishX[l] + fishW > this.body.bodies[m].position.x &&
-                    fishY[l] < this.body.bodies[m].position.y + armGap * 3 &&
+                    fishY[l] < this.body.bodies[m].position.y + armGap * 2 &&
                     fishY[l] + fishH > this.body.bodies[m].position.y) {
                     fishStunned[l] = true;
                 } 
+                stroke(255);
+                line(fishX[l], this.body.bodies[m].position.x + armGap * 2)
+                stroke(255,255,0);
+                line(fishX[l] + fishW, this.body.bodies[m].position.x)
+                stroke(255);
+                line(fishY[l], this.body.bodies[m].position.y + armGap * 2)
+                stroke(255,255,0);
+                line(fishY[l] + fishH, this.body.bodies[m].position.y)
             }
         }
+
     }
     showTentacle() {
         for (let f = 0; f < this.n; f++) {
