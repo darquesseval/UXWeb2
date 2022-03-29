@@ -128,7 +128,7 @@ rectMode(CENTER);
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    if(i%5) {
+    
     for (let countx = x-50; countx <= x;countx++) {
         push()
         fill(255, 255, 255, 10);
@@ -142,12 +142,11 @@ function draw() {
     } else if (x <= glowControl) {
         negcount = false;
     }
-    if (negcount == false) {
+    if (negcount == false && i%5) {
         x++
-    } else {
+    } else if (i%5) {
         x = x-1
     }
-}
 i++
     if(glow==false) {
     image(mouth, posX - wW/40*1.5, posY-wW/60, wW/40*5, wW/40*8.5)
