@@ -15,6 +15,7 @@ let armY, tentacleY;
 let bg, bell, tentacle, arm, mouth, fish_01, fish_02, fish_03, fish_04, fish_01_stunned, fish_02_stunned, fish_03_stunned, fish_04_stunned;
 let bgX = 0;
 let bgY = 0;
+let bgScroll = true;
 
 let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10, fix11;
 let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5, tentacle6;
