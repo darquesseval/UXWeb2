@@ -138,16 +138,16 @@ rectMode(CENTER);
     let fishCount = random(6,15);
     for (let j = 0; j<fishCount;j++){
         let fishs = [fish_01, fish_02, fish_03, fish_04];
-        fish.append(random(fishs));
-        fishXstart.append(random(0,windowWidth));
-fishY.append(random(windowHeight*0.05,windowHeight*0.95));
+        append(fish, random(fishs));
+        append(fishXstart, random(0,windowWidth));
+append(fishY, random(windowHeight*0.05,windowHeight*0.95));
 if(fishXstart[j] > windowWidth/2){
-    fishDir.append(-1);
-} else{fishDir.append(1)}
+    append(fishDir, -1);
+} else{append(fishDir, 1)}
     }
-    fishSpeed.append(0.01,0.5)
-    fishMove.append(0);
-    fishX.append(fishXstart[j]+fishMove[j]*fishDir[j]);
+    append(fishSpeed, random(0.01,0.5))
+    append(fishMove, 0);
+    append(fishX, fishXstart[j]+fishMove[j]*fishDir[j]);
 }
 
 
