@@ -149,7 +149,7 @@ if(fishXstart[j] > windowWidth/2){
 } else{append(fishDir, 1)}
     }
     append(fishSpeed, random(0.01,0.5))
-    append(fishMove, 0);
+    append(fishMove, 0.1);
     append(fishX, fishXstart[j]+fishMove[j]*fishDir[j]);
 }
 
@@ -159,10 +159,10 @@ function draw() {
     background(0);
     for(let k = 0; k<fishCount; k++) {
         image(fish[k], fishX[k], fishY[k], wW/23, wW/40*fishDir[k]);
-        fishMove[k] +=fishSpeed[k]
-        if(fishX<wW*-0.05){
+        fishMove[k] = fishMove[k]+fishSpeed[k];
+        if(fishX[k]<wW*-0.05){
             fishDir[k] = 1;
-        } else if(fishX<wW*1.05){
+        } else if(fishX[k]<wW*1.05){
             fishDir[k] = -1;
         }
         fishX[k] = fishX[k]+fishMove[k]*fishDir[k];
