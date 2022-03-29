@@ -187,15 +187,15 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    image(bg, bgX, bgY, wW*8, windowHeight*2);
+    image(bg, bgX, bgY, wW*14, windowHeight*2);
     if(bgScroll==true) {
-    bgX +=2
-    if(bgX >= wW*7){
+    bgX -=2
+    if(bgX <= wW*13){
         bgScroll = false;
     }
 } else {
-    bgX -=2
-if(bgX<=0){
+    bgX +=2
+if(bgX>=0){
     bgScroll=true;
 }
 }
