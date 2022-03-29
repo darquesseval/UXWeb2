@@ -46,6 +46,7 @@ let fish = [];
 let fishX = [];
 let fishXstart = [];
 let fishY = [];
+let fishDirChoice = [1, -1];
 let fishDir = [];
 let fishSpeed = [];
 
@@ -143,13 +144,9 @@ function setup() {
         append(fish, random(fishs));
         append(fishXstart, random(0, windowWidth));
         append(fishY, random(windowHeight * 0.05, windowHeight * 0.95));
-        if (fishXstart[j] > windowWidth / 2) {
-            append(fishDir, -1);
-        } else {
-            append(fishDir, 1)
-        }
+        append(fishDir, random(fishDirChoice));
         append(fishSpeed, random(0.01, 0.5))
-    append(fishX, fishXstart[j] + fishSpeed[j] * fishDir[j]);
+        append(fishX, fishXstart[j] + fishSpeed[j] * fishDir[j]);
     }
     
 }
@@ -160,10 +157,7 @@ function draw() {
     background(0);
     for (let k = 0; k < fishCount; k++) {
         push()
-        if (fishDir[k] == -1) {
-            scale(-1,1)
-        }
-        else { scale(1,1)}
+        scale(fishDir[k],1)
         image(fish[k], fishX[k], fishY[k], wW / 23, wW / 40);
         if (fishX[k] < wW * -0.05) {
             fishDir[k] = 1;
