@@ -148,9 +148,10 @@ function setup() {
         } else {
             append(fishDir, 1)
         }
-    }
-    append(fishSpeed, random(0.01, 0.5))
+        append(fishSpeed, random(0.01, 0.5))
     append(fishX, fishXstart[j] + fishSpeed[j] * fishDir[j]);
+    }
+    
 }
 
 
