@@ -49,6 +49,10 @@ let fishY = [];
 let fishDirChoice = [1, -1];
 let fishDir = [];
 let fishSpeed = [];
+let fishFloatMax = [];
+let fishFloat = [];
+let fishFloatUp = [];
+let fishFloatAdd = [];
 let fishW, fishH;
 
 let fishStunned = [];
@@ -163,6 +167,9 @@ function setup() {
         append(fishSpeed, random(0.01, 0.5))
         append(fishX, fishXstart[j]);
         append(fishStunned, false);
+        append(fishFloatMax, random(fishH, fishH*5))
+        append(fishFloatUp, random([false, true]);
+        append(fishFloatAdd, 0)
     }
 
 }
@@ -173,9 +180,21 @@ function draw() {
     background(0);
     for (let k = 0; k < fishCount; k++) {
         push()
+        fishFloatAdd += sin(fishFloat) * 3;
+        if (fishFloatUp == true) {
+            fishFloat += fishH/10
+          if (fishFloat >= fishFloatMax) {
+            fishFloatUp = false;
+          }
+        } else {
+            fishFloat -= fishH/10
+          if (fishFloat <= fishFloatMax*-1) {
+            fishFloatUp = true;
+          }
+        }
         scale(fishDir[k], 1)
         if (fishStunned[k] === false | stopS === true) {
-            image(fish[k][0], fishX[k]*fishDir[k], fishY[k], fishW, fishH);
+            image(fish[k][0], fishX[k]*fishDir[k], fishY[k]+fishFloatAdd[k], fishW, fishH);
             if (fishX[k] < wW * -0.03) {
                 fishDir[k] = 1;
             } else if (fishX[k] > wW * 1.03) {
@@ -187,7 +206,7 @@ function draw() {
         } 
         pop()
     }
-
+  
     for (let countx = x - 50; countx <= x; countx++) {
         push()
         fill(255, 255, 255, 10);
