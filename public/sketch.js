@@ -40,6 +40,8 @@ let stopG = true;
 let i =0;
 let j;
 
+let fishCount;
+let fishs = [];
 let fish = [];
 let fishX = [];
 let fishXstart = [];
@@ -136,9 +138,9 @@ rectMode(CENTER);
    Matter.World.add(world, bellPhysics);
     world.gravity.y=0.5
 
-    let fishCount = random(6,15);
+    fishCount = random(6,15);
     for (j = 0; j<fishCount;j++){
-        let fishs = [fish_01, fish_02, fish_03, fish_04];
+        fishs = [fish_01, fish_02, fish_03, fish_04];
         append(fish, random(fishs));
         append(fishXstart, random(0,windowWidth));
 append(fishY, random(windowHeight*0.05,windowHeight*0.95));
