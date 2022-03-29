@@ -64,7 +64,7 @@ let fishStunned = [];
 let jellyFloat = 0;
 let jellyFloatUp = true;
 let jellySpeed = 0.2;
-jellyNotMoving = true;
+let jellyNotMoving = true;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
