@@ -150,16 +150,21 @@ function setup() {
 
     fishCount = random(6, 25);
     for (j = 0; j < fishCount; j++) {
-        fishs = [[fish_01, fish_01_stunned], [fish_02, fish_02_stunned], [fish_03, fish_03_stunned], [fish_04, fish_04_stunned]];
+        fishs = [
+            [fish_01, fish_01_stunned],
+            [fish_02, fish_02_stunned],
+            [fish_03, fish_03_stunned],
+            [fish_04, fish_04_stunned]
+        ];
         append(fish, random(fishs));
-        append(fishXstart, random(windowWidth*0.05, windowWidth*0.95));
+        append(fishXstart, random(windowWidth * 0.05, windowWidth * 0.95));
         append(fishY, random(windowHeight * 0.05, windowHeight * 0.95));
         append(fishDir, random(fishDirChoice));
         append(fishSpeed, random(0.01, 0.5))
         append(fishX, fishXstart[j] + fishSpeed[j] * fishDir[j]);
         append(fishStunned, false);
     }
-    
+
 }
 
 
@@ -168,12 +173,12 @@ function draw() {
     background(0);
     for (let k = 0; k < fishCount; k++) {
         push()
-        scale(fishDir[k],1)
-        if(fishStunned[k] === false) {
-        image(fish[k][0], fishX[k], fishY[k], fishW, fishH);
-    } else {
-        image(fish[k][1], fishX[k], fishY[k], fishW, fishH);
-    }
+        scale(fishDir[k], 1)
+        if (fishStunned[k] === false) {
+            image(fish[k][0], fishX[k], fishY[k], fishW, fishH);
+        } else {
+            image(fish[k][1], fishX[k], fishY[k], fishW, fishH);
+        }
         if (fishX[k] < wW * -0.05) {
             fishDir[k] = 1;
         } else if (fishX[k] > wW * 1.05) {
@@ -250,9 +255,9 @@ function draw() {
     }
 
     if (stopS === true) {
-for (let l = 0; l<fishCount; l++){
-    fishStunned[l] = false;
-}
+        for (let l = 0; l < fishCount; l++) {
+            fishStunned[l] = false;
+        }
     }
 
 }
@@ -276,40 +281,13 @@ function stingingArms(dataSmartphone) {
     arm5.body.bodies[arm5.n - 1].position.x = windowWidth / 2 + sensitivityX + arm5x;
     arm5.body.bodies[arm5.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
 
-    for(let l = 0; l<fishCount; l++){
-        for(let m = 0; m<arm1.n;m++){
-    if(fishX[l] < arm1.body.bodies[m].position.x+armGap*3 
-    && fishX[l]+fishW > arm1.body.bodies[m].position.x
-    && fishY[l] < arm1.body.bodies[m].position.y+armGap*3 
-    && fishY[l]+fishW > arm1.body.bodies[m].position.y) {
-    fishStunned[l] = true;
-} else {fishStunned[l] = false} 
-if(fishX[l] < arm2.body.bodies[m].position.x+armGap*3 
-    && fishX[l]+fishW > arm2.body.bodies[m].position.x
-    && fishY[l] < arm2.body.bodies[m].position.y+armGap*3 
-    && fishY[l]+fishW > arm2.body.bodies[m].position.y) {
-    fishStunned[l] = true;
-} else {fishStunned[l] = false} 
-if(fishX[l] < arm3.body.bodies[m].position.x+armGap*3 
-    && fishX[l]+fishW > arm3.body.bodies[m].position.x
-    && fishY[l] < arm3.body.bodies[m].position.y+armGap*3 
-    && fishY[l]+fishW > arm3.body.bodies[m].position.y) {
-    fishStunned[l] = true;
-} else {fishStunned[l] = false} 
-if(fishX[l] < arm4.body.bodies[m].position.x+armGap*3 
-    && fishX[l]+fishW > arm4.body.bodies[m].position.x
-    && fishY[l] < arm4.body.bodies[m].position.y+armGap*3 
-    && fishY[l]+fishW > arm4.body.bodies[m].position.y) {
-    fishStunned[l] = true;
-} else {fishStunned[l] = false} 
-if(fishX[l] < arm5.body.bodies[m].position.x+armGap*3 
-    && fishX[l]+fishW > arm5.body.bodies[m].position.x
-    && fishY[l] < arm5.body.bodies[m].position.y+armGap*3 
-    && fishY[l]+fishW > arm5.body.bodies[m].position.y) {
-    fishStunned[l] = true;
-} else {fishStunned[l] = false}       
-        }
-    }
+    arm1.collision();
+    arm2.collision();
+    arm3.collision();
+    arm4.collision();
+    arm5.collision();
+
+
 }
 
 function stopStun(dataSmartphone) {
@@ -435,10 +413,7 @@ class Rope {
             // damping: 0.5,
         }));
         Matter.Composite.add(world, [
-            this.body //,
-            // this.fPN = Matter.Bodies.rectangle(this.x+this.r, this.y+this.r/2, this.r*2, this.r, {
-            //     isStatic: true
-            // })
+            this.body
         ]);
     }
 
@@ -448,36 +423,25 @@ class Rope {
 
     }
 
-    show(colorR, colorG, colorB, opacity) {
-        this.red = colorR;
-        this.green = colorG;
-        this.blue = colorB;
-        this.o = opacity;
-        fill(this.red, this.green, this.blue, this.o);
-        for (let f = 0; f < this.n; f++) {
-            push();
-            angleMode(DEGREES);
-            translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y);
-            rotate(this.body.bodies[f].angle);
-            ellipse(0, 0, this.body.bodies[f].circleRadius)
-            pop();
-
-            if (f > 0) {
-                stroke(this.red, this.green, this.blue);
-                line(this.body.bodies[f - 1].position.x, this.body.bodies[f - 1].position.y, this.body.bodies[f].position.x, this.body.bodies[f].position.y);
+    collision() {
+        for (let l = 0; l < fishCount; l++) {
+            for (let m = 0; m < this.n; m++) {
+                if (fishX[l] < this.body.bodies[m].position.x + armGap * 3 &&
+                    fishX[l] + fishW > this.body.bodies[m].position.x &&
+                    fishY[l] < this.body.bodies[m].position.y + armGap * 3 &&
+                    fishY[l] + fishW > this.body.bodies[m].position.y) {
+                    fishStunned[l] = true;
+                } else {
+                    fishStunned[l] = false
+                }
             }
         }
-
-
-        line(this.cN.pointA.x, this.cN.pointA.y, this.body.bodies[0].position.x, this.body.bodies[0].position.y);
     }
-
     showTentacle() {
         for (let f = 0; f < this.n; f++) {
             push();
             angleMode(DEGREES);
             imageMode(CENTER);
-            // translate(this.body.bodies[f].bounds.min.x-this.r, this.body.bodies[f].bounds.min.y);
             translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y);
             rotate(this.body.bodies[f].angle);
             fill(0, 0, 0, 0);
@@ -504,7 +468,6 @@ class Rope {
             push();
             angleMode(DEGREES);
             imageMode(CENTER);
-            // translate(this.body.bodies[f].bounds.min.x+this.body.bodies[f].circleRadius*1.5, this.body.bodies[f].bounds.min.y+this.body.bodies[f].circleRadius*0.5);
             translate(this.body.bodies[f].position.x, this.body.bodies[f].position.y);
             rotate(this.body.bodies[f].angle + 90);
             fill(0, 0, 0, 0);
@@ -524,8 +487,6 @@ class Rope {
                 translate(this.body.bodies[f - 1].position.x + (this.body.bodies[f].position.x - this.body.bodies[f - 1].position.x) / 2,
                     this.body.bodies[f - 1].position.y + (this.body.bodies[f].position.y - this.body.bodies[f - 1].position.y) / 2)
                 angleLink = Math.atan2(this.body.bodies[f - 1].position.x - this.body.bodies[f].position.x, this.body.bodies[f - 1].position.y - this.body.bodies[f].position.y)
-                //angleMode(DEGREES);
-                //rotate(this.body.bodies[f].angle-120+(this.n-f)*-30);
                 rotate(-angleLink)
                 let imgHeight = Math.sqrt(Math.pow(this.body.bodies[f].position.x - this.body.bodies[f - 1].position.x, 2) + (Math.pow(this.body.bodies[f].position.y - this.body.bodies[f - 1].position.y, 2)))
                 if (glow == false) {
@@ -549,5 +510,4 @@ class Rope {
         }
         pop()
     }
-
 }
