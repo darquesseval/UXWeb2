@@ -431,9 +431,7 @@ class Rope {
                     fishY[l] < this.body.bodies[m].position.y + armGap * 3 &&
                     fishY[l] + fishH > this.body.bodies[m].position.y) {
                     fishStunned[l] = true;
-                } else {
-                    fishStunned[l] = false;
-                }
+                } 
             }
         }
     }
