@@ -27,6 +27,7 @@ function newConnection(socket) {
     socket.on('forMouth', mouthMsg);
     socket.on('forMouthStop', mouthStopMsg);
     socket.on('forWater', waterMsg);
+    socket.on('forWaterStop', waterStopMsg);
 
     function armMsg(dataSmartphone) {
       socket.broadcast.emit('forArm', dataSmartphone)
@@ -51,6 +52,10 @@ function newConnection(socket) {
 }
 function waterMsg(dataSmartphone) {
   socket.broadcast.emit('forWater', dataSmartphone);
+  console.log(dataSmartphone);
+}
+function waterStopMsg(dataSmartphone) {
+  socket.broadcast.emit('forWaterStop', dataSmartphone);
   console.log(dataSmartphone);
 }
 

@@ -39,6 +39,8 @@ let sZ;
 let sZc;
 
 let stopG = true;
+let stopW = true;
+let stopS = true;
 
 let i = 0;
 let j;
@@ -59,7 +61,6 @@ let fishFloatAdd = [];
 let fishW, fishH;
 
 let fishStunned = [];
-let stopS = false;
 
 let jellyFloat = 0;
 let jellyFloatUp = true;
@@ -99,12 +100,14 @@ function setup() {
     socket.on('forMouthStop', stopGlow);
     socket.on('forArmStop', stopStun);
     socket.on('forWater', waterMove);
+    socket.on('forWaterStop', stopWater);
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
     posX = windowWidth / 2;
     posY = windowWidth * 0.3;
     bgY = windowHeight/-2
+    bgX = windowHeight*3
 
     bellW = windowWidth / 13 * 3.5;
     bellH = windowWidth / 10 * 1.75;
@@ -191,6 +194,7 @@ function draw() {
     background(0);
     image(bg, bgX, bgY, windowHeight*6.5, windowHeight*2);
     bgX +=jellySpeed
+    if(stopW == true){
     if(bgScroll==true) {
     jellySpeed = -0.2
     if(bgX <= windowHeight*-6.5-wW){
@@ -202,19 +206,7 @@ if(bgX>=0){
     bgScroll=true;
 }
 }
-
-    bgY += sin(jellyFloat);
-    if (jellyFloatUp == true) {
-        jellyFloat += bellH/50
-      if (jellyFloat >= windowHeight/10) {
-        jellyFloatUp = false;
-      }
-    } else {
-        jellyFloat -= bellH/50
-      if (jellyFloat <= windowHeight/-10) {
-        jellyFloatUp = true;
-      }
-    }
+}
 
     for (let k = 0; k < fishCount; k++) {
         push()
@@ -467,6 +459,13 @@ function waterMove(dataSmartphone) {
       posX +=dataSmartphone.shakeX/5
     }
    }
+   function stopWater(dataSmartphone) {
+    if (dataSmartphone.stopWater === true) {
+        stopW = true
+    } else {
+        stopW = false
+    }
+}
 
 class Rope {
     constructor(ropeX, ropeY, r, n, connectionName) {

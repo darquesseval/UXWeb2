@@ -17,13 +17,6 @@ let acl = new LinearAccelerationSensor({
 acl.addEventListener('reading', () => handleAcl());
 acl.start();
 
-let aclB = new accelerationIncludingGravity({
-    frequency: 30
-});
-
-aclB.addEventListener('reading', () => handleAclB());
-aclB.start();
-
 document.body.addEventListener("click", () => {
     calibrate = true
 })
@@ -48,6 +41,18 @@ function stopStun() {
     else{let stop = true}
     var dataSmartphone = {
     stopStunning: stop
+}
+    socket.emit('forArmStop', dataSmartphone);
+}
+
+stopMove();
+function stopMove() {
+    if(document.getElementById("water").classList.contains("active")){
+        let stop = false;
+    }
+    else{let stop = true}
+    var dataSmartphone = {
+    stopWater: stop
 }
     socket.emit('forArmStop', dataSmartphone);
 }
@@ -151,22 +156,6 @@ function handleAcl() {
         if (document.getElementById("mouth").classList.contains("active")) {
             socket.emit('forMouth', dataSmartphone);
         }
-        // if (document.getElementById("water").classList.contains("active")) {
-        //     socket.emit('forWater', dataSmartphone);
-        // }
-    }
-}
-
-function handleAclB() {
-    getAclBData()
-
-    function getAclBData() {
-        var dataSmartphone = {
-            shakeX: aclB.x,
-            shakeY: aclB.y,
-            shakeZ: aclB.z
-        }
-
         if (document.getElementById("water").classList.contains("active")) {
             socket.emit('forWater', dataSmartphone);
         }
