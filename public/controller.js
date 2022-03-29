@@ -17,7 +17,7 @@ let acl = new LinearAccelerationSensor({
 acl.addEventListener('reading', () => handleAcl());
 acl.start();
 
-let aclB = new DeviceMotionEvent.acceleration({
+let aclB = new DeviceMotionEventAcceleration({
     frequency: 30
 });
 
