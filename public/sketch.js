@@ -312,42 +312,6 @@ if(bgX>=0){
 
 }
 
-function waterMove(dataSmartphone) {
- if (dataSmartphone.shakeX >=1 && jellySpeed <=1) {
-     jellySpeed = dataSmartphone.shakeX
-     tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
-     tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
-     tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
-     tentacle4.cN.pointA.x +=dataSmartphone.shakeX/5
-     tentacle5.cN.pointA.x +=dataSmartphone.shakeX/5
-     tentacle6.cN.pointA.x +=dataSmartphone.shakeX/5
-    arm1.cN.pointA.x +=dataSmartphone.shakeX/5
-    arm2.cN.pointA.x +=dataSmartphone.shakeX/5
-    arm3.cN.pointA.x +=dataSmartphone.shakeX/5
-    arm4.cN.pointA.x +=dataSmartphone.shakeX/5
-    arm5.cN.pointA.x +=dataSmartphone.shakeX/5
-    bellPhysics.position.x +=dataSmartphone.shakeX/5
-    posX +=dataSmartphone.shakeX/5
-
-
- } else if(dataSmartphone.shakeX <=1 && jellySpeed >=-1) {
-    jellySpeed = dataSmartphone.shakeX
-    tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
-    tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
-    tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
-    tentacle4.cN.pointA.x +=dataSmartphone.shakeX/5
-    tentacle5.cN.pointA.x +=dataSmartphone.shakeX/5
-    tentacle6.cN.pointA.x +=dataSmartphone.shakeX/5
-   arm1.cN.pointA.x +=dataSmartphone.shakeX/5
-   arm2.cN.pointA.x +=dataSmartphone.shakeX/5
-   arm3.cN.pointA.x +=dataSmartphone.shakeX/5
-   arm4.cN.pointA.x +=dataSmartphone.shakeX/5
-   arm5.cN.pointA.x +=dataSmartphone.shakeX/5
-   bellPhysics.position.x +=dataSmartphone.shakeX/5
-   posX +=dataSmartphone.shakeX/5
- }
-}
-
 function stingingArms(dataSmartphone) {
 
     let sensitivityX = dataSmartphone.angle1;
@@ -459,6 +423,51 @@ function stopGlow(dataSmartphone) {
         stopG = false
     }
 }
+
+function waterMove(dataSmartphone) {
+    if (dataSmartphone.shakeX >=1) {
+        if (jellySpeed < dataSmartphone.shakeX) {
+                jellySpeed = dataSmartphone.shakeX
+        } else {
+            jellySpeed = jellySpeed - 0.1
+        }
+        jellySpeed = dataSmartphone.shakeX
+        tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
+        tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
+        tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
+        tentacle4.cN.pointA.x +=dataSmartphone.shakeX/5
+        tentacle5.cN.pointA.x +=dataSmartphone.shakeX/5
+        tentacle6.cN.pointA.x +=dataSmartphone.shakeX/5
+       arm1.cN.pointA.x +=dataSmartphone.shakeX/5
+       arm2.cN.pointA.x +=dataSmartphone.shakeX/5
+       arm3.cN.pointA.x +=dataSmartphone.shakeX/5
+       arm4.cN.pointA.x +=dataSmartphone.shakeX/5
+       arm5.cN.pointA.x +=dataSmartphone.shakeX/5
+       bellPhysics.position.x +=dataSmartphone.shakeX/5
+       posX +=dataSmartphone.shakeX/5
+   
+   
+    } else if(dataSmartphone.shakeX <=1) {
+        if (jellySpeed > dataSmartphone.shakeX) {
+            jellySpeed = dataSmartphone.shakeX
+        } else {
+            jellySpeed = jellySpeed + 0.1
+        }
+       tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
+       tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
+       tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
+       tentacle4.cN.pointA.x +=dataSmartphone.shakeX/5
+       tentacle5.cN.pointA.x +=dataSmartphone.shakeX/5
+       tentacle6.cN.pointA.x +=dataSmartphone.shakeX/5
+      arm1.cN.pointA.x +=dataSmartphone.shakeX/5
+      arm2.cN.pointA.x +=dataSmartphone.shakeX/5
+      arm3.cN.pointA.x +=dataSmartphone.shakeX/5
+      arm4.cN.pointA.x +=dataSmartphone.shakeX/5
+      arm5.cN.pointA.x +=dataSmartphone.shakeX/5
+      bellPhysics.position.x +=dataSmartphone.shakeX/5
+      posX +=dataSmartphone.shakeX/5
+    }
+   }
 
 class Rope {
     constructor(ropeX, ropeY, r, n, connectionName) {
