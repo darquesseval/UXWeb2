@@ -107,7 +107,7 @@ function setup() {
     posX = windowWidth / 2;
     posY = windowWidth * 0.3;
     bgY = windowHeight/-2
-    bgX = windowHeight*3
+    bgX = windowHeight*-3
 
     bellW = windowWidth / 13 * 3.5;
     bellH = windowWidth / 10 * 1.75;
@@ -419,44 +419,44 @@ function stopGlow(dataSmartphone) {
 function waterMove(dataSmartphone) {
     if (dataSmartphone.shakeX >=1) {
         if (jellySpeed < dataSmartphone.shakeX) {
-                jellySpeed = dataSmartphone.shakeX
+                jellySpeed = dataSmartphone.shakeX^2
         } else {
             jellySpeed = jellySpeed - 0.1
         }
-        tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
-        tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
-        tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
-        tentacle4.cN.pointA.x +=dataSmartphone.shakeX/5
-        tentacle5.cN.pointA.x +=dataSmartphone.shakeX/5
-        tentacle6.cN.pointA.x +=dataSmartphone.shakeX/5
-       arm1.cN.pointA.x +=dataSmartphone.shakeX/5
-       arm2.cN.pointA.x +=dataSmartphone.shakeX/5
-       arm3.cN.pointA.x +=dataSmartphone.shakeX/5
-       arm4.cN.pointA.x +=dataSmartphone.shakeX/5
-       arm5.cN.pointA.x +=dataSmartphone.shakeX/5
-       bellPhysics.position.x +=dataSmartphone.shakeX/5
-       posX +=dataSmartphone.shakeX/5
+        tentacle1.cN.pointA.x +=jellySpeed/5
+        tentacle2.cN.pointA.x +=jellySpeed/5
+        tentacle3.cN.pointA.x +=jellySpeed/5
+        tentacle4.cN.pointA.x +=jellySpeed/5
+        tentacle5.cN.pointA.x +=jellySpeed/5
+        tentacle6.cN.pointA.x +=jellySpeed/5
+       arm1.cN.pointA.x +=jellySpeed/5
+       arm2.cN.pointA.x +=jellySpeed/5
+       arm3.cN.pointA.x +=jellySpeed/5
+       arm4.cN.pointA.x +=jellySpeed/5
+       arm5.cN.pointA.x +=jellySpeed/5
+       bellPhysics.position.x +=jellySpeed/5
+       posX +=jellySpeed/5
    
    
     } else if(dataSmartphone.shakeX <=1) {
         if (jellySpeed > dataSmartphone.shakeX) {
-            jellySpeed = dataSmartphone.shakeX
+            jellySpeed = dataSmartphone.shakeX^2*-1
         } else {
             jellySpeed = jellySpeed + 0.1
         }
-       tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
-       tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
-       tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
-       tentacle4.cN.pointA.x +=dataSmartphone.shakeX/5
-       tentacle5.cN.pointA.x +=dataSmartphone.shakeX/5
-       tentacle6.cN.pointA.x +=dataSmartphone.shakeX/5
-      arm1.cN.pointA.x +=dataSmartphone.shakeX/5
-      arm2.cN.pointA.x +=dataSmartphone.shakeX/5
-      arm3.cN.pointA.x +=dataSmartphone.shakeX/5
-      arm4.cN.pointA.x +=dataSmartphone.shakeX/5
-      arm5.cN.pointA.x +=dataSmartphone.shakeX/5
-      bellPhysics.position.x +=dataSmartphone.shakeX/5
-      posX +=dataSmartphone.shakeX/5
+       tentacle1.cN.pointA.x +=jellySpeed/5
+       tentacle2.cN.pointA.x +=jellySpeed/5
+       tentacle3.cN.pointA.x +=jellySpeed/5
+       tentacle4.cN.pointA.x +=jellySpeed/5
+       tentacle5.cN.pointA.x +=jellySpeed/5
+       tentacle6.cN.pointA.x +=jellySpeed/5
+      arm1.cN.pointA.x +=jellySpeed/5
+      arm2.cN.pointA.x +=jellySpeed/5
+      arm3.cN.pointA.x +=jellySpeed/5
+      arm4.cN.pointA.x +=jellySpeed/5
+      arm5.cN.pointA.x +=jellySpeed/5
+      bellPhysics.position.x +=jellySpeed/5
+      posX +=jellySpeed/5
     }
    }
    function stopWater(dataSmartphone) {
