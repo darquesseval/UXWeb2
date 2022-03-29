@@ -35,6 +35,10 @@ let sYc;
 let sZ;
 let sZc;
 
+let stopG = true;
+
+let i =0;
+
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
     bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
@@ -95,20 +99,8 @@ function setup() {
     sZc = 0;
 
 wW = windowWidth;
-
-
-
-    // render = Matter.Render.create({
-    //     element: document.body,
-    //     engine: engine,
-    //     options: {
-    //         width: windowWidth,$$£
-    //         height: windowHeight,
-    //         wireframes: false
-    //     }
-    // });
-    rectMode(CENTER);
-    // angleMode(DEGREES);
+    
+rectMode(CENTER);
     world.gravity.y = 0;
  
     arm1 = new Rope(posX+arm1x, armY, armGap, 8, fix1)
@@ -136,6 +128,7 @@ wW = windowWidth;
 function draw() {
     Matter.Engine.update(engine);
     background(0);
+    if(i%5) {
     for (let countx = x-50; countx <= x;countx++) {
         push()
         fill(255, 255, 255, 10);
@@ -154,7 +147,8 @@ function draw() {
     } else {
         x = x-1
     }
-
+}
+i++
     if(glow==false) {
     image(mouth, posX - wW/40*1.5, posY-wW/60, wW/40*5, wW/40*8.5)
 } else {
@@ -208,6 +202,13 @@ function draw() {
     }
     pop()
 
+    if(stopG === true && glowControl>80) {
+        sX = 0;
+        sY = 0;
+        sZ = 0;
+        glow = false;
+        glowControl = 80;
+    }
 
 }
 
@@ -264,6 +265,7 @@ function tentaclesTurn(dataSmartphone) {
 }
 
 function mouthGlow(dataSmartphone) {
+    stopG = false;
 console.log('X: ' + dataSmartphone.shakeX +' / ' + sX + ' Y: ' + dataSmartphone.shakeY +' / ' + sY+ ' Z: ' + dataSmartphone.shakeZ+' / ' + sZ);
 if(sX < 12){
 if(dataSmartphone.shakeX<0){
@@ -294,7 +296,7 @@ if(sY < 12){
 
 if(sX >= 12 || sY >= 12 || sZ >= 12){
 glow = true;
-glowControl = 80 + (sX + sY + sZ);
+glowControl = 80 + (sX + sY + sZ)*3;
 
 } else {
 glow = false;
@@ -304,12 +306,8 @@ glow = false;
 
 function stopGlow(dataSmartphone) {
 if(dataSmartphone.stopGlowing === true) {
-    sX = 0;
-    sY = 0;
-    sZ = 0;
-    glow = false;
-    glowControl = 80
-}
+   stopG = true
+} else{stopG = false}
 }
 
 class Rope {
