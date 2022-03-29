@@ -144,9 +144,9 @@ function setup() {
         append(fishXstart, random(0, windowWidth));
         append(fishY, random(windowHeight * 0.05, windowHeight * 0.95));
         if (fishXstart[j] > windowWidth / 2) {
-            append(fishDir, -1);
+            append(fishDir, false);
         } else {
-            append(fishDir, 1)
+            append(fishDir, true)
         }
         append(fishSpeed, random(0.01, 0.5))
     append(fishX, fishXstart[j] + fishSpeed[j] * fishDir[j]);
@@ -159,13 +159,19 @@ function draw() {
     Matter.Engine.update(engine);
     background(0);
     for (let k = 0; k < fishCount; k++) {
-        image(fish[k], fishX[k], fishY[k], wW / 23, wW / 40 * fishDir[k]);
+        push()
+        if (fishDir[k] === false) {
+            scale(-1,1)
+        }
+        else { scale(1,1)}
+        image(fish[k], fishX[k], fishY[k], wW / 23, wW / 40);
         if (fishX[k] < wW * -0.05) {
             fishDir[k] = 1;
-        } else if (fishX[k] < wW * 1.05) {
+        } else if (fishX[k] > wW * 1.05) {
             fishDir[k] = -1;
         }
         fishX[k] = fishX[k] + fishSpeed[k] * fishDir[k];
+        pop()
     }
 
     for (let countx = x - 50; countx <= x; countx++) {
