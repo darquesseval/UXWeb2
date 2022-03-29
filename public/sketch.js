@@ -135,8 +135,8 @@ rectMode(CENTER);
    Matter.World.add(world, bellPhysics);
     world.gravity.y=0.5
 
-    let limit = random(6,15);
-    for (let j = 0; j<limit;j++){
+    let fishCount = random(6,15);
+    for (let j = 0; j<fishCount;j++){
         let fishs = [fish_01, fish_02, fish_03, fish_04];
         fish.append(random(fishs));
         fishXstart.append(random(0,windowWidth));
@@ -154,7 +154,7 @@ if(fishXstart[j] > windowWidth/2){
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    for(let k = 0; k<limit; k++) {
+    for(let k = 0; k<fishCount; k++) {
         image(fish[k], fishX[k], fishY[k], wW/23, wW/40*fishDir[k]);
         fishMove[k] +=fishSpeed[k]
         if(fishX<wW*-0.05){
