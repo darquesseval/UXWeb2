@@ -431,7 +431,6 @@ function waterMove(dataSmartphone) {
         } else {
             jellySpeed = jellySpeed - 0.1
         }
-        jellySpeed = dataSmartphone.shakeX
         tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
         tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
         tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
