@@ -148,7 +148,7 @@ function setup() {
     Matter.World.add(world, bellPhysics);
     world.gravity.y = 0.5
 
-    fishCount = random(6, 25);
+    fishCount = random(10, 30);
     for (j = 0; j < fishCount; j++) {
         fishs = [
             [fish_01, fish_01_stunned],
@@ -175,10 +175,10 @@ function draw() {
         push()
         scale(fishDir[k], 1)
         if (fishStunned[k] === false | stopS === true) {
-            image(fish[k][0], fishX[k], fishY[k], fishW, fishH);
-            if (fishX[k] < wW * -0.05) {
+            image(fish[k][0], fishX[k]*fishDir[k], fishY[k], fishW, fishH);
+            if (fishX[k] < wW * -0.03) {
                 fishDir[k] = 1;
-            } else if (fishX[k] > wW * 1.05) {
+            } else if (fishX[k] > wW * 1.03) {
                 fishDir[k] = -1;
             }
             fishX[k] = fishX[k] + (fishSpeed[k] * fishDir[k]);
