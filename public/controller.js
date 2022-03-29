@@ -17,6 +17,13 @@ let acl = new LinearAccelerationSensor({
 acl.addEventListener('reading', () => handleAcl());
 acl.start();
 
+let aclB = new DeviceMotionEvent.acceleration({
+    frequency: 30
+});
+
+aclB.addEventListener('reading', () => handleAclB());
+aclB.start();
+
 document.body.addEventListener("click", () => {
     calibrate = true
 })
@@ -144,6 +151,22 @@ function handleAcl() {
         if (document.getElementById("mouth").classList.contains("active")) {
             socket.emit('forMouth', dataSmartphone);
         }
+        // if (document.getElementById("water").classList.contains("active")) {
+        //     socket.emit('forWater', dataSmartphone);
+        // }
+    }
+}
+
+function handleAclB() {
+    getAclBData()
+
+    function getAclBData() {
+        var dataSmartphone = {
+            shakeX: aclB.x,
+            shakeY: aclB.y,
+            shakeZ: aclB.z
+        }
+
         if (document.getElementById("water").classList.contains("active")) {
             socket.emit('forWater', dataSmartphone);
         }
