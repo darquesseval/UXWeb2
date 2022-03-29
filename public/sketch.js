@@ -144,9 +144,9 @@ function setup() {
         append(fishXstart, random(0, windowWidth));
         append(fishY, random(windowHeight * 0.05, windowHeight * 0.95));
         if (fishXstart[j] > windowWidth / 2) {
-            append(fishDir, false);
+            append(fishDir, -1);
         } else {
-            append(fishDir, true)
+            append(fishDir, 1)
         }
         append(fishSpeed, random(0.01, 0.5))
     append(fishX, fishXstart[j] + fishSpeed[j] * fishDir[j]);
@@ -160,7 +160,7 @@ function draw() {
     background(0);
     for (let k = 0; k < fishCount; k++) {
         push()
-        if (fishDir[k] === false) {
+        if (fishDir[k] == -1) {
             scale(-1,1)
         }
         else { scale(1,1)}
