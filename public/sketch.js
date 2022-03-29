@@ -426,13 +426,13 @@ class Rope {
     collision() {
         for (let l = 0; l < fishCount; l++) {
             for (let m = 0; m < this.n; m++) {
-                if (fishX[l] < this.body.bodies[m].position.x + armGap * 3 &&
+                if (fishX[l] < this.body.bodies[m].position.x + armGap * 2 &&
                     fishX[l] + fishW > this.body.bodies[m].position.x &&
                     fishY[l] < this.body.bodies[m].position.y + armGap * 3 &&
-                    fishY[l] + fishW > this.body.bodies[m].position.y) {
+                    fishY[l] + fishH > this.body.bodies[m].position.y) {
                     fishStunned[l] = true;
                 } else {
-                    fishStunned[l] = false
+                    fishStunned[l] = false;
                 }
             }
         }
