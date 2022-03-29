@@ -183,7 +183,7 @@ function draw() {
             }
             fishX[k] = fishX[k] + (fishSpeed[k] * fishDir[k]);
         } else {
-            image(fish[k][1], fishX[k], fishY[k], fishW, fishH);
+            image(fish[k][1], fishX[k]*fishDir[k], fishY[k], fishW, fishH);
         } 
         pop()
     }
@@ -286,9 +286,9 @@ function stingingArms(dataSmartphone) {
 
 function stopStun(dataSmartphone) {
     if (dataSmartphone.stopStunning === true) {
-        stopS = true
+        stopS = true;
     } else {
-        stopS = false
+        stopS = false;
     }
 }
 

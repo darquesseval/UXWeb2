@@ -43,7 +43,6 @@ function newConnection(socket) {
   function mouthStopMsg(dataSmartphone) {
     socket.broadcast.emit('forMouthStop', dataSmartphone);
     console.log(dataSmartphone);
-    
 }
 function armStopMsg(dataSmartphone) {
   socket.broadcast.emit('forArmStop', dataSmartphone);

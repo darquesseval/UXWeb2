@@ -21,7 +21,7 @@ document.body.addEventListener("click", () => {
     calibrate = true
 })
 
-stopThing();
+stopGlow();
 function stopThing(){
     if(document.getElementById("mouth").classList.contains("active")){
         let stop = false;
@@ -31,8 +31,11 @@ function stopThing(){
     stopGlowing: stop
 }
     socket.emit('forMouthStop', dataSmartphone);
+}
 
-if(document.getElementById("arm").classList.contains("active")){
+stopStun();
+function stopStun() {
+    if(document.getElementById("arm").classList.contains("active")){
         let stop = false;
     }
     else{let stop = true}
