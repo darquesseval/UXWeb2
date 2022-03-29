@@ -21,8 +21,8 @@ document.body.addEventListener("click", () => {
     calibrate = true
 })
 
-stopGlow();
-function stopGlow(){
+stopThing();
+function stopThing(){
     if(document.getElementById("mouth").classList.contains("active")){
         let stop = false;
     }
@@ -31,6 +31,15 @@ function stopGlow(){
     stopGlowing: stop
 }
     socket.emit('forMouthStop', dataSmartphone);
+
+if(document.getElementById("arm").classList.contains("active")){
+        let stop = false;
+    }
+    else{let stop = true}
+    var dataSmartphone = {
+    stopStunning: stop
+}
+    socket.emit('forArmStop', dataSmartphone);
 }
 
 //makes some kind of euler angle of sensor data

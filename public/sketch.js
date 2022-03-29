@@ -52,6 +52,7 @@ let fishSpeed = [];
 let fishW, fishH;
 
 let fishStunned = [];
+let stopS = false;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
@@ -86,7 +87,7 @@ function setup() {
     socket.on('forTentacle', tentaclesTurn);
     socket.on('forMouth', mouthGlow);
     socket.on('forMouthStop', stopGlow);
-    // socket.on('mouse', newDrawing);
+    socket.on('forArmStop', stopStun);
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
@@ -147,7 +148,7 @@ function setup() {
     Matter.World.add(world, bellPhysics);
     world.gravity.y = 0.5
 
-    fishCount = random(6, 15);
+    fishCount = random(6, 25);
     for (j = 0; j < fishCount; j++) {
         fishs = [[fish_01, fish_01_stunned], [fish_02, fish_02_stunned], [fish_03, fish_03_stunned], [fish_04, fish_04_stunned]];
         append(fish, random(fishs));
@@ -248,6 +249,12 @@ function draw() {
         glowControl = 80;
     }
 
+    if (stopS === true) {
+for (let l = 0; l<fishCount; l++){
+    fishStunned[l] = false;
+}
+    }
+
 }
 
 function stingingArms(dataSmartphone) {
@@ -271,39 +278,46 @@ function stingingArms(dataSmartphone) {
 
     for(let l = 0; l<fishCount; l++){
         for(let m = 0; m<arm1.n;m++){
-    if(fishX[l] < arm1.body.bodies[arm1.m].position.x+armGap*3 
-    && fishX[l]+fishW > arm1.body.bodies[arm1.m].position.x
-    && fishY[l] < arm1.body.bodies[arm1.m].position.y+armGap*3 
-    && fishY[l]+fishW > arm1.body.bodies[arm1.m].position.y) {
-    fishStunned = true;
-} else {fishStunned = false} 
-if(fishX[l] < arm2.body.bodies[arm2.m].position.x+armGap*3 
-    && fishX[l]+fishW > arm2.body.bodies[arm2.m].position.x
-    && fishY[l] < arm2.body.bodies[arm2.m].position.y+armGap*3 
-    && fishY[l]+fishW > arm2.body.bodies[arm2.m].position.y) {
-    fishStunned = true;
-} else {fishStunned = false} 
-if(fishX[l] < arm3.body.bodies[arm3.m].position.x+armGap*3 
-    && fishX[l]+fishW > arm3.body.bodies[arm3.m].position.x
-    && fishY[l] < arm3.body.bodies[arm3.m].position.y+armGap*3 
-    && fishY[l]+fishW > arm3.body.bodies[arm3.m].position.y) {
-    fishStunned = true;
-} else {fishStunned = false} 
-if(fishX[l] < arm4.body.bodies[arm4.m].position.x+armGap*3 
-    && fishX[l]+fishW > arm4.body.bodies[arm4.m].position.x
-    && fishY[l] < arm4.body.bodies[arm4.m].position.y+armGap*3 
-    && fishY[l]+fishW > arm4.body.bodies[arm4.m].position.y) {
-    fishStunned = true;
-} else {fishStunned = false} 
-if(fishX[l] < arm5.body.bodies[arm5.m].position.x+armGap*3 
-    && fishX[l]+fishW > arm5.body.bodies[arm5.m].position.x
-    && fishY[l] < arm5.body.bodies[arm5.m].position.y+armGap*3 
-    && fishY[l]+fishW > arm5.body.bodies[arm5.m].position.y) {
-    fishStunned = true;
-} else {fishStunned = false}       
+    if(fishX[l] < arm1.body.bodies[m].position.x+armGap*3 
+    && fishX[l]+fishW > arm1.body.bodies[m].position.x
+    && fishY[l] < arm1.body.bodies[m].position.y+armGap*3 
+    && fishY[l]+fishW > arm1.body.bodies[m].position.y) {
+    fishStunned[l] = true;
+} else {fishStunned[l] = false} 
+if(fishX[l] < arm2.body.bodies[m].position.x+armGap*3 
+    && fishX[l]+fishW > arm2.body.bodies[m].position.x
+    && fishY[l] < arm2.body.bodies[m].position.y+armGap*3 
+    && fishY[l]+fishW > arm2.body.bodies[m].position.y) {
+    fishStunned[l] = true;
+} else {fishStunned[l] = false} 
+if(fishX[l] < arm3.body.bodies[m].position.x+armGap*3 
+    && fishX[l]+fishW > arm3.body.bodies[m].position.x
+    && fishY[l] < arm3.body.bodies[m].position.y+armGap*3 
+    && fishY[l]+fishW > arm3.body.bodies[m].position.y) {
+    fishStunned[l] = true;
+} else {fishStunned[l] = false} 
+if(fishX[l] < arm4.body.bodies[m].position.x+armGap*3 
+    && fishX[l]+fishW > arm4.body.bodies[m].position.x
+    && fishY[l] < arm4.body.bodies[m].position.y+armGap*3 
+    && fishY[l]+fishW > arm4.body.bodies[m].position.y) {
+    fishStunned[l] = true;
+} else {fishStunned[l] = false} 
+if(fishX[l] < arm5.body.bodies[m].position.x+armGap*3 
+    && fishX[l]+fishW > arm5.body.bodies[m].position.x
+    && fishY[l] < arm5.body.bodies[m].position.y+armGap*3 
+    && fishY[l]+fishW > arm5.body.bodies[m].position.y) {
+    fishStunned[l] = true;
+} else {fishStunned[l] = false}       
         }
     }
+}
 
+function stopStun(dataSmartphone) {
+    if (dataSmartphone.stopStunning === true) {
+        stopS = true
+    } else {
+        stopS = false
+    }
 }
 
 function tentaclesTurn(dataSmartphone) {

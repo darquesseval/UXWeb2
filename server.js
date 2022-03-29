@@ -25,6 +25,7 @@ function newConnection(socket) {
     socket.on('forTentacle', tentacleMsg);
     socket.on('forMouth', mouthMsg);
     socket.on('forMouthStop', mouthStopMsg);
+    socket.on('forArmStop', armStopMsg);
 
     function armMsg(dataSmartphone) {
       socket.broadcast.emit('forArm', dataSmartphone)
@@ -42,6 +43,12 @@ function newConnection(socket) {
   function mouthStopMsg(dataSmartphone) {
     socket.broadcast.emit('forMouthStop', dataSmartphone);
     console.log(dataSmartphone);
+    
+}
+function armStopMsg(dataSmartphone) {
+  socket.broadcast.emit('forArmStop', dataSmartphone);
+  console.log(dataSmartphone);
+  
 }
   
 
