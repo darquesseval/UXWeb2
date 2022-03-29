@@ -190,7 +190,7 @@ function draw() {
     image(bg, bgX, bgY, windowHeight*20, windowHeight*2);
     if(bgScroll==true) {
     bgX -=2
-    if(bgX <= windowHeight-Ww){
+    if(bgX <= windowHeight-wW){
         bgScroll = false;
     }
 } else {
