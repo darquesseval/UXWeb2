@@ -38,6 +38,7 @@ let sZc;
 let stopG = true;
 
 let i =0;
+let j;
 
 let fish = [];
 let fishX = [];
@@ -136,7 +137,7 @@ rectMode(CENTER);
     world.gravity.y=0.5
 
     let fishCount = random(6,15);
-    for (let j = 0; j<fishCount;j++){
+    for (j = 0; j<fishCount;j++){
         let fishs = [fish_01, fish_02, fish_03, fish_04];
         append(fish, random(fishs));
         append(fishXstart, random(0,windowWidth));
