@@ -136,7 +136,7 @@ wW = windowWidth;
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    for (let countx = x-50; countx <= x;countx+=0.2) {
+    for (let countx = x-50; countx <= x;countx++) {
         push()
         fill(255, 255, 255, 10);
         noStroke()
