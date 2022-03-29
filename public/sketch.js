@@ -63,7 +63,7 @@ let stopS = false;
 
 let jellyFloat = 0;
 let jellyFloatUp = true;
-let jellySpeed = 2;
+let jellySpeed = 0.2;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
@@ -189,15 +189,15 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    image(bg, bgX, bgY, windowHeight/10*6, windowHeight*2);
+    image(bg, bgX, bgY, windowHeight*6.5, windowHeight*2);
     bgX +=jellySpeed
     if(bgScroll==true) {
-    jellySpeed = -2
-    if(bgX <= windowHeight/10*-3-wW){
+    jellySpeed = -0.2
+    if(bgX <= windowHeight*-6.5-wW){
         bgScroll = false;
     }
 } else {
-    jellySpeed = 2
+    jellySpeed = 0.2
 if(bgX>=0){
     bgScroll=true;
 }
@@ -313,7 +313,7 @@ if(bgX>=0){
 }
 
 function waterMove(dataSmartphone) {
- if (dataSmartphone.shakeX >=1) {
+ if (dataSmartphone.shakeX >=1 && jellySpeed <=1) {
      jellySpeed = dataSmartphone.shakeX
      tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
      tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
@@ -330,22 +330,21 @@ function waterMove(dataSmartphone) {
     posX +=dataSmartphone.shakeX/5
 
 
- } else if(dataSmartphone.shakeX <=1) {
+ } else if(dataSmartphone.shakeX <=1 && jellySpeed >=-1) {
     jellySpeed = dataSmartphone.shakeX
-
-    tentacle1.cN.pointA.x -=dataSmartphone.shakeX/5
-    tentacle2.cN.pointA.x -=dataSmartphone.shakeX/5
-    tentacle3.cN.pointA.x -=dataSmartphone.shakeX/5
-    tentacle4.cN.pointA.x -=dataSmartphone.shakeX/5
-    tentacle5.cN.pointA.x -=dataSmartphone.shakeX/5
-    tentacle6.cN.pointA.x -=dataSmartphone.shakeX/5
-   arm1.cN.pointA.x -=dataSmartphone.shakeX/5
-   arm2.cN.pointA.x -=dataSmartphone.shakeX/5
-   arm3.cN.pointA.x -=dataSmartphone.shakeX/5
-   arm4.cN.pointA.x -=dataSmartphone.shakeX/5
-   arm5.cN.pointA.x -=dataSmartphone.shakeX/5
-   bellPhysics.position.x -=dataSmartphone.shakeX/5
-   posX -=dataSmartphone.shakeX/5
+    tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
+    tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
+    tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
+    tentacle4.cN.pointA.x +=dataSmartphone.shakeX/5
+    tentacle5.cN.pointA.x +=dataSmartphone.shakeX/5
+    tentacle6.cN.pointA.x +=dataSmartphone.shakeX/5
+   arm1.cN.pointA.x +=dataSmartphone.shakeX/5
+   arm2.cN.pointA.x +=dataSmartphone.shakeX/5
+   arm3.cN.pointA.x +=dataSmartphone.shakeX/5
+   arm4.cN.pointA.x +=dataSmartphone.shakeX/5
+   arm5.cN.pointA.x +=dataSmartphone.shakeX/5
+   bellPhysics.position.x +=dataSmartphone.shakeX/5
+   posX +=dataSmartphone.shakeX/5
  }
 }
 
