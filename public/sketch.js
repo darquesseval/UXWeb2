@@ -12,7 +12,9 @@ let posX;
 let posY;
 let armY, tentacleY;
 
-let bg, bg_stunned, bell, tentacle, arm, mouth, fish_01, fish_02, fish_03, fish_04, fish_01_stunned, fish_02_stunned, fish_03_stunned, fish_04_stunned;
+let bg, bell, tentacle, arm, mouth, fish_01, fish_02, fish_03, fish_04, fish_01_stunned, fish_02_stunned, fish_03_stunned, fish_04_stunned;
+let bgX = 0;
+let bgY = 0;
 
 let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10, fix11;
 let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5, tentacle6;
@@ -62,8 +64,7 @@ let jellyFloat = 0;
 let jellyFloatUp = true;
 
 function preload() {
-    bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
-    bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
+    bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
     bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
     tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
     arm = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
@@ -100,8 +101,8 @@ function setup() {
     world = engine.world;
     posX = windowWidth / 2;
     posY = windowWidth * 0.3;
-    tentacleY = posY - windowWidth / 70;
-    armY = posY - windowWidth / 50;
+    bgY = windowHeight/-2
+
     bellW = windowWidth / 13 * 3.5;
     bellH = windowWidth / 10 * 1.75;
     gap = windowWidth / 10
@@ -131,6 +132,9 @@ function setup() {
     wW = windowWidth;
     fishW = wW / 23;
     fishH = wW / 40;
+    
+    tentacleY = posY - wW / 70;
+    armY = posY - wW / 50;
 
     rectMode(CENTER);
     world.gravity.y = 0;
@@ -182,6 +186,32 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0);
+    image(bg, bgX, bgY, wW*8, windowHeight*2);
+    if(bgScroll==true) {
+    bgX +=2
+    if(bgX >= wW*7){
+        bgScroll = false;
+    }
+} else {
+    bgX -=2
+if(bgX<=0){
+    bgScroll=true;
+}
+}
+
+    bgY += sin(jellyFloat);
+    if (jellyFloatUp == true) {
+        jellyFloat += bellH/100
+      if (jellyFloat >= windowHeight/4) {
+        jellyFloatUp = false;
+      }
+    } else {
+        jellyFloat -= bellH/100
+      if (jellyFloat <= windowHeight/-4) {
+        jellyFloatUp = true;
+      }
+    }
+
     for (let k = 0; k < fishCount; k++) {
         push()
         fishFloatAdd[k] += sin(fishFloat[k]);
@@ -275,19 +305,6 @@ function draw() {
         sZ = 0;
         glow = false;
         glowControl = 80;
-    }
-
-    posY += sin(jellyFloat);
-    if (jellyFloatUp == true) {
-        jellyFloat += bellH/300
-      if (jellyFloat >= bellH/3) {
-        jellyFloatUp = false;
-      }
-    } else {
-        jellyFloat -= bellH/300
-      if (jellyFloat <= bellH/3*-1) {
-        jellyFloatUp = true;
-      }
     }
 
 }
