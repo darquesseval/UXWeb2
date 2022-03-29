@@ -174,14 +174,14 @@ function draw() {
     for (let k = 0; k < fishCount; k++) {
         push()
         scale(fishDir[k], 1)
-        if (fishStunned[k] === false) {
+        if (fishStunned[k] === false | stopS === true) {
             image(fish[k][0], fishX[k], fishY[k], fishW, fishH);
             if (fishX[k] < wW * -0.05) {
                 fishDir[k] = 1;
             } else if (fishX[k] > wW * 1.05) {
                 fishDir[k] = -1;
             }
-            fishX[k] = fishX[k] + fishSpeed[k] * fishDir[k];
+            fishX[k] = fishX[k] + (fishSpeed[k] * fishDir[k]);
         } else {
             image(fish[k][1], fishX[k], fishY[k], fishW, fishH);
         } 
@@ -193,7 +193,7 @@ function draw() {
         fill(255, 255, 255, 10);
         noStroke()
         blendMode(SCREEN);
-        ellipse(posX - wW / 40 * 1.5 + wW / 40 * 2.5, posY - wW / 60 + wW / 40 * 4.25, countx * 1.4 ^ (countx * 0.75), countx * 2.8);
+        ellipse(posX - wW / 40 * 1.5 + wW / 40 * 2.5, posY - wW / 60 + wW / 40 * 4.25, countx * 1.5 ^ (countx * 0.75), countx * 2.8);
         pop()
     }
 
@@ -252,12 +252,6 @@ function draw() {
         sZ = 0;
         glow = false;
         glowControl = 80;
-    }
-
-    if (stopS === true) {
-        for (let l = 0; l < fishCount; l++) {
-            fishStunned[l] = false;
-        }
     }
 
 }
@@ -320,12 +314,6 @@ function tentaclesTurn(dataSmartphone) {
 
     tentacle6.body.bodies[tentacle6.n - 1].position.x = windowWidth / 2 + sensitivityX + tentacle6x;
     tentacle6.body.bodies[tentacle6.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
-    // push();
-    // translate(bellPhysics.position.x,bellPhysics.position.y+bellH/2)
-    //     let rotationAngle = Math.atan2(windowWidth/2 + sensitivityX/360, windowHeight/2 + sensitivityY/360)*(180 / Math.PI);      
-    //     angleMode(DEGREES);
-    //     bellPhysics.angle = rotationAngle;
-    //     pop();
 
 }
 
@@ -364,7 +352,7 @@ function mouthGlow(dataSmartphone) {
 
     if (sX >= 12 || sY >= 12 || sZ >= 12) {
         glow = true;
-        glowControl = 80 + (sX + sY + sZ) * 3;
+        glowControl = 80 + (sX + sY + sZ) * 5;
 
     } else {
         glow = false;
@@ -426,20 +414,12 @@ class Rope {
     collision() {
         for (let l = 0; l < fishCount; l++) {
             for (let m = 0; m < this.n; m++) {
-                if (fishX[l] < this.body.bodies[m].position.x + armGap * 2 &&
+                if (fishX[l] < this.body.bodies[m].position.x + armGap &&
                     fishX[l] + fishW > this.body.bodies[m].position.x &&
-                    fishY[l] < this.body.bodies[m].position.y + armGap * 2 &&
+                    fishY[l] < this.body.bodies[m].position.y + armGap &&
                     fishY[l] + fishH > this.body.bodies[m].position.y) {
                     fishStunned[l] = true;
                 } 
-                stroke(255);
-                line(fishX[l], this.body.bodies[m].position.x + armGap * 2)
-                stroke(255,255,0);
-                line(fishX[l] + fishW, this.body.bodies[m].position.x)
-                stroke(255);
-                line(fishY[l], this.body.bodies[m].position.y + armGap * 2)
-                stroke(255,255,0);
-                line(fishY[l] + fishH, this.body.bodies[m].position.y)
             }
         }
 
