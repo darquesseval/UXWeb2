@@ -58,6 +58,9 @@ let fishW, fishH;
 let fishStunned = [];
 let stopS = false;
 
+let jellyFloat = 0;
+let jellyFloatUp = true;
+
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
     bg_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background_stunned.jpeg');
@@ -181,14 +184,14 @@ function draw() {
     background(0);
     for (let k = 0; k < fishCount; k++) {
         push()
-        fishFloatAdd[k] += sin(fishFloat[k]) * 3;
+        fishFloatAdd[k] += sin(fishFloat[k]);
         if (fishFloatUp[k] == true) {
-            fishFloat[k] += fishH/10
+            fishFloat[k] += fishH/70*fishSpeed[k]
           if (fishFloat[k] >= fishFloatMax[k]) {
             fishFloatUp[k] = false;
           }
         } else {
-            fishFloat[k] -= fishH/10
+            fishFloat[k] -= fishH/70*fishSpeed[k]
           if (fishFloat[k] <= fishFloatMax[k]*-1) {
             fishFloatUp[k] = true;
           }
@@ -272,6 +275,19 @@ function draw() {
         sZ = 0;
         glow = false;
         glowControl = 80;
+    }
+
+    posY += sin(jellyFloat);
+    if (jellyFloatUp == true) {
+        jellyFloat += bellH/300
+      if (jellyFloat >= bellH/3) {
+        jellyFloatUp = false;
+      }
+    } else {
+        jellyFloat -= bellH/300
+      if (jellyFloat <= bellH/3*-1) {
+        jellyFloatUp = true;
+      }
     }
 
 }
