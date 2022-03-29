@@ -68,6 +68,19 @@ function preload() {
     fish_03 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3.png');
     fish_04 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4.png');
 
+    fishCount = random(6,15);
+    for (j = 0; j<fishCount;j++){
+        fishs = [fish_01, fish_02, fish_03, fish_04];
+        append(fish, random(fishs));
+        append(fishXstart, random(0,windowWidth));
+append(fishY, random(windowHeight*0.05,windowHeight*0.95));
+if(fishXstart[j] > windowWidth/2){
+    append(fishDir, -1);
+} else{append(fishDir, 1)}
+    }
+    append(fishSpeed, random(0.01,0.5))
+    append(fishMove, 0.1);
+    append(fishX, fishXstart[j]+fishMove[j]*fishDir[j]);
 }
 
 
@@ -137,20 +150,6 @@ rectMode(CENTER);
 
    Matter.World.add(world, bellPhysics);
     world.gravity.y=0.5
-
-    fishCount = random(6,15);
-    for (j = 0; j<fishCount;j++){
-        fishs = [fish_01, fish_02, fish_03, fish_04];
-        append(fish, random(fishs));
-        append(fishXstart, random(0,windowWidth));
-append(fishY, random(windowHeight*0.05,windowHeight*0.95));
-if(fishXstart[j] > windowWidth/2){
-    append(fishDir, -1);
-} else{append(fishDir, 1)}
-    }
-    append(fishSpeed, random(0.01,0.5))
-    append(fishMove, 0.1);
-    append(fishX, fishXstart[j]+fishMove[j]*fishDir[j]);
 }
 
 
