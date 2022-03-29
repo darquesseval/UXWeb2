@@ -187,10 +187,10 @@ function setup() {
 function draw() {
     Matter.Engine.update(engine);
     background(0);
-    image(bg, bgX, bgY, wW*14, windowHeight*2);
+    image(bg, bgX, bgY, windowHeight*20, windowHeight*2);
     if(bgScroll==true) {
     bgX -=2
-    if(bgX <= wW*13){
+    if(bgX <= windowHeight-Ww){
         bgScroll = false;
     }
 } else {
@@ -203,12 +203,12 @@ if(bgX>=0){
     bgY += sin(jellyFloat);
     if (jellyFloatUp == true) {
         jellyFloat += bellH/100
-      if (jellyFloat >= windowHeight/4) {
+      if (jellyFloat >= windowHeight/5) {
         jellyFloatUp = false;
       }
     } else {
         jellyFloat -= bellH/100
-      if (jellyFloat <= windowHeight/-4) {
+      if (jellyFloat <= windowHeight/-5) {
         jellyFloatUp = true;
       }
     }
