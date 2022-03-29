@@ -418,7 +418,7 @@ function stopGlow(dataSmartphone) {
 
 function waterMove(dataSmartphone) {
     if (dataSmartphone.shakeX >=1) {
-        if (jellySpeed < dataSmartphone.shakeX jellySpeed == 0) {
+        if (jellySpeed < dataSmartphone.shakeX && jellySpeed == 0) {
                 jellySpeed = dataSmartphone.shakeX
         } else if (jellySpeed<0){
             jellySpeed = jellySpeed - 0.1
