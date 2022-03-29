@@ -89,6 +89,16 @@ document.getElementById("mouth").addEventListener("click", function () {
     }
 })
 
+document.getElementById("water").addEventListener("click", function () {
+    if (this.classList.contains("active")) {
+        this.classList.remove("active");
+        console.log('deactivated')
+    } else {
+        this.classList.add("active")
+        console.log('activated')
+    }
+})
+
 //get sensor data and send it
 function handleSensor(e) {
     let quaternion = e.target.quaternion;
@@ -133,6 +143,9 @@ function handleAcl() {
         }
         if (document.getElementById("mouth").classList.contains("active")) {
             socket.emit('forMouth', dataSmartphone);
+        }
+        if (document.getElementById("water").classList.contains("active")) {
+            socket.emit('forWater', dataSmartphone);
         }
     }
 }

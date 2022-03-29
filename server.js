@@ -22,16 +22,21 @@ function newConnection(socket) {
     console.log('new connection: ' + socket.id);
 
     socket.on('forArm', armMsg);
+    socket.on('forArmStop', armStopMsg);
     socket.on('forTentacle', tentacleMsg);
     socket.on('forMouth', mouthMsg);
     socket.on('forMouthStop', mouthStopMsg);
-    socket.on('forArmStop', armStopMsg);
+    socket.on('forWater', waterMsg);
 
     function armMsg(dataSmartphone) {
       socket.broadcast.emit('forArm', dataSmartphone)
       console.log(dataSmartphone);
     }
-    
+    function armStopMsg(dataSmartphone) {
+      socket.broadcast.emit('forArmStop', dataSmartphone);
+      console.log(dataSmartphone);
+      
+    }
     function tentacleMsg(dataSmartphone) {
         socket.broadcast.emit('forTentacle', dataSmartphone);
         console.log(dataSmartphone);
@@ -44,11 +49,11 @@ function newConnection(socket) {
     socket.broadcast.emit('forMouthStop', dataSmartphone);
     console.log(dataSmartphone);
 }
-function armStopMsg(dataSmartphone) {
-  socket.broadcast.emit('forArmStop', dataSmartphone);
+function waterMsg(dataSmartphone) {
+  socket.broadcast.emit('forWater', dataSmartphone);
   console.log(dataSmartphone);
-  
 }
+
   
 
 

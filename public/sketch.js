@@ -98,6 +98,7 @@ function setup() {
     socket.on('forMouth', mouthGlow);
     socket.on('forMouthStop', stopGlow);
     socket.on('forArmStop', stopStun);
+    socket.on('forWater', waterMove);
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
@@ -189,13 +190,14 @@ function draw() {
     Matter.Engine.update(engine);
     background(0);
     image(bg, bgX, bgY, windowHeight/10*3, windowHeight*2);
+    bgX +=jellySpeed
     if(bgScroll==true) {
-    bgX -=jellySpeed
+    jellySpeed = -2
     if(bgX <= windowHeight/10*-3-wW){
         bgScroll = false;
     }
 } else {
-    bgX +=jellySpeed
+    jellySpeed = 2
 if(bgX>=0){
     bgScroll=true;
 }
@@ -267,7 +269,6 @@ if(bgX>=0){
         image(mouth, posX - wW / 40 * 1.5, posY - wW / 60, wW / 40 * 5, wW / 40 * 8.5)
     } else {
         image(mouth_glow, posX - wW / 40 * 1.5, posY - wW / 60, wW / 40 * 5, wW / 40 * 8.5)
-
     }
 
     arm1.showArm();
@@ -309,6 +310,43 @@ if(bgX>=0){
         glowControl = 80;
     }
 
+}
+
+function waterMove(dataSmartphone) {
+ if (dataSmartphone.shakeX >=1) {
+     jellySpeed = dataSmartphone.shakeX
+     tentacle1.cN.pointA.x +=dataSmartphone.shakeX/5
+     tentacle2.cN.pointA.x +=dataSmartphone.shakeX/5
+     tentacle3.cN.pointA.x +=dataSmartphone.shakeX/5
+     tentacle4.cN.pointA.x +=dataSmartphone.shakeX/5
+     tentacle5.cN.pointA.x +=dataSmartphone.shakeX/5
+     tentacle6.cN.pointA.x +=dataSmartphone.shakeX/5
+    arm1.cN.pointA.x +=dataSmartphone.shakeX/5
+    arm2.cN.pointA.x +=dataSmartphone.shakeX/5
+    arm3.cN.pointA.x +=dataSmartphone.shakeX/5
+    arm4.cN.pointA.x +=dataSmartphone.shakeX/5
+    arm5.cN.pointA.x +=dataSmartphone.shakeX/5
+    bellPhysics.position.x +=dataSmartphone.shakeX/5
+    posX +=dataSmartphone.shakeX/5
+
+
+ } else if(dataSmartphone.shakeX <=1) {
+    jellySpeed = dataSmartphone.shakeX
+
+    tentacle1.cN.pointA.x -=dataSmartphone.shakeX/5
+    tentacle2.cN.pointA.x -=dataSmartphone.shakeX/5
+    tentacle3.cN.pointA.x -=dataSmartphone.shakeX/5
+    tentacle4.cN.pointA.x -=dataSmartphone.shakeX/5
+    tentacle5.cN.pointA.x -=dataSmartphone.shakeX/5
+    tentacle6.cN.pointA.x -=dataSmartphone.shakeX/5
+   arm1.cN.pointA.x -=dataSmartphone.shakeX/5
+   arm2.cN.pointA.x -=dataSmartphone.shakeX/5
+   arm3.cN.pointA.x -=dataSmartphone.shakeX/5
+   arm4.cN.pointA.x -=dataSmartphone.shakeX/5
+   arm5.cN.pointA.x -=dataSmartphone.shakeX/5
+   bellPhysics.position.x -=dataSmartphone.shakeX/5
+   posX -=dataSmartphone.shakeX/5
+ }
 }
 
 function stingingArms(dataSmartphone) {
