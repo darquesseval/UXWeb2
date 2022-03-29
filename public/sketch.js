@@ -64,6 +64,7 @@ let fishStunned = [];
 let jellyFloat = 0;
 let jellyFloatUp = true;
 let jellySpeed = 0.2;
+jellyNotMoving = true;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
@@ -416,28 +417,36 @@ function stopGlow(dataSmartphone) {
 }
 
 function waterMove(dataSmartphone) {
-if (dataSmartphone.shakeX >=1 && dataSmartphone.shakeX>jellySpeed) {
+    if(jellyNotMoving = true) { 
+if (dataSmartphone.shakeX >=5 && dataSmartphone.shakeX>jellySpeed) {
     jellySpeed = dataSmartphone.shakeX
-} else if (jellySpeed >=1 && dataSmartphone.shakeX<jellySpeed) {
-    jellySpeed -=0.1
-}  else if (dataSmartphone.shakeX <=-1 && dataSmartphone.shakeX<jellySpeed) {
-    jellySpeed = dataSmartphone.shakeX
-}  else if (dataSmartphone.shakeX <=1 && dataSmartphone.shakeX>jellySpeed) {
-    jellySpeed +=0.1
-} else {jellySpeed = 0}
-        tentacle1.cN.pointA.x +=jellySpeed/5
-        tentacle2.cN.pointA.x +=jellySpeed/5
-        tentacle3.cN.pointA.x +=jellySpeed/5
-        tentacle4.cN.pointA.x +=jellySpeed/5
-        tentacle5.cN.pointA.x +=jellySpeed/5
-        tentacle6.cN.pointA.x +=jellySpeed/5
-       arm1.cN.pointA.x +=jellySpeed/5
-       arm2.cN.pointA.x +=jellySpeed/5
-       arm3.cN.pointA.x +=jellySpeed/5
-       arm4.cN.pointA.x +=jellySpeed/5
-       arm5.cN.pointA.x +=jellySpeed/5
-       bellPhysics.position.x +=jellySpeed/5
-       posX +=jellySpeed/5
+    jellyNotMoving = false
+} else if (jellySpeed == 0) {
+    jellyNotMoving = true
+}   else {jellySpeed -=0.1}
+    }
+
+if(jellyNotMoving = true) { 
+    if (dataSmartphone.shakeX <=-5 && dataSmartphone.shakeX<jellySpeed) {
+        jellySpeed = dataSmartphone.shakeX
+        jellyNotMoving = false
+    }  else if (jellySpeed == 0) {
+        jellyNotMoving = true
+    }   else {jellySpeed +=0.1}
+}
+tentacle1.cN.pointA.x +=jellySpeed/5
+tentacle2.cN.pointA.x +=jellySpeed/5
+tentacle3.cN.pointA.x +=jellySpeed/5
+tentacle4.cN.pointA.x +=jellySpeed/5
+tentacle5.cN.pointA.x +=jellySpeed/5
+tentacle6.cN.pointA.x +=jellySpeed/5
+arm1.cN.pointA.x +=jellySpeed/5
+arm2.cN.pointA.x +=jellySpeed/5
+arm3.cN.pointA.x +=jellySpeed/5
+arm4.cN.pointA.x +=jellySpeed/5
+arm5.cN.pointA.x +=jellySpeed/5
+bellPhysics.position.x +=jellySpeed/5
+posX +=jellySpeed/5
    }
 
    function stopWater(dataSmartphone) {
@@ -446,6 +455,7 @@ if (dataSmartphone.shakeX >=1 && dataSmartphone.shakeX>jellySpeed) {
     } else {
         stopW = false
     }
+    jellyNotMoving = true;
 }
 
 class Rope {
