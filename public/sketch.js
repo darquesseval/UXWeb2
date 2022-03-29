@@ -180,16 +180,16 @@ function draw() {
     background(0);
     for (let k = 0; k < fishCount; k++) {
         push()
-        fishFloatAdd += sin(fishFloat) * 3;
-        if (fishFloatUp == true) {
-            fishFloat += fishH/10
-          if (fishFloat >= fishFloatMax) {
-            fishFloatUp = false;
+        fishFloatAdd[k] += sin(fishFloat[k]) * 3;
+        if (fishFloatUp[k] == true) {
+            fishFloat[k] += fishH/10
+          if (fishFloat[k] >= fishFloatMax[k]) {
+            fishFloatUp[k] = false;
           }
         } else {
-            fishFloat -= fishH/10
-          if (fishFloat <= fishFloatMax*-1) {
-            fishFloatUp = true;
+            fishFloat[k] -= fishH/10
+          if (fishFloat[k] <= fishFloatMax[k]*-1) {
+            fishFloatUp[k] = true;
           }
         }
         scale(fishDir[k], 1)
