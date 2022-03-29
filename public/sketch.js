@@ -170,6 +170,7 @@ function setup() {
         append(fishFloatMax, random(fishH, fishH*5))
         append(fishFloatUp, random([false, true]));
         append(fishFloatAdd, 0)
+        append(fishFloat, 0)
     }
 
 }
