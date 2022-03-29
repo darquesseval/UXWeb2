@@ -12,7 +12,7 @@ let posX;
 let posY;
 let armY, tentacleY;
 
-let bg, bg_stunned, bell, tentacle, arm, mouth, fish_01, fish_02, fish_03, fish_04;
+let bg, bg_stunned, bell, tentacle, arm, mouth, fish_01, fish_02, fish_03, fish_04, fish_01_stunned, fish_02_stunned, fish_03_stunned, fish_04_stunned;
 
 let fix1, fix2, fix3, fix4, fix5, fix6, fix7, fix8, fix9, fix10, fix11;
 let arm1, tentacle1, arm2, tentacle2, arm3, tentacle3, arm4, tentacle4, arm5, tentacle5, tentacle6;
@@ -49,6 +49,9 @@ let fishY = [];
 let fishDirChoice = [1, -1];
 let fishDir = [];
 let fishSpeed = [];
+let fishW, fishH;
+
+let fishStunned = [];
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.jpeg');
@@ -67,6 +70,10 @@ function preload() {
     fish_02 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish2.png');
     fish_03 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3.png');
     fish_04 = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4.png');
+    fish_01_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish1_stunned.png');
+    fish_02_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish2_stunned.png');
+    fish_03_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3_stunned.png');
+    fish_04_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4_stunned.png');
 
 }
 
@@ -114,6 +121,8 @@ function setup() {
     sZc = 0;
 
     wW = windowWidth;
+    fishW = wW / 23;
+    fishH = wW / 40;
 
     rectMode(CENTER);
     world.gravity.y = 0;
@@ -140,13 +149,14 @@ function setup() {
 
     fishCount = random(6, 15);
     for (j = 0; j < fishCount; j++) {
-        fishs = [fish_01, fish_02, fish_03, fish_04];
+        fishs = [[fish_01, fish_01_stunned], [fish_02, fish_02_stunned], [fish_03, fish_03_stunned], [fish_04, fish_04_stunned]];
         append(fish, random(fishs));
-        append(fishXstart, random(0, windowWidth));
+        append(fishXstart, random(windowWidth*0.05, windowWidth*0.95));
         append(fishY, random(windowHeight * 0.05, windowHeight * 0.95));
         append(fishDir, random(fishDirChoice));
         append(fishSpeed, random(0.01, 0.5))
         append(fishX, fishXstart[j] + fishSpeed[j] * fishDir[j]);
+        append(fishStunned, false);
     }
     
 }
@@ -158,7 +168,11 @@ function draw() {
     for (let k = 0; k < fishCount; k++) {
         push()
         scale(fishDir[k],1)
-        image(fish[k], fishX[k], fishY[k], wW / 23, wW / 40);
+        if(fishStunned[k] === false) {
+        image(fish[k][0], fishX[k], fishY[k], fishW, fishH);
+    } else {
+        image(fish[k][1], fishX[k], fishY[k], fishW, fishH);
+    }
         if (fishX[k] < wW * -0.05) {
             fishDir[k] = 1;
         } else if (fishX[k] > wW * 1.05) {
@@ -208,27 +222,12 @@ function draw() {
     tentacle5.showTentacle();
     tentacle6.showTentacle();
 
-
-
     tentacle1.slowMotion();
     tentacle2.slowMotion();
     tentacle3.slowMotion();
     tentacle4.slowMotion();
     tentacle5.slowMotion();
     tentacle6.slowMotion();
-
-
-
-    // arm1.show(255,255,255,255);
-
-
-    //bell?
-    //matter triangle:
-    // beginShape()
-    // vertex(bellPhysics.vertices[0].x, bellPhysics.vertices[0].y);
-    // vertex(bellPhysics.vertices[1].x, bellPhysics.vertices[1].y);
-    // vertex(bellPhysics.vertices[2].x,bellPhysics.vertices[2].y);
-    // endShape()
 
     push()
     angleMode(RADIANS);
@@ -269,6 +268,41 @@ function stingingArms(dataSmartphone) {
 
     arm5.body.bodies[arm5.n - 1].position.x = windowWidth / 2 + sensitivityX + arm5x;
     arm5.body.bodies[arm5.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+
+    for(let l = 0; l<fishCount; l++){
+        for(let m = 0; m<arm1.n;m++){
+    if(fishX[l] < arm1.body.bodies[arm1.m].position.x+armGap*3 
+    && fishX[l]+fishW > arm1.body.bodies[arm1.m].position.x
+    && fishY[l] < arm1.body.bodies[arm1.m].position.y+armGap*3 
+    && fishY[l]+fishW > arm1.body.bodies[arm1.m].position.y) {
+    fishStunned = true;
+} else {fishStunned = false} 
+if(fishX[l] < arm2.body.bodies[arm2.m].position.x+armGap*3 
+    && fishX[l]+fishW > arm2.body.bodies[arm2.m].position.x
+    && fishY[l] < arm2.body.bodies[arm2.m].position.y+armGap*3 
+    && fishY[l]+fishW > arm2.body.bodies[arm2.m].position.y) {
+    fishStunned = true;
+} else {fishStunned = false} 
+if(fishX[l] < arm3.body.bodies[arm3.m].position.x+armGap*3 
+    && fishX[l]+fishW > arm3.body.bodies[arm3.m].position.x
+    && fishY[l] < arm3.body.bodies[arm3.m].position.y+armGap*3 
+    && fishY[l]+fishW > arm3.body.bodies[arm3.m].position.y) {
+    fishStunned = true;
+} else {fishStunned = false} 
+if(fishX[l] < arm4.body.bodies[arm4.m].position.x+armGap*3 
+    && fishX[l]+fishW > arm4.body.bodies[arm4.m].position.x
+    && fishY[l] < arm4.body.bodies[arm4.m].position.y+armGap*3 
+    && fishY[l]+fishW > arm4.body.bodies[arm4.m].position.y) {
+    fishStunned = true;
+} else {fishStunned = false} 
+if(fishX[l] < arm5.body.bodies[arm5.m].position.x+armGap*3 
+    && fishX[l]+fishW > arm5.body.bodies[arm5.m].position.x
+    && fishY[l] < arm5.body.bodies[arm5.m].position.y+armGap*3 
+    && fishY[l]+fishW > arm5.body.bodies[arm5.m].position.y) {
+    fishStunned = true;
+} else {fishStunned = false}       
+        }
+    }
 
 }
 
@@ -502,42 +536,4 @@ class Rope {
         pop()
     }
 
-
-    ////////////////////////////////////////
-    ////////////////////////////////////////
-    ////////////////////////////////////////
-    //from here on down adjust for Smartphone
-
-
 }
-
-
-
-
-// function newDot(dataSmartphone) {
-//     x = windowWidth/2 + dataSmartphone.angle1;
-//     y = windowHeight/2 + dataSmartphone.angle2;
-//     // fill(255,0,0);
-//     // ellipse(dataSmartphone.angle1, dataSmartphone.angle2, 10);
-
-//     // pointer[i] = new Circle(dataSmartphone.angle1, dataSmartphone.angle2, 20);
-//     // i++
-
-//     console.log('received: ' + dataSmartphone)
-// }
-
-
-// function mouseDragged() {
-//     console.log('Sending: ' + mouseX + ',' + mouseY);
-
-//     var data = {
-//         x: mouseX,
-//         y: mouseY
-//     }
-
-//     socket.emit('mouse', data);
-
-//     fill(255, 0, 255);
-//     noStroke();
-//     ellipse(mouseX, mouseY, 50);
-// }
