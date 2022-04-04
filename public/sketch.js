@@ -40,6 +40,7 @@ let sZc;
 
 let stopG = true;
 let stopR = true;
+let stopL = true;
 let stopS = true;
 
 let i = 0;
