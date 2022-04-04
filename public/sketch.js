@@ -66,6 +66,8 @@ let jellyFloat = 0;
 let jellyFloatUp = true;
 let jellySpeed = 0.2;
 
+let arm_sound, move_sound, bg_sound;
+
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
     bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
@@ -87,11 +89,17 @@ function preload() {
     fish_03_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3_stunned.png');
     fish_04_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4_stunned.png');
 
+    soundFormats('mp3');
+  arm_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
+  move_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/move_fast.mp3');
+  bg_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/constant_sound.mp3');
+
 }
 
 
 function setup() {
     frameRate(30)
+    bg_sound.loop()
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('forArm', stingingArms);
@@ -107,7 +115,7 @@ function setup() {
     engine = Matter.Engine.create();
     world = engine.world;
     posX = windowWidth / 2;
-    posY = windowWidth * 0.3;
+    posY = windowWidth * 0.1;
     bgY = windowHeight/-2
     bgX = windowHeight*-3
 
