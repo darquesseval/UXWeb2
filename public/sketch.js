@@ -66,7 +66,11 @@ let jellyFloat = 0;
 let jellyFloatUp = true;
 let jellySpeed = 0.2;
 
-let arm_sound, move_sound, bg_sound;
+let soundArm = false;
+let soundTentacle = false;
+let soundMove = false;
+
+let arm_sound, move_sound, bg_sound, tentacle_sound;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
@@ -91,6 +95,7 @@ function preload() {
 
     soundFormats('mp3');
   arm_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
+  tentacle_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
   move_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/move_fast.mp3');
   bg_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/constant_sound.mp3');
 
@@ -311,6 +316,36 @@ if(bgX>=0){
         glowControl = 80;
     }
 
+    if(arm1.velocity >= 10 && soundArm == false){
+        soundArm = true
+        arm_sound.play
+        arm_sound.volume(0.5)
+    }
+    if(tentacle1.velocity >=10 && soundTentacle == false) {
+        soundTentacle = true
+        tentacle_sound.play
+        tentacle_sound.volume(0.5)
+    }
+    if(jellySpeed >=10 && soundMove == false) {
+        soundMove = true
+        move_sound.play
+        move_sound.volume(0.5)
+    }
+    arm_sound.onended(soundFinishedArm)
+    tentacle_sound.onended(soundFinishedTentacle)
+    move_sound.onended(soundFinishedMove)
+
+}
+function soundFinishedArm() {
+    soundArm = false;
+}
+function soundFinishedTentacle () {
+    soundTentacle = false;
+
+}
+function soundFinishedMove() {
+    soundMove = false;
+
 }
 
 function stingingArms(dataSmartphone) {
@@ -519,6 +554,7 @@ class Rope {
         Matter.Composite.add(world, [
             this.body
         ]);
+
     }
 
     slowMotion() {
