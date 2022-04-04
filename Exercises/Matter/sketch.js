@@ -38,7 +38,7 @@ function setup() {
     engine = Matter.Engine.create();
     world = engine.world;
     posX = windowWidth / 2;
-    posY = windowWidth * 0.15;
+    posY = windowWidth * 0.1;
     bellW = windowWidth / 5;
     bellH = windowWidth / 9;
     // render = Matter.Render.create({

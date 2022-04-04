@@ -39,7 +39,7 @@ let sZ;
 let sZc;
 
 let stopG = true;
-let stopW = true;
+let stopR = true;
 let stopS = true;
 
 let i = 0;
@@ -99,8 +99,10 @@ function setup() {
     socket.on('forMouth', mouthGlow);
     socket.on('forMouthStop', stopGlow);
     socket.on('forArmStop', stopStun);
-    socket.on('forWater', waterMove);
-    socket.on('forWaterStop', stopWater);
+    socket.on('forRight', rightMove);
+    socket.on('forRightStop', stopMoveRight);
+    socket.on('forLeft', leftMove);
+    socket.on('forLeftStop', stopMoveLeft);
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
@@ -193,7 +195,7 @@ function draw() {
     background(0);
     image(bg, bgX, bgY, windowHeight*6.5, windowHeight*2);
     bgX +=jellySpeed
-    if(stopW == true){
+    if(stopR == true && stopL == true){
     if(bgScroll==true) {
     jellySpeed = -0.2
     if(bgX <= windowHeight*-6.5-wW){
@@ -204,6 +206,39 @@ function draw() {
 if(bgX>=0){
     bgScroll=true;
 }
+}
+}
+if(stopR == true && stopL == true){
+    if(posX<windowWidth){
+        jellySpeed = 1
+    tentacle1.cN.pointA.x +=jellySpeed
+tentacle2.cN.pointA.x +=jellySpeed
+tentacle3.cN.pointA.x +=jellySpeed
+tentacle4.cN.pointA.x +=jellySpeed
+tentacle5.cN.pointA.x +=jellySpeed
+tentacle6.cN.pointA.x +=jellySpeed
+arm1.cN.pointA.x +=jellySpeed
+arm2.cN.pointA.x +=jellySpeed
+arm3.cN.pointA.x +=jellySpeed
+arm4.cN.pointA.x +=jellySpeed
+arm5.cN.pointA.x +=jellySpeed
+bellPhysics.position.x +=jellySpeed
+posX +=jellySpeed
+} else if (posX>windowWidth) {
+    jellySpeed = -1
+    tentacle1.cN.pointA.x +=jellySpeed
+tentacle2.cN.pointA.x +=jellySpeed
+tentacle3.cN.pointA.x +=jellySpeed
+tentacle4.cN.pointA.x +=jellySpeed
+tentacle5.cN.pointA.x +=jellySpeed
+tentacle6.cN.pointA.x +=jellySpeed
+arm1.cN.pointA.x +=jellySpeed
+arm2.cN.pointA.x +=jellySpeed
+arm3.cN.pointA.x +=jellySpeed
+arm4.cN.pointA.x +=jellySpeed
+arm5.cN.pointA.x +=jellySpeed
+bellPhysics.position.x +=jellySpeed
+posX +=jellySpeed
 }
 }
 
@@ -416,7 +451,7 @@ function stopGlow(dataSmartphone) {
     }
 }
 
-function waterMove(dataSmartphone) {
+function rightMove(dataSmartphone) {
     if(jellyNotMoving = true) { 
 if (dataSmartphone.shakeX >=5 && dataSmartphone.shakeX>jellySpeed) {
     jellySpeed = dataSmartphone.shakeX
@@ -425,6 +460,23 @@ if (dataSmartphone.shakeX >=5 && dataSmartphone.shakeX>jellySpeed) {
     jellyNotMoving = true
 }   else {jellySpeed -=0.1}
     }
+
+tentacle1.cN.pointA.x +=jellySpeed/5
+tentacle2.cN.pointA.x +=jellySpeed/5
+tentacle3.cN.pointA.x +=jellySpeed/5
+tentacle4.cN.pointA.x +=jellySpeed/5
+tentacle5.cN.pointA.x +=jellySpeed/5
+tentacle6.cN.pointA.x +=jellySpeed/5
+arm1.cN.pointA.x +=jellySpeed/5
+arm2.cN.pointA.x +=jellySpeed/5
+arm3.cN.pointA.x +=jellySpeed/5
+arm4.cN.pointA.x +=jellySpeed/5
+arm5.cN.pointA.x +=jellySpeed/5
+bellPhysics.position.x +=jellySpeed/5
+posX +=jellySpeed/5
+   }
+
+   function rightMove(dataSmartphone) {
 
 if(jellyNotMoving = true) { 
     if (dataSmartphone.shakeX <=-5 && dataSmartphone.shakeX<jellySpeed) {
@@ -449,11 +501,20 @@ bellPhysics.position.x +=jellySpeed/5
 posX +=jellySpeed/5
    }
 
-   function stopWater(dataSmartphone) {
-    if (dataSmartphone.stopWater === true) {
-        stopW = true
+   function stopMoveRight(dataSmartphone) {
+    if (dataSmartphone.stopRight === true) {
+        stopR = true
     } else {
-        stopW = false
+        stopR = false
+    }
+    jellyNotMoving = true;
+}
+
+function stopMoveLeft(dataSmartphone) {
+    if (dataSmartphone.stopLeft === true) {
+        stopL = true
+    } else {
+        stopL = false
     }
     jellyNotMoving = true;
 }

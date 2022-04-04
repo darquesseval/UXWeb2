@@ -26,8 +26,10 @@ function newConnection(socket) {
     socket.on('forTentacle', tentacleMsg);
     socket.on('forMouth', mouthMsg);
     socket.on('forMouthStop', mouthStopMsg);
-    socket.on('forWater', waterMsg);
-    socket.on('forWaterStop', waterStopMsg);
+    socket.on('forRight', rightMsg);
+    socket.on('forRightStop', rightStopMsg);
+    socket.on('forLeft', leftMsg);
+    socket.on('forLeftStop', leftStopMsg);
 
     function armMsg(dataSmartphone) {
       socket.broadcast.emit('forArm', dataSmartphone)
@@ -50,12 +52,20 @@ function newConnection(socket) {
     socket.broadcast.emit('forMouthStop', dataSmartphone);
     console.log(dataSmartphone);
 }
-function waterMsg(dataSmartphone) {
-  socket.broadcast.emit('forWater', dataSmartphone);
+function rightMsg(dataSmartphone) {
+  socket.broadcast.emit('forRight', dataSmartphone);
   console.log(dataSmartphone);
 }
-function waterStopMsg(dataSmartphone) {
-  socket.broadcast.emit('forWaterStop', dataSmartphone);
+function rightStopMsg(dataSmartphone) {
+  socket.broadcast.emit('forRightStop', dataSmartphone);
+  console.log(dataSmartphone);
+}
+function leftMsg(dataSmartphone) {
+  socket.broadcast.emit('forLeft', dataSmartphone);
+  console.log(dataSmartphone);
+}
+function leftStopMsg(dataSmartphone) {
+  socket.broadcast.emit('forLeftStop', dataSmartphone);
   console.log(dataSmartphone);
 }
 

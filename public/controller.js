@@ -45,16 +45,28 @@ function stopStun() {
     socket.emit('forArmStop', dataSmartphone);
 }
 
-stopMove();
-function stopMove() {
-    if(document.getElementById("water").classList.contains("active")){
+stopMoveRight();
+function stopMoveRight() {
+    if(document.getElementById("moveRight").classList.contains("active")){
         let stop = false;
     }
     else{let stop = true}
     var dataSmartphone = {
     stopWater: stop
 }
-    socket.emit('forArmStop', dataSmartphone);
+    socket.emit('forRightStop', dataSmartphone);
+}
+
+stopMoveLeft();
+function stopMoveLeft() {
+    if(document.getElementById("moveLeft").classList.contains("active")){
+        let stop = false;
+    }
+    else{let stop = true}
+    var dataSmartphone = {
+    stopWater: stop
+}
+    socket.emit('forLeftStop', dataSmartphone);
 }
 
 //makes some kind of euler angle of sensor data
@@ -101,7 +113,17 @@ document.getElementById("mouth").addEventListener("click", function () {
     }
 })
 
-document.getElementById("water").addEventListener("click", function () {
+document.getElementById("moveRight").addEventListener("click", function () {
+    if (this.classList.contains("active")) {
+        this.classList.remove("active");
+        console.log('deactivated')
+    } else {
+        this.classList.add("active")
+        console.log('activated')
+    }
+})
+
+document.getElementById("moveLeft").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
         console.log('deactivated')
@@ -156,8 +178,12 @@ function handleAcl() {
         if (document.getElementById("mouth").classList.contains("active")) {
             socket.emit('forMouth', dataSmartphone);
         }
-        if (document.getElementById("water").classList.contains("active")) {
-            socket.emit('forWater', dataSmartphone);
+        if (document.getElementById("moveRight").classList.contains("active")) {
+            socket.emit('forRight', dataSmartphone);
+        }
+
+        if (document.getElementById("moveLeft").classList.contains("active")) {
+            socket.emit('forLeft', dataSmartphone);
         }
     }
 }
