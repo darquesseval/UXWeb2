@@ -241,9 +241,8 @@ if(bgX>=0){
     if(glow == true) {
     for (let countx = x - 50; countx <= x; countx++) {
         push()
-        fill(255, 255, 255, 10);
+        fill(255, 0, 185, 5);
         noStroke()
-        blendMode(SCREEN);
         ellipse(posX - wW / 40 * 1.5 + wW / 40 * 2.5, posY - wW / 60 + wW / 40 * 4.25, countx * 1.5 ^ (countx * 0.75), countx * 2.8);
         pop()
     }
