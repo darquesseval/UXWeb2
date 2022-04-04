@@ -65,7 +65,6 @@ let fishStunned = [];
 let jellyFloat = 0;
 let jellyFloatUp = true;
 let jellySpeed = 0.2;
-let jellyNotMoving = true;
 
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
@@ -420,14 +419,10 @@ function stopGlow(dataSmartphone) {
 }
 
 function rightMove(dataSmartphone) {
-    if(jellyNotMoving = true) { 
 if (dataSmartphone.shakeX >=5 && dataSmartphone.shakeX>jellySpeed) {
     jellySpeed = dataSmartphone.shakeX
-    jellyNotMoving = false
-} else if (jellySpeed == 0) {
-    jellyNotMoving = true
 }   else {jellySpeed -=0.1}
-    }
+    
 
 tentacle1.cN.pointA.x +=jellySpeed/40
 tentacle2.cN.pointA.x +=jellySpeed/40
@@ -446,14 +441,11 @@ posX +=jellySpeed/40
 
    function leftMove(dataSmartphone) {
 
-if(jellyNotMoving = true) { 
     if (dataSmartphone.shakeX <=-5 && dataSmartphone.shakeX<jellySpeed) {
         jellySpeed = dataSmartphone.shakeX
-        jellyNotMoving = false
-    }  else if (jellySpeed == 0) {
-        jellyNotMoving = true
-    }   else {jellySpeed +=0.1}
-}
+    }  
+   else {jellySpeed +=0.1}
+
 tentacle1.cN.pointA.x +=jellySpeed/40
 tentacle2.cN.pointA.x +=jellySpeed/40
 tentacle3.cN.pointA.x +=jellySpeed/40
@@ -475,7 +467,6 @@ posX +=jellySpeed/40
     } else {
         stopR = false
     }
-    jellyNotMoving = true;
 }
 
 function stopMoveLeft(dataSmartphone) {
@@ -484,7 +475,6 @@ function stopMoveLeft(dataSmartphone) {
     } else {
         stopL = false
     }
-    jellyNotMoving = true;
 }
 
 class Rope {
