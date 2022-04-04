@@ -476,7 +476,7 @@ bellPhysics.position.x +=jellySpeed/5
 posX +=jellySpeed/5
    }
 
-   function rightMove(dataSmartphone) {
+   function leftMove(dataSmartphone) {
 
 if(jellyNotMoving = true) { 
     if (dataSmartphone.shakeX <=-5 && dataSmartphone.shakeX<jellySpeed) {
