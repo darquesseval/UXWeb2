@@ -209,39 +209,6 @@ if(bgX>=0){
 }
 }
 }
-if(stopR == true && stopL == true){
-    if(posX<windowWidth){
-        jellySpeed = 1
-    tentacle1.cN.pointA.x +=jellySpeed
-tentacle2.cN.pointA.x +=jellySpeed
-tentacle3.cN.pointA.x +=jellySpeed
-tentacle4.cN.pointA.x +=jellySpeed
-tentacle5.cN.pointA.x +=jellySpeed
-tentacle6.cN.pointA.x +=jellySpeed
-arm1.cN.pointA.x +=jellySpeed
-arm2.cN.pointA.x +=jellySpeed
-arm3.cN.pointA.x +=jellySpeed
-arm4.cN.pointA.x +=jellySpeed
-arm5.cN.pointA.x +=jellySpeed
-bellPhysics.position.x +=jellySpeed
-posX +=jellySpeed
-} else if (posX>windowWidth) {
-    jellySpeed = -1
-    tentacle1.cN.pointA.x +=jellySpeed
-tentacle2.cN.pointA.x +=jellySpeed
-tentacle3.cN.pointA.x +=jellySpeed
-tentacle4.cN.pointA.x +=jellySpeed
-tentacle5.cN.pointA.x +=jellySpeed
-tentacle6.cN.pointA.x +=jellySpeed
-arm1.cN.pointA.x +=jellySpeed
-arm2.cN.pointA.x +=jellySpeed
-arm3.cN.pointA.x +=jellySpeed
-arm4.cN.pointA.x +=jellySpeed
-arm5.cN.pointA.x +=jellySpeed
-bellPhysics.position.x +=jellySpeed
-posX +=jellySpeed
-}
-}
 
     for (let k = 0; k < fishCount; k++) {
         push()
@@ -462,19 +429,19 @@ if (dataSmartphone.shakeX >=5 && dataSmartphone.shakeX>jellySpeed) {
 }   else {jellySpeed -=0.1}
     }
 
-tentacle1.cN.pointA.x +=jellySpeed/5
-tentacle2.cN.pointA.x +=jellySpeed/5
-tentacle3.cN.pointA.x +=jellySpeed/5
-tentacle4.cN.pointA.x +=jellySpeed/5
-tentacle5.cN.pointA.x +=jellySpeed/5
-tentacle6.cN.pointA.x +=jellySpeed/5
-arm1.cN.pointA.x +=jellySpeed/5
-arm2.cN.pointA.x +=jellySpeed/5
-arm3.cN.pointA.x +=jellySpeed/5
-arm4.cN.pointA.x +=jellySpeed/5
-arm5.cN.pointA.x +=jellySpeed/5
-bellPhysics.position.x +=jellySpeed/5
-posX +=jellySpeed/5
+tentacle1.cN.pointA.x +=jellySpeed/40
+tentacle2.cN.pointA.x +=jellySpeed/40
+tentacle3.cN.pointA.x +=jellySpeed/40
+tentacle4.cN.pointA.x +=jellySpeed/40
+tentacle5.cN.pointA.x +=jellySpeed/40
+tentacle6.cN.pointA.x +=jellySpeed/40
+arm1.cN.pointA.x +=jellySpeed/40
+arm2.cN.pointA.x +=jellySpeed/40
+arm3.cN.pointA.x +=jellySpeed/40
+arm4.cN.pointA.x +=jellySpeed/40
+arm5.cN.pointA.x +=jellySpeed/40
+bellPhysics.position.x +=jellySpeed/40
+posX +=jellySpeed/40
    }
 
    function leftMove(dataSmartphone) {
@@ -487,19 +454,19 @@ if(jellyNotMoving = true) {
         jellyNotMoving = true
     }   else {jellySpeed +=0.1}
 }
-tentacle1.cN.pointA.x +=jellySpeed/5
-tentacle2.cN.pointA.x +=jellySpeed/5
-tentacle3.cN.pointA.x +=jellySpeed/5
-tentacle4.cN.pointA.x +=jellySpeed/5
-tentacle5.cN.pointA.x +=jellySpeed/5
-tentacle6.cN.pointA.x +=jellySpeed/5
-arm1.cN.pointA.x +=jellySpeed/5
-arm2.cN.pointA.x +=jellySpeed/5
-arm3.cN.pointA.x +=jellySpeed/5
-arm4.cN.pointA.x +=jellySpeed/5
-arm5.cN.pointA.x +=jellySpeed/5
-bellPhysics.position.x +=jellySpeed/5
-posX +=jellySpeed/5
+tentacle1.cN.pointA.x +=jellySpeed/40
+tentacle2.cN.pointA.x +=jellySpeed/40
+tentacle3.cN.pointA.x +=jellySpeed/40
+tentacle4.cN.pointA.x +=jellySpeed/40
+tentacle5.cN.pointA.x +=jellySpeed/40
+tentacle6.cN.pointA.x +=jellySpeed/40
+arm1.cN.pointA.x +=jellySpeed/40
+arm2.cN.pointA.x +=jellySpeed/40
+arm3.cN.pointA.x +=jellySpeed/40
+arm4.cN.pointA.x +=jellySpeed/40
+arm5.cN.pointA.x +=jellySpeed/40
+bellPhysics.position.x +=jellySpeed/40
+posX +=jellySpeed/40
    }
 
    function stopMoveRight(dataSmartphone) {

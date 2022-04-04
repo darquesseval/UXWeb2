@@ -24,11 +24,11 @@ document.body.addEventListener("click", () => {
 stopGlow();
 function stopGlow(){
     if(document.getElementById("mouth").classList.contains("active")){
-        let stop = false;
+        let stopGlowing = false;
     }
-    else{let stop = true}
+    else{let stopGlowing = true}
     var dataSmartphone = {
-    stopGlowing: stop
+    stopGlowing: stopGlowing
 }
     socket.emit('forMouthStop', dataSmartphone);
 }
@@ -36,11 +36,11 @@ function stopGlow(){
 stopStun();
 function stopStun() {
     if(document.getElementById("arm").classList.contains("active")){
-        let stop = false;
+        let stopStunning = false;
     }
-    else{let stop = true}
+    else{let stopStunning = true}
     var dataSmartphone = {
-    stopStunning: stop
+    stopStunning: stopStunning
 }
     socket.emit('forArmStop', dataSmartphone);
 }
@@ -48,11 +48,11 @@ function stopStun() {
 stopMoveRight();
 function stopMoveRight() {
     if(document.getElementById("moveRight").classList.contains("active")){
-        let stop = false;
+        let stopMovingRight = false;
     }
-    else{let stop = true}
+    else{let stopMovingRight = true}
     var dataSmartphone = {
-    stopWater: stop
+    stopWater: stopMovingRight
 }
     socket.emit('forRightStop', dataSmartphone);
 }
@@ -60,11 +60,11 @@ function stopMoveRight() {
 stopMoveLeft();
 function stopMoveLeft() {
     if(document.getElementById("moveLeft").classList.contains("active")){
-        let stop = false;
+        let stopMovingLeft = false;
     }
-    else{let stop = true}
+    else{let stopMovingLeft = true}
     var dataSmartphone = {
-    stopWater: stop
+    stopWater: stopMovingLeft
 }
     socket.emit('forLeftStop', dataSmartphone);
 }
