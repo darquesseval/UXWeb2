@@ -470,7 +470,7 @@ posX +=jellySpeed/40
    }
 
    function stopMoveRight(dataSmartphone) {
-    if (dataSmartphone.stopRight === true) {
+    if (dataSmartphone.stopMovingRight === true) {
         stopR = true
     } else {
         stopR = false
@@ -479,7 +479,7 @@ posX +=jellySpeed/40
 }
 
 function stopMoveLeft(dataSmartphone) {
-    if (dataSmartphone.stopLeft === true) {
+    if (dataSmartphone.stopMovingLeft === true) {
         stopL = true
     } else {
         stopL = false
