@@ -211,7 +211,6 @@ if(bgX>=0){
 
     for (let k = 0; k < fishCount; k++) {
         push()
-
         scale(fishDir[k], 1)
         if (fishStunned[k] === false | stopS === true) {
             image(fish[k][0], fishX[k]*fishDir[k], fishY[k], fishW, fishH);
@@ -238,7 +237,8 @@ if(bgX>=0){
         } 
         pop()
     }
-  
+
+    if(glow == true) {
     for (let countx = x - 50; countx <= x; countx++) {
         push()
         fill(255, 255, 255, 10);
@@ -247,7 +247,7 @@ if(bgX>=0){
         ellipse(posX - wW / 40 * 1.5 + wW / 40 * 2.5, posY - wW / 60 + wW / 40 * 4.25, countx * 1.5 ^ (countx * 0.75), countx * 2.8);
         pop()
     }
-
+}
     if (x >= glowControl + 45) {
         negcount = true;
     } else if (x <= glowControl) {
