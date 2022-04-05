@@ -38,10 +38,10 @@ let sYc;
 let sZ;
 let sZc;
 
-let stopG = true;
-let stopR = true;
-let stopL = true;
-let stopS = true;
+let stopG = false;
+let stopR = false;
+let stopL = false;
+let stopS = false;
 
 let i = 0;
 let j;
@@ -201,11 +201,10 @@ function setup() {
 
 }
 
-function onClick() {
+function draw() {
+    if(keyIsPressed){
     bg_sound.loop()
 }
-
-function draw() {
     Matter.Engine.update(engine);
     background(0);
     image(bg, bgX, bgY, windowHeight*6.5, windowHeight*2);
@@ -316,7 +315,7 @@ if(bgX <= windowHeight*-6.5-wW) {
     }
     pop()
 
-    if (stopG === true && glowControl > 80) {
+    if (stopG === true) {
         sX = 0;
         sY = 0;
         sZ = 0;

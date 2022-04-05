@@ -22,7 +22,7 @@ document.body.addEventListener("click", () => {
     calibrate = true
 })
 
-stopGlow();
+document.getElementById("mouth").onclick = stopGlow();
 function stopGlow(){
     if(document.getElementById("mouth").classList.contains("active")){
         let stopGlowing = false;
@@ -34,7 +34,8 @@ function stopGlow(){
     socket.emit('forMouthStop', dataSmartphone);
 }
 
-stopStun();
+document.getElementById("arm").onclick = stopStun();
+
 function stopStun() {
     if(document.getElementById("arm").classList.contains("active")){
         let stopStunning = false;
@@ -46,7 +47,7 @@ function stopStun() {
     socket.emit('forArmStop', dataSmartphone);
 }
 
-stopMoveRight();
+document.getElementById("moveRight").onclick = stopMoveRight();
 function stopMoveRight() {
     if(document.getElementById("moveRight").classList.contains("active")){
         let stopMovingRight = false;
@@ -58,7 +59,7 @@ function stopMoveRight() {
     socket.emit('forRightStop', dataSmartphone);
 }
 
-stopMoveLeft();
+document.getElementById("moveLeft").onclick = stopMoveLeft();
 function stopMoveLeft() {
     if(document.getElementById("moveLeft").classList.contains("active")){
         let stopMovingLeft = false;
