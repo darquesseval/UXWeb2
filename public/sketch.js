@@ -328,19 +328,19 @@ function draw() {
         glowControl = 80;
     }
 
-    if (arm1.body.bodies[arm1.n - 1].velocity.x >= 50 |
-            arm1.body.bodies[arm1.n - 1].velocity.y >= 50 |
-            arm1.body.bodies[arm1.n - 1].velocity.x <= -50 |
-            arm1.body.bodies[arm1.n - 1].velocity.y <= -50) {
+    if (arm1.body.bodies[arm1.n - 1].velocity.x >= 75 |
+            arm1.body.bodies[arm1.n - 1].velocity.y >= 75 |
+            arm1.body.bodies[arm1.n - 1].velocity.x <= -75 |
+            arm1.body.bodies[arm1.n - 1].velocity.y <= -75) {
                 if(soundArm == false) {
         soundArm = true
         arm_sound.play()
     }
 }
-    if (tentacle1.body.bodies[tentacle1.n - 1].velocity.x >= 50 |
-            tentacle1.body.bodies[tentacle1.n - 1].velocity.y >= 50 |
-            tentacle1.body.bodies[tentacle1.n - 1].velocity.x <= -50 |
-            tentacle1.body.bodies[tentacle1.n - 1].velocity.y <= -50) {
+    if (tentacle1.body.bodies[tentacle1.n - 1].velocity.x >= 75 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.y >= 75 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.x <= -75 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.y <= -75) {
                 if (soundTentacle == false) {
         soundTentacle = true
         tentacle_sound.play()

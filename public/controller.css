@@ -26,6 +26,7 @@ button {
     font-size: 8vw;
     font-family: 'Trebuchet MS';
     border-color:  white;
+    border-radius: 30px;
 border-style: solid;
 color: rgba(0, 0, 0, 0);
     background-color: #222222;
