@@ -323,12 +323,19 @@ if(bgX <= windowHeight*-6.5-wW) {
         glowControl = 80;
     }
 
-    if(arm1.velocity >= 10 && soundArm == false){
+    if((arm1.body.bodies[arm1.n-1].velocity.x >= 10 | 
+        arm1.body.bodies[arm1.n-1].velocity.y >= 10 |
+        arm1.body.bodies[arm1.n-1].velocity.x <= -10 | 
+        arm1.body.bodies[arm1.n-1].velocity.y <= -10) 
+        && soundArm == false){
         soundArm = true
         arm_sound.play
         arm_sound.volume(0.5)
     }
-    if(tentacle1.velocity >=10 && soundTentacle == false) {
+    if((tentacle1.body.bodies[tentacle1.n-1].velocity.x >=10 | 
+        tentacle1.body.bodies[tentacle1.n-1].velocity.y >=10 |
+        tentacle1.body.bodies[tentacle1.n-1].velocity.x <= -10 | 
+        tentacle1.body.bodies[tentacle1.n-1].velocity.y <= -10) && soundTentacle == false) {
         soundTentacle = true
         tentacle_sound.play
         tentacle_sound.volume(0.5)
@@ -473,19 +480,19 @@ if (dataSmartphone.shakeX >=5 && dataSmartphone.shakeX>jellySpeed) {
 }   else {jellySpeed -=0.1}
     
 
-tentacle1.cN.pointA.x +=jellySpeed/40
-tentacle2.cN.pointA.x +=jellySpeed/40
-tentacle3.cN.pointA.x +=jellySpeed/40
-tentacle4.cN.pointA.x +=jellySpeed/40
-tentacle5.cN.pointA.x +=jellySpeed/40
-tentacle6.cN.pointA.x +=jellySpeed/40
-arm1.cN.pointA.x +=jellySpeed/40
-arm2.cN.pointA.x +=jellySpeed/40
-arm3.cN.pointA.x +=jellySpeed/40
-arm4.cN.pointA.x +=jellySpeed/40
-arm5.cN.pointA.x +=jellySpeed/40
-bellPhysics.position.x +=jellySpeed/40
-posX +=jellySpeed/40
+tentacle1.cN.pointA.x +=jellySpeed/20
+tentacle2.cN.pointA.x +=jellySpeed/20
+tentacle3.cN.pointA.x +=jellySpeed/20
+tentacle4.cN.pointA.x +=jellySpeed/20
+tentacle5.cN.pointA.x +=jellySpeed/20
+tentacle6.cN.pointA.x +=jellySpeed/20
+arm1.cN.pointA.x +=jellySpeed/20
+arm2.cN.pointA.x +=jellySpeed/20
+arm3.cN.pointA.x +=jellySpeed/20
+arm4.cN.pointA.x +=jellySpeed/20
+arm5.cN.pointA.x +=jellySpeed/20
+bellPhysics.position.x +=jellySpeed/20
+posX +=jellySpeed/20
    }
 
    function leftMove(dataSmartphone) {
@@ -495,19 +502,19 @@ posX +=jellySpeed/40
     }  
    else {jellySpeed +=0.1}
 
-tentacle1.cN.pointA.x +=jellySpeed/40
-tentacle2.cN.pointA.x +=jellySpeed/40
-tentacle3.cN.pointA.x +=jellySpeed/40
-tentacle4.cN.pointA.x +=jellySpeed/40
-tentacle5.cN.pointA.x +=jellySpeed/40
-tentacle6.cN.pointA.x +=jellySpeed/40
-arm1.cN.pointA.x +=jellySpeed/40
-arm2.cN.pointA.x +=jellySpeed/40
-arm3.cN.pointA.x +=jellySpeed/40
-arm4.cN.pointA.x +=jellySpeed/40
-arm5.cN.pointA.x +=jellySpeed/40
-bellPhysics.position.x +=jellySpeed/40
-posX +=jellySpeed/40
+tentacle1.cN.pointA.x +=jellySpeed/20
+tentacle2.cN.pointA.x +=jellySpeed/20
+tentacle3.cN.pointA.x +=jellySpeed/20
+tentacle4.cN.pointA.x +=jellySpeed/20
+tentacle5.cN.pointA.x +=jellySpeed/20
+tentacle6.cN.pointA.x +=jellySpeed/20
+arm1.cN.pointA.x +=jellySpeed/20
+arm2.cN.pointA.x +=jellySpeed/20
+arm3.cN.pointA.x +=jellySpeed/20
+arm4.cN.pointA.x +=jellySpeed/20
+arm5.cN.pointA.x +=jellySpeed/20
+bellPhysics.position.x +=jellySpeed/20
+posX +=jellySpeed/20
    }
 
    function stopMoveRight(dataSmartphone) {
