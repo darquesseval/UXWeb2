@@ -104,7 +104,6 @@ function preload() {
 
 function setup() {
     frameRate(30)
-    bg_sound.loop()
     createCanvas(windowWidth, windowHeight)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('forArm', stingingArms);
@@ -120,7 +119,7 @@ function setup() {
     engine = Matter.Engine.create();
     world = engine.world;
     posX = windowWidth / 2;
-    posY = windowWidth * 0.1;
+    posY = windowHeight * 0.3;
     bgY = windowHeight/-2
     bgX = windowHeight*-3
 
@@ -202,11 +201,15 @@ function setup() {
 
 }
 
+function onClick() {
+    bg_sound.loop()
+}
 
 function draw() {
     Matter.Engine.update(engine);
     background(0);
     image(bg, bgX, bgY, windowHeight*6.5, windowHeight*2);
+
     bgX +=jellySpeed
     if(stopR == true && stopL == true){
     if(bgScroll==true) {
@@ -220,6 +223,11 @@ if(bgX>=0){
     bgScroll=true;
 }
 }
+}
+if(bgX <= windowHeight*-6.5-wW) {
+    image(bg, bgX+bg.width, bgY, windowHeight*6.5, windowHeight*2);
+}else if (bgX>=0) {
+    image(bg, bgX-bg.width, bgY, windowHeight*6.5, windowHeight*2);
 }
 
     for (let k = 0; k < fishCount; k++) {
