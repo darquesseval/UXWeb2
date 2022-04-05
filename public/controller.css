@@ -72,5 +72,7 @@ color: rgba(0, 0, 0, 0);
     grid-row: 4/5;
   }
   .active {
-    color: rgba(255, 255, 255, 1)
+    color: rgba(255, 255, 255, 1);
+    border-color: #cc00ff;
+
   }

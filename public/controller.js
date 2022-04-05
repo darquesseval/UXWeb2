@@ -25,43 +25,6 @@ document.body.addEventListener("click", () => {
     calibrate = true
 })
 
-stopGlow();
-function stopGlow(){
-
-    var dataSmartphone = {
-    stopGlowing: stopGlowing
-}
-    socket.emit('forMouthStop', dataSmartphone);
-}
-
-stopStun();
-
-function stopStun() {
-
-    var dataSmartphone = {
-    stopStunning: stopStunning
-}
-    socket.emit('forArmStop', dataSmartphone);
-}
-
-stopMoveRight();
-function stopMoveRight() {
-
-    var dataSmartphone = {
-        stopMovingRight: stopMovingRight
-}
-    socket.emit('forRightStop', dataSmartphone);
-}
-
-stopMoveLeft();
-function stopMoveLeft() {
-
-    var dataSmartphone = {
-        stopMovingLeft: stopMovingLeft
-}
-    socket.emit('forLeftStop', dataSmartphone);
-}
-
 //makes some kind of euler angle of sensor data
 function toEuler(q) {
     let sinr_cosp = 2 * (q[3] * q[0] + q[1] * q[2]);
@@ -86,6 +49,10 @@ document.getElementById("arm").addEventListener("click", function () {
          stopStunning = false;
         console.log('activated')
     }
+    var dataSmartphone = {
+        stopStunning: stopStunning
+    }
+        socket.emit('forArmStop', dataSmartphone);
 })
 
 document.getElementById("tentacle").addEventListener("click", function () {
@@ -108,6 +75,11 @@ document.getElementById("mouth").addEventListener("click", function () {
          stopGlowing = false;
         console.log('activated')
     }
+
+    var dataSmartphone = {
+        stopGlowing: stopGlowing
+    }
+        socket.emit('forMouthStop', dataSmartphone);
 })
 
 document.getElementById("moveRight").addEventListener("click", function () {
@@ -120,6 +92,10 @@ document.getElementById("moveRight").addEventListener("click", function () {
          stopMovingRight = false;
         console.log('activated')
     }
+    var dataSmartphone = {
+        stopMovingRight: stopMovingRight
+}
+    socket.emit('forRightStop', dataSmartphone);
 })
 
 document.getElementById("moveLeft").addEventListener("click", function () {
@@ -132,6 +108,10 @@ document.getElementById("moveLeft").addEventListener("click", function () {
          stopMovingLeft = false;
         console.log('activated')
     }
+    var dataSmartphone = {
+        stopMovingLeft: stopMovingLeft
+}
+    socket.emit('forLeftStop', dataSmartphone);
 })
 
 //get sensor data and send it
