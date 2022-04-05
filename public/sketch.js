@@ -75,6 +75,7 @@ let soundMove = false;
 let arm_sound, move_sound, bg_sound, tentacle_sound;
 
 function preload() {
+    background(0);
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
     bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
     tentacle = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
@@ -107,8 +108,8 @@ function preload() {
 function setup() {
     frameRate(30)
     background(0);
-    cnv = createCanvas(windowWidth / 2, windowHeight * 0.75)
-    cnv.position(windowWidth*0.25, windowHeight*0.125)
+    cnv = createCanvas(windowWidth * 0.75, windowHeight * 0.875)
+    cnv.position(windowWidth*0.125, windowHeight*0.06)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('forArm', stingingArms);
     socket.on('forTentacle', tentaclesTurn);
@@ -121,29 +122,29 @@ function setup() {
     socket.on('forLeftStop', stopMoveLeft);
     engine = Matter.Engine.create();
     world = engine.world;
-    posX = windowWidth / 2 / 2;
-    posY = windowHeight * 0.75 * 0.4;
-    bgY = windowHeight * 0.75 / -2
-    bgX = windowHeight * 0.75 * -3
+    posX = windowWidth * 0.75 / 2;
+    posY = windowHeight * 0.875 * 0.4;
+    bgY = windowHeight * 0.875 / -2
+    bgX = windowHeight * 0.875 * -3
 
-    bellW = windowWidth / 2 / 13 * 3.5;
-    bellH = windowWidth / 2 / 10 * 1.75;
-    gap = windowWidth / 2 / 10
-    armGap = windowWidth / 2 / gap;
-    tentacleGap = windowWidth / 2 / gap / 8;
+    bellW = windowWidth * 0.75 / 13 * 3.5;
+    bellH = windowWidth * 0.75 / 10 * 1.75;
+    gap = windowWidth * 0.75 / 10
+    armGap = windowWidth * 0.75 / gap;
+    tentacleGap = windowWidth * 0.75 / gap / 8;
 
-    arm1x = -windowWidth / 2 / 40 * 3
-    arm2x = -windowWidth / 2 / 40 * 1.5
-    arm3x = +windowWidth / 2 / 40 * 0.25
-    arm4x = +windowWidth / 2 / 40 * 2
-    arm5x = +windowWidth / 2 / 40 * 3.75
+    arm1x = -windowWidth * 0.75 / 40 * 3
+    arm2x = -windowWidth * 0.75 / 40 * 1.5
+    arm3x = +windowWidth * 0.75 / 40 * 0.25
+    arm4x = +windowWidth * 0.75 / 40 * 2
+    arm5x = +windowWidth * 0.75 / 40 * 3.75
 
-    tentacle1x = -windowWidth / 2 / 40 * 3.25
-    tentacle2x = -windowWidth / 2 / 40 * 1.5
+    tentacle1x = -windowWidth * 0.75 / 40 * 3.25
+    tentacle2x = -windowWidth * 0.75 / 40 * 1.5
     tentacle3x = -0
-    tentacle4x = +windowWidth / 2 / 40 * 1.75
-    tentacle5x = +windowWidth / 2 / 40 * 3.5
-    tentacle6x = +windowWidth / 2 / 40 * 5.25
+    tentacle4x = +windowWidth * 0.75 / 40 * 1.75
+    tentacle5x = +windowWidth * 0.75 / 40 * 3.5
+    tentacle6x = +windowWidth * 0.75 / 40 * 5.25
 
     sX = 0;
     sXc = 0;
@@ -152,7 +153,7 @@ function setup() {
     sZ = 0;
     sZc = 0;
 
-    wW = windowWidth / 2;
+    wW = windowWidth * 0.75;
     fishW = wW / 23;
     fishH = wW / 40;
 
@@ -175,7 +176,7 @@ function setup() {
     tentacle5 = new Rope(posX + tentacle5x, tentacleY, tentacleGap, 60, fix10)
     tentacle6 = new Rope(posX + tentacle6x, tentacleY, tentacleGap, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX + windowWidth / 2 / 35, posY - bellH / 3, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX + windowWidth * 0.75 / 35, posY - bellH / 3, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -191,8 +192,8 @@ function setup() {
             [fish_04, fish_04_stunned]
         ];
         append(fish, random(fishs));
-        append(fishXstart, random(windowWidth / 2 * 0.05, windowWidth / 2 * 0.95));
-        append(fishY, random(windowHeight * 0.75 * 0.05, windowHeight * 0.75 * 0.95));
+        append(fishXstart, random(windowWidth * 0.75 * 0.05, windowWidth * 0.75 * 0.95));
+        append(fishY, random(windowHeight * 0.875 * 0.05, windowHeight * 0.875 * 0.95));
         append(fishDir, random(fishDirChoice));
         append(fishSpeed, random(0.01, 0.5))
         append(fishX, fishXstart[j]);
@@ -210,14 +211,13 @@ function draw() {
     }
     Matter.Engine.update(engine);
     background(0);
-    translate(windowWidth * 0.25, windowHeight * 0.125)
-    image(bg, bgX, bgY, windowHeight * 0.75 * 6.5, windowHeight * 0.75 * 2);
+    image(bg, bgX, bgY, windowHeight * 0.875 * 6.5, windowHeight * 0.875 * 2);
 
     bgX += jellySpeed
     if (stopR == true && stopL == true) {
         if (bgScroll == true) {
             jellySpeed = -0.2
-            if (bgX <= windowHeight * 0.75 * -6.5 - wW) {
+            if (bgX <= windowHeight * 0.875 * -6.5 - wW) {
                 bgScroll = false;
             }
         } else {
@@ -227,10 +227,10 @@ function draw() {
             }
         }
     }
-    if (bgX <= windowHeight * 0.75 * -6.5 - wW) {
+    if (bgX <= windowHeight * 0.875 * -6.5 - wW) {
         bgX = 0;
     } else if (bgX >= 0) {
-        bgX = windowHeight * 0.75 * -6.5 - wW;
+        bgX = windowHeight * 0.875 * -6.5 - wW;
     }
 
     for (let k = 0; k < fishCount; k++) {
@@ -368,20 +368,20 @@ function stingingArms(dataSmartphone) {
 
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
-    arm1.body.bodies[arm1.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm1x;
-    arm1.body.bodies[arm1.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    arm1.body.bodies[arm1.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + arm1x;
+    arm1.body.bodies[arm1.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    arm2.body.bodies[arm2.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm2x;
-    arm2.body.bodies[arm2.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    arm2.body.bodies[arm2.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + arm2x;
+    arm2.body.bodies[arm2.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    arm3.body.bodies[arm3.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm3x;
-    arm3.body.bodies[arm3.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    arm3.body.bodies[arm3.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + arm3x;
+    arm3.body.bodies[arm3.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    arm4.body.bodies[arm4.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm4x;
-    arm4.body.bodies[arm4.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    arm4.body.bodies[arm4.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + arm4x;
+    arm4.body.bodies[arm4.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    arm5.body.bodies[arm5.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm5x;
-    arm5.body.bodies[arm5.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    arm5.body.bodies[arm5.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + arm5x;
+    arm5.body.bodies[arm5.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
     arm1.collision();
     arm2.collision();
@@ -405,23 +405,23 @@ function tentaclesTurn(dataSmartphone) {
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
     angleMode(DEGREES);
-    tentacle1.body.bodies[tentacle1.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX;
-    tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    tentacle1.body.bodies[tentacle1.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX;
+    tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    tentacle2.body.bodies[tentacle2.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle2x;
-    tentacle2.body.bodies[tentacle2.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    tentacle2.body.bodies[tentacle2.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + tentacle2x;
+    tentacle2.body.bodies[tentacle2.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    tentacle3.body.bodies[tentacle3.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle3x;
-    tentacle3.body.bodies[tentacle3.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    tentacle3.body.bodies[tentacle3.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + tentacle3x;
+    tentacle3.body.bodies[tentacle3.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    tentacle4.body.bodies[tentacle4.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle4x;
-    tentacle4.body.bodies[tentacle4.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    tentacle4.body.bodies[tentacle4.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + tentacle4x;
+    tentacle4.body.bodies[tentacle4.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    tentacle5.body.bodies[tentacle5.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle5x;
-    tentacle5.body.bodies[tentacle5.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    tentacle5.body.bodies[tentacle5.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + tentacle5x;
+    tentacle5.body.bodies[tentacle5.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
-    tentacle6.body.bodies[tentacle6.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle6x;
-    tentacle6.body.bodies[tentacle6.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
+    tentacle6.body.bodies[tentacle6.n - 1].position.x = windowWidth * 0.75 / 2 + sensitivityX + tentacle6x;
+    tentacle6.body.bodies[tentacle6.n - 1].position.y = windowHeight * 0.875 * 0.75 + sensitivityY;
 
 }
 
