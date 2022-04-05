@@ -10,27 +10,26 @@ html {
         height: 100vh;
         padding: 0;
         margin: 0;
-        background-color: black;
+        background-color: #222222;
         }
     
 .grid {
     display: grid;
   height: 100vh;
   width: 100vw;
-  grid-template-columns: 2.5vw 45vw 5vw 45vw 2.5vw;
-  grid-template-rows: 2.5vh 30vh 2.5vh 30vh 2.5vh 30vh 2.5vh;
+  grid-template-columns: .5vw 99vw .5vw;
+  grid-template-rows: .5vh 19.5vh .5vh 19.5vh .5vh 19.5vh .5vh 19.5vh .5vh 19.5vh;
 
 }
 
 button {
     font-size: 8vw;
     font-family: 'Trebuchet MS';
-    border-radius: 6%;
     border-color:  white;
 border-style: solid;
 color: rgba(0, 0, 0, 0);
-    background-color: black;
-    border-width: 0.5vw;
+    background-color: #222222;
+    border-width: 0.2vw;
 }
 
 .arm {
@@ -38,41 +37,56 @@ color: rgba(0, 0, 0, 0);
   background-size: cover;
   background-position: top center;
   grid-column: 2/3;
-  grid-row: 2/3;
+  grid-row: 4/5;
 }
 
 .tentacle {
   background-image: url('https://experimenting-webux2.herokuapp.com/pic/tentacle_button.png');
   background-size: cover;
   background-position: top center;
-    grid-column: 4/5;
-    grid-row: 2/3;
+  grid-column: 2/3;
+    grid-row: 8/9;
   }
 
   .moveLeft {
     background-image: url('https://experimenting-webux2.herokuapp.com/pic/left_button.png');
     background-size: cover;
     background-position: left;
-    grid-column: 2/3;
-    grid-row: 6/7;
+  grid-column: 2/3;
+    grid-row: 2/3;
   }
   .moveRight{
     background-image: url('https://experimenting-webux2.herokuapp.com/pic/right_button.png');
     background-size: cover;
     background-position:right;
-    grid-column: 4/5;
-    grid-row: 6/7;
+  grid-column: 2/3;
+    grid-row: 10/11;
   }
 
   .mouth {
     background-image: url('https://experimenting-webux2.herokuapp.com/pic/glow_button.png');
     background-position: center;
     background-size: cover;
-    grid-column: 2/5;
-    grid-row: 4/5;
+    grid-column: 2/3;
+    grid-row: 6/7;
   }
   .active {
     color: rgba(255, 255, 255, 1);
-    border-color: #cc00ff;
+    background-color: #222222;
+background-image: none;
+  }
 
+  .mouth.active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #cc00ff;
+  }
+
+  .arm.active {
+    color: rgba(255, 255, 255, 1);
+    background-color: #44dd00;
+  }
+
+  .tentacle.active {
+    color: rgb(36, 36, 36, 1);
+    background-color: #ffffff;
   }

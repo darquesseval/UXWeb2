@@ -229,9 +229,9 @@ function draw() {
         }
     }
     if (bgX <= wH * -6.5 - wW) {
-        bgX = 0;
+        bgX = windowHeight * 0.875 * -3;
     } else if (bgX >= 0) {
-        bgX = wH * -6.5 - wW;
+        bgX = windowHeight * 0.875 * -3;
     }
 
     for (let k = 0; k < fishCount; k++) {
@@ -328,25 +328,31 @@ function draw() {
         glowControl = 80;
     }
 
-    if ((arm1.body.bodies[arm1.n - 1].velocity.x >= 4 |
-            arm1.body.bodies[arm1.n - 1].velocity.y >= 4 |
-            arm1.body.bodies[arm1.n - 1].velocity.x <= -4 |
-            arm1.body.bodies[arm1.n - 1].velocity.y <= -4) &&
-        soundArm == false) {
+    if (arm1.body.bodies[arm1.n - 1].velocity.x >= 50 |
+            arm1.body.bodies[arm1.n - 1].velocity.y >= 50 |
+            arm1.body.bodies[arm1.n - 1].velocity.x <= -50 |
+            arm1.body.bodies[arm1.n - 1].velocity.y <= -50) {
+                if(soundArm == false) {
         soundArm = true
-        arm_sound.play
+        arm_sound.play()
     }
-    if ((tentacle1.body.bodies[tentacle1.n - 1].velocity.x >= 4 |
-            tentacle1.body.bodies[tentacle1.n - 1].velocity.y >= 4 |
-            tentacle1.body.bodies[tentacle1.n - 1].velocity.x <= -4 |
-            tentacle1.body.bodies[tentacle1.n - 1].velocity.y <= -4) && soundTentacle == false) {
+}
+    if (tentacle1.body.bodies[tentacle1.n - 1].velocity.x >= 50 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.y >= 50 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.x <= -50 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.y <= -50) {
+                if (soundTentacle == false) {
         soundTentacle = true
-        tentacle_sound.play
+        tentacle_sound.play()
     }
-    if (jellySpeed >= 4 && soundMove == false) {
+}
+    if (jellySpeed >= 13 || jellySpeed <= -13) {
+        if(soundMove == false){
         soundMove = true
-        move_sound.play
+        move_sound.play()
     }
+}
+
     arm_sound.onended(soundFinishedArm)
     tentacle_sound.onended(soundFinishedTentacle)
     move_sound.onended(soundFinishedMove)
