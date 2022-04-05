@@ -3,6 +3,7 @@ var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
 let initPos;
 let calibrate = true;
+let stopGlowing, stopStunning, stopMovingLeft, stopMovingRight;
 
 const sensor = new AbsoluteOrientationSensor({
     frequency: 60
@@ -52,7 +53,7 @@ function stopMoveRight() {
     }
     else{let stopMovingRight = true}
     var dataSmartphone = {
-    stopWater: stopMovingRight
+        stopMovingRight: stopMovingRight
 }
     socket.emit('forRightStop', dataSmartphone);
 }
@@ -64,7 +65,7 @@ function stopMoveLeft() {
     }
     else{let stopMovingLeft = true}
     var dataSmartphone = {
-    stopWater: stopMovingLeft
+        stopMovingLeft: stopMovingLeft
 }
     socket.emit('forLeftStop', dataSmartphone);
 }
