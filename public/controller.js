@@ -3,6 +3,10 @@ var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
 let initPos;
 let calibrate = true;
+let stopGlowing = false;
+let stopStunning = false;
+let stopMovingRight = false;
+let stopMovingLeft = false;
 
 const sensor = new AbsoluteOrientationSensor({
     frequency: 60
