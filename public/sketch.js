@@ -119,7 +119,7 @@ function setup() {
     engine = Matter.Engine.create();
     world = engine.world;
     posX = windowWidth / 2;
-    posY = windowHeight * 0.3;
+    posY = windowHeight * 0.4;
     bgY = windowHeight/-2
     bgX = windowHeight*-3
 
