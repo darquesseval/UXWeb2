@@ -3,10 +3,6 @@ var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
 let initPos;
 let calibrate = true;
-let stopGlowing=false;
-let stopStunning=false;
-let stopMovingLeft=false;
-let stopMovingRight=false;
 
 const sensor = new AbsoluteOrientationSensor({
     frequency: 60
@@ -25,49 +21,37 @@ document.body.addEventListener("click", () => {
     calibrate = true
 })
 
-document.getElementById("mouth").onclick = stopGlow();
+stopGlow();
 function stopGlow(){
-    if(document.getElementById("mouth").classList.contains("active")){
-        let stopGlowing = false;
-    }
-    else{let stopGlowing = true}
+
     var dataSmartphone = {
     stopGlowing: stopGlowing
 }
     socket.emit('forMouthStop', dataSmartphone);
 }
 
-document.getElementById("arm").onclick = stopStun();
+stopStun();
 
 function stopStun() {
-    if(document.getElementById("arm").classList.contains("active")){
-        let stopStunning = false;
-    }
-    else{let stopStunning = true}
+
     var dataSmartphone = {
     stopStunning: stopStunning
 }
     socket.emit('forArmStop', dataSmartphone);
 }
 
-document.getElementById("moveRight").onclick = stopMoveRight();
+stopMoveRight();
 function stopMoveRight() {
-    if(document.getElementById("moveRight").classList.contains("active")){
-        let stopMovingRight = false;
-    }
-    else{let stopMovingRight = true}
+
     var dataSmartphone = {
         stopMovingRight: stopMovingRight
 }
     socket.emit('forRightStop', dataSmartphone);
 }
 
-document.getElementById("moveLeft").onclick = stopMoveLeft();
+stopMoveLeft();
 function stopMoveLeft() {
-    if(document.getElementById("moveLeft").classList.contains("active")){
-        let stopMovingLeft = false;
-    }
-    else{let stopMovingLeft = true}
+
     var dataSmartphone = {
         stopMovingLeft: stopMovingLeft
 }
@@ -91,9 +75,11 @@ function toEuler(q) {
 document.getElementById("arm").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
+        let stopStunning = true;
         console.log('deactivated')
     } else {
         this.classList.add("active")
+        let stopStunning = false;
         console.log('activated')
     }
 })
@@ -111,9 +97,11 @@ document.getElementById("tentacle").addEventListener("click", function () {
 document.getElementById("mouth").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
+        let stopGlowing = true;
         console.log('deactivated')
     } else {
         this.classList.add("active")
+        let stopGlowing = false;
         console.log('activated')
     }
 })
@@ -121,9 +109,11 @@ document.getElementById("mouth").addEventListener("click", function () {
 document.getElementById("moveRight").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
+        let stopMovingRight = true;
         console.log('deactivated')
     } else {
         this.classList.add("active")
+        let stopMovingRight = false;
         console.log('activated')
     }
 })
@@ -131,9 +121,11 @@ document.getElementById("moveRight").addEventListener("click", function () {
 document.getElementById("moveLeft").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
+        let stopMovingLeft = true;
         console.log('deactivated')
     } else {
         this.classList.add("active")
+        let stopMovingLeft = false;
         console.log('activated')
     }
 })

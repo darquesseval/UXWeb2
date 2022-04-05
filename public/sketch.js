@@ -224,9 +224,9 @@ if(bgX>=0){
 }
 }
 if(bgX <= windowHeight*-6.5-wW) {
-    image(bg, bgX+bg.width, bgY, windowHeight*6.5, windowHeight*2);
+    bgX=0;
 }else if (bgX>=0) {
-    image(bg, bgX-bg.width, bgY, windowHeight*6.5, windowHeight*2);
+    bgX=windowHeight*-6.5-wW;
 }
 
     for (let k = 0; k < fishCount; k++) {
