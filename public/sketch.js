@@ -106,7 +106,9 @@ function preload() {
 
 function setup() {
     frameRate(30)
-    createCanvas(windowWidth / 2, windowHeight * 0.75)
+    background(0);
+    cnv = createCanvas(windowWidth / 2, windowHeight * 0.75)
+    cnv.position(windowWidth*0.25, windowHeight*0.125)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('forArm', stingingArms);
     socket.on('forTentacle', tentaclesTurn);
@@ -117,7 +119,6 @@ function setup() {
     socket.on('forRightStop', stopMoveRight);
     socket.on('forLeft', leftMove);
     socket.on('forLeftStop', stopMoveLeft);
-    background(0);
     engine = Matter.Engine.create();
     world = engine.world;
     posX = windowWidth / 2 / 2;
@@ -348,13 +349,6 @@ function draw() {
     arm_sound.onended(soundFinishedArm)
     tentacle_sound.onended(soundFinishedTentacle)
     move_sound.onended(soundFinishedMove)
-
-    push()
-    translate(0, 0)
-    fill(0, 0, 0, 0)
-    rect(windowWidth * 0.75, 0, windowWidth * 0.25, windowHeight)
-    rect(0, windowHeight * 0.875, windowWidth, windowHeight * 0.125);
-    pop()
 }
 
 function soundFinishedArm() {
