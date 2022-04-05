@@ -47,6 +47,7 @@ let stopS = false;
 
 let i = 0;
 let j;
+let sound_started = false;
 
 let fishCount;
 let fishs = [];
@@ -207,8 +208,9 @@ function setup() {
 }
 
 function draw() {
-    if (keyIsPressed) {
+    if (keyIsPressed && sound_started == false) {
         bg_sound.loop()
+        sound_started = true;
     }
     Matter.Engine.update(engine);
     background(0);
