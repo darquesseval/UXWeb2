@@ -1,3 +1,5 @@
+const fill = require("fill-range")
+
 var socket
 let engine
 let world
@@ -94,17 +96,17 @@ function preload() {
     fish_04_stunned = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4_stunned.png');
 
     soundFormats('mp3');
-  arm_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
-  tentacle_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
-  move_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/move_fast.mp3');
-  bg_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/constant_sound.mp3');
+    arm_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
+    tentacle_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
+    move_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/move_fast.mp3');
+    bg_sound = createAudio('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/constant_sound.mp3');
 
 }
 
 
 function setup() {
     frameRate(30)
-    createCanvas(windowWidth, windowHeight)
+    createCanvas(windowWidth / 2, windowHeight * 0.75)
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('forArm', stingingArms);
     socket.on('forTentacle', tentaclesTurn);
@@ -118,29 +120,29 @@ function setup() {
     background(0);
     engine = Matter.Engine.create();
     world = engine.world;
-    posX = windowWidth / 2;
-    posY = windowHeight * 0.4;
-    bgY = windowHeight/-2
-    bgX = windowHeight*-3
+    posX = windowWidth / 2 / 2;
+    posY = windowHeight * 0.75 * 0.4;
+    bgY = windowHeight * 0.75 / -2
+    bgX = windowHeight * 0.75 * -3
 
-    bellW = windowWidth / 13 * 3.5;
-    bellH = windowWidth / 10 * 1.75;
-    gap = windowWidth / 10
-    armGap = windowWidth / gap;
-    tentacleGap = windowWidth / gap / 8;
+    bellW = windowWidth / 2 / 13 * 3.5;
+    bellH = windowWidth / 2 / 10 * 1.75;
+    gap = windowWidth / 2 / 10
+    armGap = windowWidth / 2 / gap;
+    tentacleGap = windowWidth / 2 / gap / 8;
 
-    arm1x = -windowWidth / 40 * 3
-    arm2x = -windowWidth / 40 * 1.5
-    arm3x = +windowWidth / 40 * 0.25
-    arm4x = +windowWidth / 40 * 2
-    arm5x = +windowWidth / 40 * 3.75
+    arm1x = -windowWidth / 2 / 40 * 3
+    arm2x = -windowWidth / 2 / 40 * 1.5
+    arm3x = +windowWidth / 2 / 40 * 0.25
+    arm4x = +windowWidth / 2 / 40 * 2
+    arm5x = +windowWidth / 2 / 40 * 3.75
 
-    tentacle1x = -windowWidth / 40 * 3.25
-    tentacle2x = -windowWidth / 40 * 1.5
+    tentacle1x = -windowWidth / 2 / 40 * 3.25
+    tentacle2x = -windowWidth / 2 / 40 * 1.5
     tentacle3x = -0
-    tentacle4x = +windowWidth / 40 * 1.75
-    tentacle5x = +windowWidth / 40 * 3.5
-    tentacle6x = +windowWidth / 40 * 5.25
+    tentacle4x = +windowWidth / 2 / 40 * 1.75
+    tentacle5x = +windowWidth / 2 / 40 * 3.5
+    tentacle6x = +windowWidth / 2 / 40 * 5.25
 
     sX = 0;
     sXc = 0;
@@ -149,10 +151,10 @@ function setup() {
     sZ = 0;
     sZc = 0;
 
-    wW = windowWidth;
+    wW = windowWidth / 2;
     fishW = wW / 23;
     fishH = wW / 40;
-    
+
     tentacleY = posY - wW / 70;
     armY = posY - wW / 50;
 
@@ -172,7 +174,7 @@ function setup() {
     tentacle5 = new Rope(posX + tentacle5x, tentacleY, tentacleGap, 60, fix10)
     tentacle6 = new Rope(posX + tentacle6x, tentacleY, tentacleGap, 60, fix11)
 
-    bellPhysics = Matter.Bodies.trapezoid(posX + windowWidth / 35, posY - bellH / 3, bellW, bellH, 1, {
+    bellPhysics = Matter.Bodies.trapezoid(posX + windowWidth / 2 / 35, posY - bellH / 3, bellW, bellH, 1, {
         isStatic: true
     })
 
@@ -188,13 +190,13 @@ function setup() {
             [fish_04, fish_04_stunned]
         ];
         append(fish, random(fishs));
-        append(fishXstart, random(windowWidth * 0.05, windowWidth * 0.95));
-        append(fishY, random(windowHeight * 0.05, windowHeight * 0.95));
+        append(fishXstart, random(windowWidth / 2 * 0.05, windowWidth / 2 * 0.95));
+        append(fishY, random(windowHeight * 0.75 * 0.05, windowHeight * 0.75 * 0.95));
         append(fishDir, random(fishDirChoice));
         append(fishSpeed, random(0.01, 0.5))
         append(fishX, fishXstart[j]);
         append(fishStunned, false);
-        append(fishFloatMax, random(fishH, fishH*5))
+        append(fishFloatMax, random(fishH, fishH * 5))
         append(fishFloatUp, random([false, true]));
         append(fishFloat, 0)
     }
@@ -202,38 +204,39 @@ function setup() {
 }
 
 function draw() {
-    if(keyIsPressed){
-    bg_sound.loop()
-}
+    if (keyIsPressed) {
+        bg_sound.loop()
+    }
     Matter.Engine.update(engine);
     background(0);
-    image(bg, bgX, bgY, windowHeight*6.5, windowHeight*2);
+    translate(windowWidth * 0.25, windowHeight * 0.125)
+    image(bg, bgX, bgY, windowHeight * 0.75 * 6.5, windowHeight * 0.75 * 2);
 
-    bgX +=jellySpeed
-    if(stopR == true && stopL == true){
-    if(bgScroll==true) {
-    jellySpeed = -0.2
-    if(bgX <= windowHeight*-6.5-wW){
-        bgScroll = false;
+    bgX += jellySpeed
+    if (stopR == true && stopL == true) {
+        if (bgScroll == true) {
+            jellySpeed = -0.2
+            if (bgX <= windowHeight * 0.75 * -6.5 - wW) {
+                bgScroll = false;
+            }
+        } else {
+            jellySpeed = 0.2
+            if (bgX >= 0) {
+                bgScroll = true;
+            }
+        }
     }
-} else {
-    jellySpeed = 0.2
-if(bgX>=0){
-    bgScroll=true;
-}
-}
-}
-if(bgX <= windowHeight*-6.5-wW) {
-    bgX=0;
-}else if (bgX>=0) {
-    bgX=windowHeight*-6.5-wW;
-}
+    if (bgX <= windowHeight * 0.75 * -6.5 - wW) {
+        bgX = 0;
+    } else if (bgX >= 0) {
+        bgX = windowHeight * 0.75 * -6.5 - wW;
+    }
 
     for (let k = 0; k < fishCount; k++) {
         push()
         scale(fishDir[k], 1)
         if (fishStunned[k] === false | stopS === true) {
-            image(fish[k][0], fishX[k]*fishDir[k], fishY[k], fishW, fishH);
+            image(fish[k][0], fishX[k] * fishDir[k], fishY[k], fishW, fishH);
             if (fishX[k] < wW * -0.03) {
                 fishDir[k] = 1;
             } else if (fishX[k] > wW * 1.03) {
@@ -241,32 +244,32 @@ if(bgX <= windowHeight*-6.5-wW) {
             }
             fishY[k] += sin(fishFloat[k]);
             if (fishFloatUp[k] == true) {
-                fishFloat[k] += fishH/70*fishSpeed[k]
-              if (fishFloat[k] >= fishFloatMax[k]) {
-                fishFloatUp[k] = false;
-              }
+                fishFloat[k] += fishH / 70 * fishSpeed[k]
+                if (fishFloat[k] >= fishFloatMax[k]) {
+                    fishFloatUp[k] = false;
+                }
             } else {
-                fishFloat[k] -= fishH/70*fishSpeed[k]
-              if (fishFloat[k] <= fishFloatMax[k]*-1) {
-                fishFloatUp[k] = true;
-              }
+                fishFloat[k] -= fishH / 70 * fishSpeed[k]
+                if (fishFloat[k] <= fishFloatMax[k] * -1) {
+                    fishFloatUp[k] = true;
+                }
             }
             fishX[k] = fishX[k] + (fishSpeed[k] * fishDir[k]);
         } else {
-            image(fish[k][1], fishX[k]*fishDir[k], fishY[k], fishW, fishH);
-        } 
+            image(fish[k][1], fishX[k] * fishDir[k], fishY[k], fishW, fishH);
+        }
         pop()
     }
 
-    if(glow == true) {
-    for (let countx = x - 50; countx <= x; countx++) {
-        push()
-        fill(255, 0, 185, 5);
-        noStroke()
-        ellipse(posX - wW / 40 * 1.5 + wW / 40 * 2.5, posY - wW / 60 + wW / 40 * 4.25, countx * 1.5 ^ (countx * 0.75), countx * 2.8);
-        pop()
+    if (glow == true) {
+        for (let countx = x - 50; countx <= x; countx++) {
+            push()
+            fill(255, 0, 185, 5);
+            noStroke()
+            ellipse(posX - wW / 40 * 1.5 + wW / 40 * 2.5, posY - wW / 60 + wW / 40 * 4.25, countx * 1.5 ^ (countx * 0.75), countx * 2.8);
+            pop()
+        }
     }
-}
     if (x >= glowControl + 45) {
         negcount = true;
     } else if (x <= glowControl) {
@@ -323,63 +326,68 @@ if(bgX <= windowHeight*-6.5-wW) {
         glowControl = 80;
     }
 
-    if((arm1.body.bodies[arm1.n-1].velocity.x >= 10 | 
-        arm1.body.bodies[arm1.n-1].velocity.y >= 10 |
-        arm1.body.bodies[arm1.n-1].velocity.x <= -10 | 
-        arm1.body.bodies[arm1.n-1].velocity.y <= -10) 
-        && soundArm == false){
+    if ((arm1.body.bodies[arm1.n - 1].velocity.x >= 4 |
+            arm1.body.bodies[arm1.n - 1].velocity.y >= 4 |
+            arm1.body.bodies[arm1.n - 1].velocity.x <= -4 |
+            arm1.body.bodies[arm1.n - 1].velocity.y <= -4) &&
+        soundArm == false) {
         soundArm = true
         arm_sound.play
-        arm_sound.volume(0.5)
     }
-    if((tentacle1.body.bodies[tentacle1.n-1].velocity.x >=10 | 
-        tentacle1.body.bodies[tentacle1.n-1].velocity.y >=10 |
-        tentacle1.body.bodies[tentacle1.n-1].velocity.x <= -10 | 
-        tentacle1.body.bodies[tentacle1.n-1].velocity.y <= -10) && soundTentacle == false) {
+    if ((tentacle1.body.bodies[tentacle1.n - 1].velocity.x >= 4 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.y >= 4 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.x <= -4 |
+            tentacle1.body.bodies[tentacle1.n - 1].velocity.y <= -4) && soundTentacle == false) {
         soundTentacle = true
         tentacle_sound.play
-        tentacle_sound.volume(0.5)
     }
-    if(jellySpeed >=10 && soundMove == false) {
+    if (jellySpeed >= 4 && soundMove == false) {
         soundMove = true
         move_sound.play
-        move_sound.volume(0.5)
     }
     arm_sound.onended(soundFinishedArm)
     tentacle_sound.onended(soundFinishedTentacle)
     move_sound.onended(soundFinishedMove)
 
+    push()
+    translate(0, 0)
+    fill(0, 0, 0, 0)
+    rect(windowWidth * 0.75, 0, windowWidth * 0.25, windowHeight)
+    rect(0, windowHeight * 0.875, windowWidth, windowHeight * 0.125);
+    pop()
 }
+
 function soundFinishedArm() {
     soundArm = false;
 }
-function soundFinishedTentacle () {
+
+function soundFinishedTentacle() {
     soundTentacle = false;
 
 }
+
 function soundFinishedMove() {
     soundMove = false;
-
 }
 
 function stingingArms(dataSmartphone) {
 
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
-    arm1.body.bodies[arm1.n - 1].position.x = windowWidth / 2 + sensitivityX + arm1x;
-    arm1.body.bodies[arm1.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    arm1.body.bodies[arm1.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm1x;
+    arm1.body.bodies[arm1.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    arm2.body.bodies[arm2.n - 1].position.x = windowWidth / 2 + sensitivityX + arm2x;
-    arm2.body.bodies[arm2.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    arm2.body.bodies[arm2.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm2x;
+    arm2.body.bodies[arm2.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    arm3.body.bodies[arm3.n - 1].position.x = windowWidth / 2 + sensitivityX + arm3x;
-    arm3.body.bodies[arm3.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    arm3.body.bodies[arm3.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm3x;
+    arm3.body.bodies[arm3.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    arm4.body.bodies[arm4.n - 1].position.x = windowWidth / 2 + sensitivityX + arm4x;
-    arm4.body.bodies[arm4.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    arm4.body.bodies[arm4.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm4x;
+    arm4.body.bodies[arm4.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    arm5.body.bodies[arm5.n - 1].position.x = windowWidth / 2 + sensitivityX + arm5x;
-    arm5.body.bodies[arm5.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    arm5.body.bodies[arm5.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + arm5x;
+    arm5.body.bodies[arm5.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
     arm1.collision();
     arm2.collision();
@@ -403,23 +411,23 @@ function tentaclesTurn(dataSmartphone) {
     let sensitivityX = dataSmartphone.angle1;
     let sensitivityY = dataSmartphone.angle2;
     angleMode(DEGREES);
-    tentacle1.body.bodies[tentacle1.n - 1].position.x = windowWidth / 2 + sensitivityX;
-    tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    tentacle1.body.bodies[tentacle1.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX;
+    tentacle1.body.bodies[tentacle1.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    tentacle2.body.bodies[tentacle2.n - 1].position.x = windowWidth / 2 + sensitivityX + tentacle2x;
-    tentacle2.body.bodies[tentacle2.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    tentacle2.body.bodies[tentacle2.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle2x;
+    tentacle2.body.bodies[tentacle2.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    tentacle3.body.bodies[tentacle3.n - 1].position.x = windowWidth / 2 + sensitivityX + tentacle3x;
-    tentacle3.body.bodies[tentacle3.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    tentacle3.body.bodies[tentacle3.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle3x;
+    tentacle3.body.bodies[tentacle3.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    tentacle4.body.bodies[tentacle4.n - 1].position.x = windowWidth / 2 + sensitivityX + tentacle4x;
-    tentacle4.body.bodies[tentacle4.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    tentacle4.body.bodies[tentacle4.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle4x;
+    tentacle4.body.bodies[tentacle4.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    tentacle5.body.bodies[tentacle5.n - 1].position.x = windowWidth / 2 + sensitivityX + tentacle5x;
-    tentacle5.body.bodies[tentacle5.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    tentacle5.body.bodies[tentacle5.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle5x;
+    tentacle5.body.bodies[tentacle5.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
-    tentacle6.body.bodies[tentacle6.n - 1].position.x = windowWidth / 2 + sensitivityX + tentacle6x;
-    tentacle6.body.bodies[tentacle6.n - 1].position.y = windowHeight * 0.75 + sensitivityY;
+    tentacle6.body.bodies[tentacle6.n - 1].position.x = windowWidth / 2 / 2 + sensitivityX + tentacle6x;
+    tentacle6.body.bodies[tentacle6.n - 1].position.y = windowHeight * 0.75 * 0.75 + sensitivityY;
 
 }
 
@@ -475,49 +483,52 @@ function stopGlow(dataSmartphone) {
 }
 
 function rightMove(dataSmartphone) {
-if (dataSmartphone.shakeX >=5 && dataSmartphone.shakeX>jellySpeed) {
-    jellySpeed = dataSmartphone.shakeX
-}   else if (jellySpeed >0){jellySpeed -=1}
-    
-
-tentacle1.cN.pointA.x +=jellySpeed/20
-tentacle2.cN.pointA.x +=jellySpeed/20
-tentacle3.cN.pointA.x +=jellySpeed/20
-tentacle4.cN.pointA.x +=jellySpeed/20
-tentacle5.cN.pointA.x +=jellySpeed/20
-tentacle6.cN.pointA.x +=jellySpeed/20
-arm1.cN.pointA.x +=jellySpeed/20
-arm2.cN.pointA.x +=jellySpeed/20
-arm3.cN.pointA.x +=jellySpeed/20
-arm4.cN.pointA.x +=jellySpeed/20
-arm5.cN.pointA.x +=jellySpeed/20
-bellPhysics.position.x +=jellySpeed/20
-posX +=jellySpeed/20
-   }
-
-   function leftMove(dataSmartphone) {
-
-    if (dataSmartphone.shakeX <=-5 && dataSmartphone.shakeX<jellySpeed) {
+    if (dataSmartphone.shakeX >= 5 && dataSmartphone.shakeX > jellySpeed) {
         jellySpeed = dataSmartphone.shakeX
-    }  
-   else if (jellySpeed <0) {jellySpeed +=1}
+    } else if (jellySpeed > 0) {
+        jellySpeed -= 1
+    }
 
-tentacle1.cN.pointA.x +=jellySpeed/20
-tentacle2.cN.pointA.x +=jellySpeed/20
-tentacle3.cN.pointA.x +=jellySpeed/20
-tentacle4.cN.pointA.x +=jellySpeed/20
-tentacle5.cN.pointA.x +=jellySpeed/20
-tentacle6.cN.pointA.x +=jellySpeed/20
-arm1.cN.pointA.x +=jellySpeed/20
-arm2.cN.pointA.x +=jellySpeed/20
-arm3.cN.pointA.x +=jellySpeed/20
-arm4.cN.pointA.x +=jellySpeed/20
-arm5.cN.pointA.x +=jellySpeed/20
-bellPhysics.position.x +=jellySpeed/20
-posX +=jellySpeed/20
-   }
 
-   function stopMoveRight(dataSmartphone) {
+    tentacle1.cN.pointA.x += jellySpeed / 20
+    tentacle2.cN.pointA.x += jellySpeed / 20
+    tentacle3.cN.pointA.x += jellySpeed / 20
+    tentacle4.cN.pointA.x += jellySpeed / 20
+    tentacle5.cN.pointA.x += jellySpeed / 20
+    tentacle6.cN.pointA.x += jellySpeed / 20
+    arm1.cN.pointA.x += jellySpeed / 20
+    arm2.cN.pointA.x += jellySpeed / 20
+    arm3.cN.pointA.x += jellySpeed / 20
+    arm4.cN.pointA.x += jellySpeed / 20
+    arm5.cN.pointA.x += jellySpeed / 20
+    bellPhysics.position.x += jellySpeed / 20
+    posX += jellySpeed / 20
+}
+
+function leftMove(dataSmartphone) {
+
+    if (dataSmartphone.shakeX <= -5 && dataSmartphone.shakeX < jellySpeed) {
+        jellySpeed = dataSmartphone.shakeX
+    } else if (jellySpeed < 0) {
+        jellySpeed += 1
+    }
+
+    tentacle1.cN.pointA.x += jellySpeed / 20
+    tentacle2.cN.pointA.x += jellySpeed / 20
+    tentacle3.cN.pointA.x += jellySpeed / 20
+    tentacle4.cN.pointA.x += jellySpeed / 20
+    tentacle5.cN.pointA.x += jellySpeed / 20
+    tentacle6.cN.pointA.x += jellySpeed / 20
+    arm1.cN.pointA.x += jellySpeed / 20
+    arm2.cN.pointA.x += jellySpeed / 20
+    arm3.cN.pointA.x += jellySpeed / 20
+    arm4.cN.pointA.x += jellySpeed / 20
+    arm5.cN.pointA.x += jellySpeed / 20
+    bellPhysics.position.x += jellySpeed / 20
+    posX += jellySpeed / 20
+}
+
+function stopMoveRight(dataSmartphone) {
     if (dataSmartphone.stopMovingRight === true) {
         stopR = true
     } else {
@@ -585,7 +596,7 @@ class Rope {
                     fishY[l] < this.body.bodies[m].position.y + armGap &&
                     fishY[l] + fishH > this.body.bodies[m].position.y) {
                     fishStunned[l] = true;
-                } 
+                }
             }
         }
 
