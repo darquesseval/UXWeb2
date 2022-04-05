@@ -28,7 +28,7 @@ button {
     border-radius: 6%;
     border-color:  white;
 border-style: solid;
-color: white;
+opacity: 0;
     background-color: black;
     border-width: 0.5vw;
 }
@@ -72,11 +72,7 @@ color: white;
     grid-row: 4/5;
   }
   .active {
-    background-color: white;
-    color: black;
-    mix-blend-mode: hard-light;
-  }
+    color: white;
+    opacity: 100;
 
-  .arm.active {
-    animation: point;
   }
