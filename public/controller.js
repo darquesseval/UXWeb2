@@ -3,10 +3,10 @@ var socket = io.connect('https://experimenting-webux2.herokuapp.com')
 
 let initPos;
 let calibrate = true;
-let stopGlowing = false;
-let stopStunning = false;
-let stopMovingRight = false;
-let stopMovingLeft = false;
+var stopGlowing = false;
+var stopStunning = false;
+var stopMovingRight = false;
+var stopMovingLeft = false;
 
 const sensor = new AbsoluteOrientationSensor({
     frequency: 60
@@ -79,11 +79,11 @@ function toEuler(q) {
 document.getElementById("arm").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
-        let stopStunning = true;
+         stopStunning = true;
         console.log('deactivated')
     } else {
         this.classList.add("active")
-        let stopStunning = false;
+         stopStunning = false;
         console.log('activated')
     }
 })
@@ -101,11 +101,11 @@ document.getElementById("tentacle").addEventListener("click", function () {
 document.getElementById("mouth").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
-        let stopGlowing = true;
+         stopGlowing = true;
         console.log('deactivated')
     } else {
         this.classList.add("active")
-        let stopGlowing = false;
+         stopGlowing = false;
         console.log('activated')
     }
 })
@@ -113,11 +113,11 @@ document.getElementById("mouth").addEventListener("click", function () {
 document.getElementById("moveRight").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
-        let stopMovingRight = true;
+         stopMovingRight = true;
         console.log('deactivated')
     } else {
         this.classList.add("active")
-        let stopMovingRight = false;
+         stopMovingRight = false;
         console.log('activated')
     }
 })
@@ -125,11 +125,11 @@ document.getElementById("moveRight").addEventListener("click", function () {
 document.getElementById("moveLeft").addEventListener("click", function () {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
-        let stopMovingLeft = true;
+         stopMovingLeft = true;
         console.log('deactivated')
     } else {
         this.classList.add("active")
-        let stopMovingLeft = false;
+         stopMovingLeft = false;
         console.log('activated')
     }
 })

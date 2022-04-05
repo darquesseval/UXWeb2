@@ -477,7 +477,7 @@ function stopGlow(dataSmartphone) {
 function rightMove(dataSmartphone) {
 if (dataSmartphone.shakeX >=5 && dataSmartphone.shakeX>jellySpeed) {
     jellySpeed = dataSmartphone.shakeX
-}   else {jellySpeed -=0.1}
+}   else if (jellySpeed >0){jellySpeed -=1}
     
 
 tentacle1.cN.pointA.x +=jellySpeed/20
@@ -500,7 +500,7 @@ posX +=jellySpeed/20
     if (dataSmartphone.shakeX <=-5 && dataSmartphone.shakeX<jellySpeed) {
         jellySpeed = dataSmartphone.shakeX
     }  
-   else {jellySpeed +=0.1}
+   else if (jellySpeed <0) {jellySpeed +=1}
 
 tentacle1.cN.pointA.x +=jellySpeed/20
 tentacle2.cN.pointA.x +=jellySpeed/20
