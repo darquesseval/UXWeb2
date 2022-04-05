@@ -74,6 +74,8 @@ let soundMove = false;
 
 let arm_sound, move_sound, bg_sound, tentacle_sound;
 
+let cnv, ctx;
+
 function preload() {
     bg = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
     bell = loadImage('https://rocky-fjord-59052.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
@@ -109,6 +111,8 @@ function setup() {
     background(0);
     cnv = createCanvas(windowWidth * 0.75, windowHeight * 0.875)
     cnv.position(windowWidth*0.125, windowHeight*0.06)
+    ctx = cnv.getContext('2d');
+    ctx.stroke();
     socket = io.connect('https://experimenting-webux2.herokuapp.com')
     socket.on('forArm', stingingArms);
     socket.on('forTentacle', tentaclesTurn);
@@ -389,7 +393,6 @@ function stingingArms(dataSmartphone) {
     arm3.collision();
     arm4.collision();
     arm5.collision();
-
 
 }
 
