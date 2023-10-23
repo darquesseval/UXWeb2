@@ -1,5 +1,5 @@
 // from https://betterprogramming.pub/track-your-smartphone-in-2d-with-javascript-1ba44603c0df
-var socket = io.connect('https://experimenting-webux2.herokuapp.com')
+var socket = io.connect('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com')
 
 let initPos;
 let calibrate = true;
