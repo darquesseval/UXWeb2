@@ -78,29 +78,29 @@ let arm_sound, move_sound, bg_sound, tentacle_sound;
 function preload() {
     bg = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/background.png');
     bell = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/bell.png');
-    tentacle = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
-    arm = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
-    mouth = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
-    arm_link = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_link.png');
-    bell_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
-    tentacle_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
-    arm_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
-    mouth_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
-    arm_link_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_link_glow.png');
-    fish_01 = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish1.png');
-    fish_02 = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish2.png');
-    fish_03 = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3.png');
-    fish_04 = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4.png');
-    fish_01_stunned = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish1_stunned.png');
-    fish_02_stunned = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish2_stunned.png');
-    fish_03_stunned = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3_stunned.png');
-    fish_04_stunned = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4_stunned.png');
+    tentacle = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/tentacle.png');
+    arm = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/arm.png');
+    mouth = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/mouth.png');
+    arm_link = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/arm_link.png');
+    bell_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/bell_glow.png');
+    tentacle_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/tentacle_glow.png');
+    arm_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/arm_glow.png');
+    mouth_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/mouth_glow.png');
+    arm_link_glow = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/arm_link_glow.png');
+    fish_01 = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/fish1.png');
+    fish_02 = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/fish2.png');
+    fish_03 = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/fish3.png');
+    fish_04 = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/fish4.png');
+    fish_01_stunned = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/fish1_stunned.png');
+    fish_02_stunned = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/fish2_stunned.png');
+    fish_03_stunned = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/fish3_stunned.png');
+    fish_04_stunned = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/fish4_stunned.png');
 
     soundFormats('mp3');
-    arm_sound = createAudio('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
-    tentacle_sound = createAudio('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
-    move_sound = createAudio('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/move_fast.mp3');
-    bg_sound = createAudio('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/constant_sound.mp3');
+    arm_sound = createAudio('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/audio/arm_sound.mp3');
+    tentacle_sound = createAudio('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/audio/arm_sound.mp3');
+    move_sound = createAudio('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/audio/move_fast.mp3');
+    bg_sound = createAudio('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/audio/constant_sound.mp3');
 
 }
 
