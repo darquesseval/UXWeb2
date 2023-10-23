@@ -76,8 +76,8 @@ let soundMove = false;
 let arm_sound, move_sound, bg_sound, tentacle_sound;
 
 function preload() {
-    bg = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
-    bell = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
+    bg = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/background.png');
+    bell = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/bell.png');
     tentacle = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
     arm = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
     mouth = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
