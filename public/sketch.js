@@ -76,31 +76,31 @@ let soundMove = false;
 let arm_sound, move_sound, bg_sound, tentacle_sound;
 
 function preload() {
-    bg = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
-    bell = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
-    tentacle = loadImage('./pic/tentacle.png');
-    arm = loadImage('./pic/arm.png');
-    mouth = loadImage('./pic/mouth.png');
-    arm_link = loadImage('./pic/arm_link.png');
-    bell_glow = loadImage('./pic/bell_glow.png');
-    tentacle_glow = loadImage('./pic/tentacle_glow.png');
-    arm_glow = loadImage('./pic/arm_glow.png');
-    mouth_glow = loadImage('./pic/mouth_glow.png');
-    arm_link_glow = loadImage('./pic/arm_link_glow.png');
-    fish_01 = loadImage('./pic/fish1.png');
-    fish_02 = loadImage('./pic/fish2.png');
-    fish_03 = loadImage('./pic/fish3.png');
-    fish_04 = loadImage('./pic/fish4.png');
-    fish_01_stunned = loadImage('./pic/fish1_stunned.png');
-    fish_02_stunned = loadImage('./pic/fish2_stunned.png');
-    fish_03_stunned = loadImage('./pic/fish3_stunned.png');
-    fish_04_stunned = loadImage('./pic/fish4_stunned.png');
+    bg = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
+    bell = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
+    tentacle = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle.png');
+    arm = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm.png');
+    mouth = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth.png');
+    arm_link = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_link.png');
+    bell_glow = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/bell_glow.png');
+    tentacle_glow = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/tentacle_glow.png');
+    arm_glow = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_glow.png');
+    mouth_glow = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/mouth_glow.png');
+    arm_link_glow = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/arm_link_glow.png');
+    fish_01 = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish1.png');
+    fish_02 = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish2.png');
+    fish_03 = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3.png');
+    fish_04 = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4.png');
+    fish_01_stunned = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish1_stunned.png');
+    fish_02_stunned = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish2_stunned.png');
+    fish_03_stunned = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish3_stunned.png');
+    fish_04_stunned = loadImage('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/pic/fish4_stunned.png');
 
     soundFormats('mp3');
-    arm_sound = createAudio('./audio/arm_sound.mp3');
-    tentacle_sound = createAudio('./audio/arm_sound.mp3');
-    move_sound = createAudio('./audio/move_fast.mp3');
-    bg_sound = createAudio('./audio/constant_sound.mp3');
+    arm_sound = createAudio('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
+    tentacle_sound = createAudio('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/arm_sound.mp3');
+    move_sound = createAudio('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/move_fast.mp3');
+    bg_sound = createAudio('https://cors-anywhere.herokuapp.com/https://kind-kowalevski-48d942.netlify.app/public/audio/constant_sound.mp3');
 
 }
 
