@@ -76,8 +76,8 @@ let soundMove = false;
 let arm_sound, move_sound, bg_sound, tentacle_sound;
 
 function preload() {
-    bg = loadImage('./pic/background.png');
-    bell = loadImage('./pic/bell.png');
+    bg = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/background.png');
+    bell = loadImage('https://kind-kowalevski-48d942.netlify.app/public/pic/bell.png');
     tentacle = loadImage('./pic/tentacle.png');
     arm = loadImage('./pic/arm.png');
     mouth = loadImage('./pic/mouth.png');
