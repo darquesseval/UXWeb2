@@ -76,7 +76,7 @@ let soundMove = false;
 let arm_sound, move_sound, bg_sound, tentacle_sound;
 
 function preload() {
-    bg = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/background.png');
+    bg = loadImage('./pic/background.png');
     bell = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/bell.png');
     tentacle = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/tentacle.png');
     arm = loadImage('https://fun-of-a-jellyfish-085bbbd48029.herokuapp.com/pic/arm.png');
